@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="Data\Controllers\" />
     <Folder Include="Data\Endpoints\" />
-    <Folder Include="Data\Models\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 
