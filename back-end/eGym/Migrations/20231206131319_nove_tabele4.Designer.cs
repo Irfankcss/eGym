@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eGym.Data;
 
@@ -11,9 +12,11 @@ using eGym.Data;
 namespace eGym.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206131319_nove_tabele4")]
+    partial class novetabele4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,9 +161,9 @@ namespace eGym.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Slika")
+                    b.Property<byte[]>("Slika")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<bool>("isAdmin")
                         .HasColumnType("bit");
@@ -267,29 +270,6 @@ namespace eGym.Migrations
                     b.UseTptMappingStrategy();
                 });
 
-            modelBuilder.Entity("eGym.Data.Models.NarudzbaProizvod", b =>
-                {
-                    b.Property<int>("NarudzbaProizvodID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NarudzbaProizvodID"));
-
-                    b.Property<int>("NarudzbaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProizvodId")
-                        .HasColumnType("int");
-
-                    b.HasKey("NarudzbaProizvodID");
-
-                    b.HasIndex("NarudzbaId");
-
-                    b.HasIndex("ProizvodId");
-
-                    b.ToTable("NarudzbaProizvod");
-                });
-
             modelBuilder.Entity("eGym.Data.Models.Obavjesti", b =>
                 {
                     b.Property<int>("ID")
@@ -355,6 +335,9 @@ namespace eGym.Migrations
                     b.Property<int?>("KorpaID")
                         .HasColumnType("int");
 
+                    b.Property<int?>("NarudzbaId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Naziv")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -379,6 +362,8 @@ namespace eGym.Migrations
                     b.HasIndex("KategorijaID");
 
                     b.HasIndex("KorpaID");
+
+                    b.HasIndex("NarudzbaId");
 
                     b.ToTable("Proizvod");
                 });
@@ -533,25 +518,6 @@ namespace eGym.Migrations
                     b.Navigation("korisnik");
                 });
 
-            modelBuilder.Entity("eGym.Data.Models.NarudzbaProizvod", b =>
-                {
-                    b.HasOne("eGym.Data.Models.Narudzba", "narudzba")
-                        .WithMany("NarudzbaProizvodi")
-                        .HasForeignKey("NarudzbaId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("eGym.Data.Models.Proizvod", "proizvod")
-                        .WithMany()
-                        .HasForeignKey("ProizvodId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("narudzba");
-
-                    b.Navigation("proizvod");
-                });
-
             modelBuilder.Entity("eGym.Data.Models.Obavjesti", b =>
                 {
                     b.HasOne("eGym.Data.Models.Admin", "Admin")
@@ -580,6 +546,11 @@ namespace eGym.Migrations
                     b.HasOne("eGym.Data.Models.Korpa", null)
                         .WithMany("Proizvodi")
                         .HasForeignKey("KorpaID")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("eGym.Data.Models.Narudzba", null)
+                        .WithMany("Proizvodi")
+                        .HasForeignKey("NarudzbaId")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("brend");
@@ -654,7 +625,7 @@ namespace eGym.Migrations
 
             modelBuilder.Entity("eGym.Data.Models.Narudzba", b =>
                 {
-                    b.Navigation("NarudzbaProizvodi");
+                    b.Navigation("Proizvodi");
                 });
 #pragma warning restore 612, 618
         }

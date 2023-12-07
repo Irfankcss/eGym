@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eGym.Data;
 
@@ -11,9 +12,11 @@ using eGym.Data;
 namespace eGym.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206130731_nove_tabele3")]
+    partial class novetabele3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,9 +161,9 @@ namespace eGym.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Slika")
+                    b.Property<byte[]>("Slika")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<bool>("isAdmin")
                         .HasColumnType("bit");
@@ -176,27 +179,6 @@ namespace eGym.Migrations
                     b.ToTable("KorisnickiNalog");
 
                     b.UseTptMappingStrategy();
-                });
-
-            modelBuilder.Entity("eGym.Data.Models.Korpa", b =>
-                {
-                    b.Property<int>("KorpaID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("KorpaID"));
-
-                    b.Property<int>("KorisnikID")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Vrijednost")
-                        .HasColumnType("float");
-
-                    b.HasKey("KorpaID");
-
-                    b.HasIndex("KorisnikID");
-
-                    b.ToTable("Korpa");
                 });
 
             modelBuilder.Entity("eGym.Data.Models.KreditnaKartica", b =>
@@ -267,29 +249,6 @@ namespace eGym.Migrations
                     b.UseTptMappingStrategy();
                 });
 
-            modelBuilder.Entity("eGym.Data.Models.NarudzbaProizvod", b =>
-                {
-                    b.Property<int>("NarudzbaProizvodID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NarudzbaProizvodID"));
-
-                    b.Property<int>("NarudzbaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProizvodId")
-                        .HasColumnType("int");
-
-                    b.HasKey("NarudzbaProizvodID");
-
-                    b.HasIndex("NarudzbaId");
-
-                    b.HasIndex("ProizvodId");
-
-                    b.ToTable("NarudzbaProizvod");
-                });
-
             modelBuilder.Entity("eGym.Data.Models.Obavjesti", b =>
                 {
                     b.Property<int>("ID")
@@ -352,7 +311,7 @@ namespace eGym.Migrations
                     b.Property<int>("KolicinaNaSkladistu")
                         .HasColumnType("int");
 
-                    b.Property<int?>("KorpaID")
+                    b.Property<int?>("NarudzbaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Naziv")
@@ -378,7 +337,7 @@ namespace eGym.Migrations
 
                     b.HasIndex("KategorijaID");
 
-                    b.HasIndex("KorpaID");
+                    b.HasIndex("NarudzbaId");
 
                     b.ToTable("Proizvod");
                 });
@@ -500,17 +459,6 @@ namespace eGym.Migrations
                     b.Navigation("Drzava");
                 });
 
-            modelBuilder.Entity("eGym.Data.Models.Korpa", b =>
-                {
-                    b.HasOne("eGym.Data.Models.Korisnik", "korisnik")
-                        .WithMany()
-                        .HasForeignKey("KorisnikID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("korisnik");
-                });
-
             modelBuilder.Entity("eGym.Data.Models.KreditnaKartica", b =>
                 {
                     b.HasOne("eGym.Data.Models.Korisnik", "Korisnik")
@@ -531,25 +479,6 @@ namespace eGym.Migrations
                         .IsRequired();
 
                     b.Navigation("korisnik");
-                });
-
-            modelBuilder.Entity("eGym.Data.Models.NarudzbaProizvod", b =>
-                {
-                    b.HasOne("eGym.Data.Models.Narudzba", "narudzba")
-                        .WithMany("NarudzbaProizvodi")
-                        .HasForeignKey("NarudzbaId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("eGym.Data.Models.Proizvod", "proizvod")
-                        .WithMany()
-                        .HasForeignKey("ProizvodId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("narudzba");
-
-                    b.Navigation("proizvod");
                 });
 
             modelBuilder.Entity("eGym.Data.Models.Obavjesti", b =>
@@ -577,9 +506,9 @@ namespace eGym.Migrations
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("eGym.Data.Models.Korpa", null)
+                    b.HasOne("eGym.Data.Models.Narudzba", null)
                         .WithMany("Proizvodi")
-                        .HasForeignKey("KorpaID")
+                        .HasForeignKey("NarudzbaId")
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("brend");
@@ -647,14 +576,9 @@ namespace eGym.Migrations
                     b.Navigation("radnik");
                 });
 
-            modelBuilder.Entity("eGym.Data.Models.Korpa", b =>
-                {
-                    b.Navigation("Proizvodi");
-                });
-
             modelBuilder.Entity("eGym.Data.Models.Narudzba", b =>
                 {
-                    b.Navigation("NarudzbaProizvodi");
+                    b.Navigation("Proizvodi");
                 });
 #pragma warning restore 612, 618
         }
