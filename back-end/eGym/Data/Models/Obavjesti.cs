@@ -10,7 +10,7 @@ namespace eGym.Data.Models
         public DateTime DatumObjave { get; set; }
         public string Naslov {  get; set; }
         public string Text {  get; set; }
-        public byte[] Slika { get; set; }
+        public string Slika { get; set; }
         [ForeignKey(nameof(Admin))]
         public int AdminID { get; set; }
         public Admin Admin { get; set; }

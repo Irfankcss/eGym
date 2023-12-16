@@ -39,22 +39,6 @@ namespace eGym.Migrations
                     b.ToTable("Brend");
                 });
 
-            modelBuilder.Entity("eGym.Data.Models.Clan", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
-
-                    b.Property<int>("BrojClana")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Clan");
-                });
-
             modelBuilder.Entity("eGym.Data.Models.Clanarina", b =>
                 {
                     b.Property<int>("ID")
@@ -308,9 +292,9 @@ namespace eGym.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("Slika")
+                    b.Property<string>("Slika")
                         .IsRequired()
-                        .HasColumnType("varbinary(max)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
                         .IsRequired()
@@ -489,6 +473,21 @@ namespace eGym.Migrations
                     b.ToTable("PoslanaNarudzba");
                 });
 
+            modelBuilder.Entity("eGym.Data.Models.Clan", b =>
+                {
+                    b.HasBaseType("eGym.Data.Models.Korisnik");
+
+                    b.Property<int>("BrojClana")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ClanarinaID")
+                        .HasColumnType("int");
+
+                    b.HasIndex("ClanarinaID");
+
+                    b.ToTable("Clan");
+                });
+
             modelBuilder.Entity("eGym.Data.Models.Grad", b =>
                 {
                     b.HasOne("eGym.Data.Models.Drzava", "Drzava")
@@ -645,6 +644,23 @@ namespace eGym.Migrations
                         .IsRequired();
 
                     b.Navigation("radnik");
+                });
+
+            modelBuilder.Entity("eGym.Data.Models.Clan", b =>
+                {
+                    b.HasOne("eGym.Data.Models.Clanarina", "Clanarina")
+                        .WithMany()
+                        .HasForeignKey("ClanarinaID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("eGym.Data.Models.Korisnik", null)
+                        .WithOne()
+                        .HasForeignKey("eGym.Data.Models.Clan", "ID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Clanarina");
                 });
 
             modelBuilder.Entity("eGym.Data.Models.Korpa", b =>

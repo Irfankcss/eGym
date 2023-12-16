@@ -6,8 +6,6 @@ namespace eGym.Data.Models
     [Table("Korisnik")]
     public class Korisnik : KorisnickiNalog
     {
-        [Key]
-        public int ID { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public bool isClan { get; set; }
@@ -16,7 +14,7 @@ namespace eGym.Data.Models
         public Grad OpstinaRodjenja {  get; set; }
         public DateTime DatumRodjenja { get; set; }
         public string BrojTelefona { get; set; }
-        public string Spol {  get; set; }
+        public string Spol { get; set; }
 
     }
 }
