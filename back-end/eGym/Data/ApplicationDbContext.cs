@@ -26,6 +26,9 @@ namespace eGym.Data
         public DbSet <PoslanaNarudzba> PoslanaNarudzba { get; set; }
 
         public DbSet <Korpa> Korpa { get; set; }
+        public DbSet <KorpaProizvod> KorpaProizvod { get; set; }
+
+        public DbSet <Slika> Slika { get; set; }
         
         public ApplicationDbContext(
         DbContextOptions options) : base(options)

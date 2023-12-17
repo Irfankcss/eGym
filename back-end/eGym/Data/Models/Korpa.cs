@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace eGym.Data.Models
 {
@@ -6,7 +7,8 @@ namespace eGym.Data.Models
     public class Korpa
     {
         public int KorpaID { get; set; }
-        public ICollection<Proizvod> Proizvodi { get; }= new List<Proizvod>();  
+        [JsonIgnore]
+        public List<KorpaProizvod> Proizvodi { get; set; } = new List<KorpaProizvod>();  
 
         [ForeignKey(nameof(korisnik))]
         public int KorisnikID {  get; set; }

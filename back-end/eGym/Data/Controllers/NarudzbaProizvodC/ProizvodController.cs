@@ -1,4 +1,5 @@
 ﻿using eGym.Data.Models;
+using eGym.Data.ViewModels.ProizvodVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,51 +14,155 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
         {
             _context = context;
         }
-        [HttpGet("{productId}/orders")]
-        public IActionResult GetOrdersForProduct(int ProizvodID)
+
+        [HttpGet("GetProizvodi")]
+        public async Task<IActionResult> GetProizvodByNaziv(CancellationToken cancellationToken)
         {
-            var ordersForProduct = _context.NarudzbaProizvod
-                .Where(np => np.ProizvodId == ProizvodID)
-                .Select(np => np.proizvod) 
-                .ToList();
-        
-            return Ok(ordersForProduct);
+            var proizvod = await _context.Proizvod
+                .Select(p => new ProizvodGetVM
+                {
+                    ProizvodID=p.ProizvodID,
+                    Naziv = p.Naziv,
+                    isIzdvojen = p.isIzdvojen,
+                    Boja = p.Boja,
+                    Slike = p.Slike,
+                    Velicina = p.Velicina,
+                    Brend = p.Brend,
+                    Cijena = p.Cijena,
+                    DatumObjave = p.DatumObjave,
+                    Kategorija = p.Kategorija,
+                    KolicinaNaSkladistu = p.KolicinaNaSkladistu,
+                    Opis = p.Opis,
+                    popust = p.popust
+                }).ToListAsync(); ;
+
+            if (proizvod == null)
+            {
+                return NotFound("Nema proizvoda u bazi");
+            }
+
+            return Ok(proizvod);
         }
-        [HttpGet("{id}")]
+
+        [HttpGet("GetProizvodByNaziv/{nazivProizvoda}")]
+        public async Task<IActionResult> GetProizvodByNaziv(string nazivProizvoda)
+        {
+            var proizvod = await _context.Proizvod
+                .Where(p => p.Naziv.ToLower().StartsWith(nazivProizvoda.ToLower())).Select(p => new ProizvodGetVM
+                {
+                    ProizvodID=p.ProizvodID,
+                    Naziv = p.Naziv,
+                    isIzdvojen = p.isIzdvojen,
+                    Boja = p.Boja,
+                    Slike = p.Slike,
+                    Velicina = p.Velicina,
+                    Brend = p.Brend,
+                    Cijena = p.Cijena,
+                    DatumObjave = p.DatumObjave,
+                    Kategorija = p.Kategorija,
+                    KolicinaNaSkladistu = p.KolicinaNaSkladistu,
+                    Opis = p.Opis,
+                    popust = p.popust
+                }).ToListAsync(); ;
+
+            if (proizvod == null)
+            {
+                return NotFound("Proizvod nije pronadjen");
+            }
+
+            return Ok(proizvod);
+        }
+        [HttpPost]
+        public async Task<IActionResult> PostProizvod(ProizvodVM proizvodvm)
+        {
+            var proizvod = new Proizvod
+            {
+                Naziv = proizvodvm.Naziv,
+                Kategorija = proizvodvm.Kategorija,
+                KategorijaID = proizvodvm.Kategorija.Id,
+                Boja = proizvodvm.Boja,
+                Cijena = proizvodvm.Cijena,
+                Brend = proizvodvm.Brend,
+                BrendID = proizvodvm.Brend.BrendId,
+                DatumObjave = proizvodvm.DatumObjave,
+                isIzdvojen = false,
+                Izbrisan = false,
+                KolicinaNaSkladistu=proizvodvm.KolicinaNaSkladistu,
+                Opis=proizvodvm.Opis,
+                popust=proizvodvm.popust,
+                Velicina=proizvodvm.Velicina,
+                Slike=proizvodvm.Slike,
+            };
+            var kategorija = await _context.Kategorija.FirstOrDefaultAsync(k => k.NazivKategorije == proizvodvm.Kategorija.NazivKategorije);
+            var brend = await _context.Brend.FirstOrDefaultAsync(b => b.NazivBrenda == proizvodvm.Brend.NazivBrenda);
+            if (kategorija != null)
+            {
+                proizvod.Kategorija = kategorija;
+                proizvod.KategorijaID = kategorija.Id;
+            }
+            if(brend != null)
+            {
+                proizvod.Brend = brend;
+                proizvod.BrendID=brend.BrendId;
+            }
+            _context.Proizvod.Add(proizvod);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetProizvod), new { id = proizvodvm.Naziv }, proizvodvm);
+        }
+        [HttpGet("GetProizvod/{id} NE KORISTI SE")]
         public async Task<IActionResult> GetProizvod(int id)
         {
             var proizvod = await _context.Proizvod.FindAsync(id);
 
             if (proizvod == null)
             {
-                return NotFound("Proizvod not found");
+                return NotFound();
             }
 
             return Ok(proizvod);
         }
-        [HttpGet("{NarudzbaID}")]
-        public List<Proizvod> GetProizvodNarudzbe(int NarudzbaID)
+        [HttpDelete("DeleteProizvod/{proizvodID}")]
+        public async Task<IActionResult> DeleteProizvod(int proizvodID)
         {
-            var narudzbap =  _context.NarudzbaProizvod.Where(x=>x.NarudzbaId==NarudzbaID).ToList();
-            List < Proizvod > proizvodi= new List<Proizvod>();
-            foreach(NarudzbaProizvod np in narudzbap)
+            var proizvod = await _context.Proizvod.FindAsync(proizvodID);
+
+            if (proizvod == null)
             {
-                proizvodi.Add(np.proizvod);
-            }
-            if (proizvodi.Count() == 0)
-            {
-                throw (new Exception("nema proizvoda u toj narudzbi"));
+                return NotFound("Proizvod nije pronadjen");
             }
 
-            return proizvodi;
-        }
-        [HttpPost]
-        public async Task<IActionResult> PostProizvod(Proizvod proizvod)
-        {
-            _context.Proizvod.Add(proizvod);
+            _context.Proizvod.Remove(proizvod);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetProizvod), new { id = proizvod.ProizvodID }, proizvod);
+            return Ok("Proizvod obrisan");
         }
+
+        [HttpGet("GetProizvodiByKategorijaID/{kategorijaID}")]
+        public async Task<IActionResult> GetProizvodiByKategorijaID2(int kategorijaID)
+        {
+            var proizvodi = await _context.Proizvod
+                .Where(p => p.KategorijaID == kategorijaID)
+                .Select(p=> new ProizvodGetVM
+                {
+                    ProizvodID=p.ProizvodID,
+                    Naziv=p.Naziv,
+                    isIzdvojen=p.isIzdvojen,
+                    Boja=p.Boja,
+                    Slike=p.Slike,
+                    Velicina=p.Velicina,
+                    Brend=p.Brend,Cijena=p.Cijena,
+                    DatumObjave=p.DatumObjave,Kategorija=p.Kategorija,
+                    KolicinaNaSkladistu = p.KolicinaNaSkladistu,Opis = p.Opis,popust = p.popust
+                }).ToListAsync();
+
+            if (!proizvodi.Any())
+            {
+                return NotFound("Nema proizvoda u toj kategoriji");
+            }
+
+            return Ok(proizvodi);
+        }
+
     }
 }

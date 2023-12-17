@@ -1,16 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eGym.Data.Models
 {
     public class NarudzbaProizvod
     {
+        [Key]
         public int NarudzbaProizvodID { get; set; }
-        [ForeignKey(nameof(narudzba))]
         public int NarudzbaId { get; set; }
-        public Narudzba narudzba { get; set; }
-        [ForeignKey(nameof(proizvod))]
+        public Narudzba Narudzba { get; set; }
         public int ProizvodId { get; set; }
-        public Proizvod proizvod { get; set; }
+        public Proizvod Proizvod { get; set; }
+        public int Kolicina { get; set; }
 
     }
 }
