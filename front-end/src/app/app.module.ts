@@ -5,8 +5,10 @@ import { AppComponent } from './app.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { RouterModule } from '@angular/router';
+import {ProdavnicaComponent} from "../prodavnica/prodavnica.component";
 @NgModule({
   declarations: [
+    ProdavnicaComponent,
   ],
   imports: [
     BrowserModule,

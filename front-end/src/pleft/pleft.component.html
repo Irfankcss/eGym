@@ -1,0 +1,72 @@
+<div class="pleft-box">
+  <div class="filteribtn"
+       (click)="prikaziFiltere()">
+    <label class="FiltrirajNaslov">Filtriraj</label>
+    <label class="plusminus">{{ filteriPrikazani ? '-' : '+' }}</label>
+  </div>
+  <div *ngIf="filteriPrikazani" class="filteri">
+    <div class="filter"
+         (click)="prikaziKategorije()"
+         (mouseenter)="onKategorijeMouseEnter()"
+         (mouseleave)="onKategorijeMouseLeave()"
+         [class.hovered]="isKategorijeHovered">
+      <div class="FilterNaslovBox">
+        <label class="FilterNaslov">Kategorije</label>
+      </div>
+      <div class="plusminusbox">
+        <label class="plusminusfilter">{{ prikazaneKategorije ? '-' : '+' }}</label>
+      </div>
+    </div>
+    <div class="filter"
+         (click)="prikaziBrendove()"
+         (mouseenter)="onBrendoviMouseEnter()"
+         (mouseleave)="onBrendoviMouseLeave()"
+         [class.hovered]="isBrendoviHovered">
+      <div class="FilterNaslovBox">
+        <label class="FilterNaslov">Brendovi</label>
+      </div>
+      <div class="plusminusbox">
+        <label class="plusminusfilter">{{ prikazaniBrendovi ? '  -' : '  +' }}</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="sortbtn">
+  <label class="SortirajNaslov">Sortiraj</label>
+
+  </div>
+  <div class="sort-options">
+  <div class="sort">
+    <div class="sort-naslov-box">
+      <label class="sort-naslov">Najniža cijena</label>
+    </div>
+    <div class="checkbox-box">
+      <input type="checkbox" class="najnizacb">
+    </div>
+  </div>
+    <div class="sort">
+      <div class="sort-naslov-box">
+        <label class="sort-naslov">Najviša cijena</label>
+      </div>
+      <div class="checkbox-box">
+        <input type="checkbox" class="najvisacb">
+      </div>
+    </div>
+    <div class="sort">
+      <div class="sort-naslov-box">
+        <label class="sort-naslov">Najnovije</label>
+      </div>
+      <div class="checkbox-box">
+        <input type="checkbox" class="najnovijecb">
+      </div>
+    </div>
+    <div class="sort">
+      <div class="sort-naslov-box">
+        <label class="sort-naslov">Najstarije</label>
+      </div>
+      <div class="checkbox-box">
+        <input type="checkbox" class="najstarijecb">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,18 +1,21 @@
-<ul class="nav nav-underline justify-content-center bg-dark h-25 w-100 p-3">
-  <li class="nav-item">
-    <a class="nav-link text-white">Početna</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-white">Clanstvo</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-white">Prodavnica</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-white">Cjenovnik</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link text-white">Kontakt</a>
-  </li>
+<div class="navbar">
+  <ul class="nav nav-underline justify-content-center bg-dark h-25 w-100 p-3">
+    <li class="nav-item">
+      <a class="nav-link text-white">Početna</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white">Clanstvo</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white" routerLink="/prodavnica">Prodavnica</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white">Cjenovnik</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link text-white">Kontakt</a>
+    </li>
 
-</ul>
+  </ul>
+</div>
+<router-outlet class="r-outlet"></router-outlet>

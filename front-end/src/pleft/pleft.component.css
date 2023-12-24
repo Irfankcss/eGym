@@ -1,0 +1,95 @@
+label{
+  user-select: none;
+}
+.pleft-box{
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #ffffff;
+}
+p{
+  margin: 0;
+}
+.FiltrirajNaslov{
+  cursor: pointer;
+  font-size: 30px;
+}
+.SortirajNaslov{
+  cursor: pointer;
+  font-size: 30px;
+}
+.sortbtn{
+  border-bottom: 1px solid #e0dede;
+  width:85%;
+  margin-left: 7%;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.plusminus{
+  font-size: 35px;
+  padding-left: 50%;
+  cursor: pointer;
+
+}
+.filteri{
+  padding-left: 10%;
+  cursor: pointer;
+}
+.sort-options{
+  padding-left: 10%;
+  cursor: pointer;
+}
+.filter{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0dede;
+  width: 85%;
+}
+.sort{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0dede;
+  width: 85%;
+}
+.sort-naslov-box{
+  padding-left: 2%;
+  display:flex;
+}
+.sort-naslov{
+  font-size: 20px;
+  padding-top: 1%;
+  padding-bottom:1%;
+}
+.plusminusfilter{
+
+    font-size: 25px;
+
+}
+.plusminusbox{
+  display: flex;
+  align-content: center;
+  text-align: right;
+  padding-left: 55%;
+}
+
+.FilterNaslov{
+  font-size: 20px;
+}
+.FilterNaslovBox{
+  padding-left: 2%;
+  display:flex;
+}
+.hovered {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+.filteribtn{
+  border-bottom: 1px solid #e0dede;
+  width:85%;
+  margin-left: 7%;
+  cursor: pointer;
+}

@@ -1,0 +1,45 @@
+.ptop-box{
+  height: 10%;
+  width:100%;
+  top: 10%;
+  text-align: center;
+  display:flex;
+  flex-direction: row;
+  background-color: rgb(33, 37, 41);
+  position:fixed;
+}
+p{
+  margin: 0;
+}
+.input-group{
+  height: 60%;
+  padding-left: 25%;
+  margin-top: 1%;
+
+}
+.korpa{
+  width: 40%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+
+}
+.korpaimg{
+  cursor: pointer;
+  width: 15%;
+  height: 120%;
+}
+.searchbar{
+  width: 80%;
+  height: 100%;
+  border-radius: 10px;
+  font-size: 16px;
+  border:1.5px solid #ffd200;
+}
+.searchbtn{
+  font-weight: bold;
+  width: 20%;
+  height: 100%;
+  border-radius: 10px;
+  border: none;
+  background-color: #ffd200;
+}
