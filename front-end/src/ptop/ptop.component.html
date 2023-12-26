@@ -1,11 +1,9 @@
 <div class="ptop-box">
   <div class="input-group">
-    <input type="search" class="searchbar" placeholder="Pretraživanje">
-    <button type="button" class="searchbtn" data-mdb-ripple-init>Traži</button>
+    <input type="search" [(ngModel)]="_inputValue" (keyup.enter)="TraziZaInput()" class="searchbar" placeholder="Pretraživanje">
+    <button type="button" (click)="TraziZaInput()" class="searchbtn" data-mdb-ripple-init>Traži</button>
   </div>
   <div class="korpa">
-
-      <img class="korpaimg" src="/assets/prodavnica-images/cart.png">
-
+    <img class="korpaimg" src="/assets/prodavnica-images/cart.png">
   </div>
 </div>
