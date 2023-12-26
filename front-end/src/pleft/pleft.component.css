@@ -44,10 +44,20 @@ p{
 }
 .filter{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #e0dede;
   width: 85%;
+}
+
+.filter-naslov-plusminus{
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0dede;
 }
 .sort{
   display: flex;
@@ -92,4 +102,39 @@ p{
   width:85%;
   margin-left: 7%;
   cursor: pointer;
+}
+.kategorije-box{
+  display:flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin-left: 7%;
+  width: 93%;
+
+}
+.kategorija{
+  border-bottom: #dedcdc 1px solid;
+  padding-left: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+.kategorija-txt{
+  cursor: pointer;
+  font-size: 16px;
+}
+.brendovi-box{
+  display:flex;
+  flex-direction: column;
+  max-width: 100%;
+  margin-left: 7%;
+  width: 93%;
+}
+.brend{
+  border-bottom: #dedcdc 1px solid;
+  padding-left: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+.brend-txt{
+  cursor: pointer;
+  font-size: 16px;
 }

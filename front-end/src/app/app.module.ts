@@ -6,18 +6,19 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { RouterModule } from '@angular/router';
 import {ProdavnicaComponent} from "../prodavnica/prodavnica.component";
+import {SharedDataService} from "./shared-data-service";
 @NgModule({
   declarations: [
-    ProdavnicaComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
+
     RouterModule.forRoot([
     ])
   ],
-  providers: [],
+  providers: [SharedDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

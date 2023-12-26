@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eGym.Migrations
 {
     /// <inheritdoc />
-    public partial class novaMigracija : Migration
+    public partial class prvaunovojbazi : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -58,7 +58,8 @@ namespace eGym.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NazivKategorije = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    NazivKategorije = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Opis = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -102,6 +103,40 @@ namespace eGym.Migrations
                         column: x => x.DrzavaID,
                         principalTable: "Drzava",
                         principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Proizvod",
+                columns: table => new
+                {
+                    ProizvodID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Opis = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Cijena = table.Column<double>(type: "float", nullable: false),
+                    KategorijaID = table.Column<int>(type: "int", nullable: false),
+                    KolicinaNaSkladistu = table.Column<int>(type: "int", nullable: false),
+                    Boja = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BrendID = table.Column<int>(type: "int", nullable: false),
+                    Velicina = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DatumObjave = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Izbrisan = table.Column<bool>(type: "bit", nullable: false),
+                    popust = table.Column<double>(type: "float", nullable: true),
+                    isIzdvojen = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Proizvod", x => x.ProizvodID);
+                    table.ForeignKey(
+                        name: "FK_Proizvod_Brend_BrendID",
+                        column: x => x.BrendID,
+                        principalTable: "Brend",
+                        principalColumn: "BrendId");
+                    table.ForeignKey(
+                        name: "FK_Proizvod_Kategorija_KategorijaID",
+                        column: x => x.KategorijaID,
+                        principalTable: "Kategorija",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -156,7 +191,6 @@ namespace eGym.Migrations
                 columns: table => new
                 {
                     ID = table.Column<int>(type: "int", nullable: false),
-                    RadnikID = table.Column<int>(type: "int", nullable: false),
                     Ime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Prezime = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DatumRodjenja = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -179,6 +213,25 @@ namespace eGym.Migrations
                         principalTable: "KorisnickiNalog",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Slika",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Putanja = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProizvodID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Slika", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Slika_Proizvod_ProizvodID",
+                        column: x => x.ProizvodID,
+                        principalTable: "Proizvod",
+                        principalColumn: "ProizvodID");
                 });
 
             migrationBuilder.CreateTable(
@@ -278,6 +331,7 @@ namespace eGym.Migrations
                     isOdobrena = table.Column<bool>(type: "bit", nullable: false),
                     Vrijednost = table.Column<double>(type: "float", nullable: false),
                     Popust = table.Column<double>(type: "float", nullable: true),
+                    isPoslana = table.Column<bool>(type: "bit", nullable: false),
                     KorisnikID = table.Column<int>(type: "int", nullable: false),
                     NacinPlacanja = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -292,70 +346,52 @@ namespace eGym.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Proizvod",
-                columns: table => new
-                {
-                    ProizvodID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Naziv = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Opis = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cijena = table.Column<double>(type: "float", nullable: false),
-                    KategorijaID = table.Column<int>(type: "int", nullable: false),
-                    KolicinaNaSkladistu = table.Column<int>(type: "int", nullable: false),
-                    Boja = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BrendID = table.Column<int>(type: "int", nullable: false),
-                    Velicina = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DatumObjave = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Izbrisan = table.Column<bool>(type: "bit", nullable: false),
-                    popust = table.Column<double>(type: "float", nullable: true),
-                    isIzdvojen = table.Column<bool>(type: "bit", nullable: false),
-                    KorpaID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Proizvod", x => x.ProizvodID);
-                    table.ForeignKey(
-                        name: "FK_Proizvod_Brend_BrendID",
-                        column: x => x.BrendID,
-                        principalTable: "Brend",
-                        principalColumn: "BrendId");
-                    table.ForeignKey(
-                        name: "FK_Proizvod_Kategorija_KategorijaID",
-                        column: x => x.KategorijaID,
-                        principalTable: "Kategorija",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_Proizvod_Korpa_KorpaID",
-                        column: x => x.KorpaID,
-                        principalTable: "Korpa",
-                        principalColumn: "KorpaID");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PoslanaNarudzba",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    PoslanaNarudzbaID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     DatumSlanja = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DatumIsporuke = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DatumPreuzimanja = table.Column<DateTime>(type: "datetime2", nullable: false),
                     isPreuzeta = table.Column<bool>(type: "bit", nullable: false),
                     isIsporucena = table.Column<bool>(type: "bit", nullable: false),
-                    RadnikID = table.Column<int>(type: "int", nullable: false)
+                    RadnikID = table.Column<int>(type: "int", nullable: false),
+                    NarudzbaID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PoslanaNarudzba", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PoslanaNarudzba_Narudzba_Id",
-                        column: x => x.Id,
-                        principalTable: "Narudzba",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_PoslanaNarudzba", x => x.PoslanaNarudzbaID);
                     table.ForeignKey(
                         name: "FK_PoslanaNarudzba_Radnik_RadnikID",
                         column: x => x.RadnikID,
                         principalTable: "Radnik",
                         principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "KorpaProizvod",
+                columns: table => new
+                {
+                    KorpaProizvodID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    KorpaID = table.Column<int>(type: "int", nullable: false),
+                    ProizvodID = table.Column<int>(type: "int", nullable: false),
+                    Kolicina = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_KorpaProizvod", x => x.KorpaProizvodID);
+                    table.ForeignKey(
+                        name: "FK_KorpaProizvod_Korpa_KorpaID",
+                        column: x => x.KorpaID,
+                        principalTable: "Korpa",
+                        principalColumn: "KorpaID");
+                    table.ForeignKey(
+                        name: "FK_KorpaProizvod_Proizvod_ProizvodID",
+                        column: x => x.ProizvodID,
+                        principalTable: "Proizvod",
+                        principalColumn: "ProizvodID");
                 });
 
             migrationBuilder.CreateTable(
@@ -365,7 +401,8 @@ namespace eGym.Migrations
                     NarudzbaProizvodID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NarudzbaId = table.Column<int>(type: "int", nullable: false),
-                    ProizvodId = table.Column<int>(type: "int", nullable: false)
+                    ProizvodId = table.Column<int>(type: "int", nullable: false),
+                    Kolicina = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -401,6 +438,16 @@ namespace eGym.Migrations
                 name: "IX_Korpa_KorisnikID",
                 table: "Korpa",
                 column: "KorisnikID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_KorpaProizvod_KorpaID",
+                table: "KorpaProizvod",
+                column: "KorpaID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_KorpaProizvod_ProizvodID",
+                table: "KorpaProizvod",
+                column: "ProizvodID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_KreditnaKartica_KorisnikID",
@@ -443,14 +490,14 @@ namespace eGym.Migrations
                 column: "KategorijaID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Proizvod_KorpaID",
-                table: "Proizvod",
-                column: "KorpaID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Radnik_GradID",
                 table: "Radnik",
                 column: "GradID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Slika_ProizvodID",
+                table: "Slika",
+                column: "ProizvodID");
         }
 
         /// <inheritdoc />
@@ -458,6 +505,9 @@ namespace eGym.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Clan");
+
+            migrationBuilder.DropTable(
+                name: "KorpaProizvod");
 
             migrationBuilder.DropTable(
                 name: "KreditnaKartica");
@@ -472,31 +522,34 @@ namespace eGym.Migrations
                 name: "PoslanaNarudzba");
 
             migrationBuilder.DropTable(
+                name: "Slika");
+
+            migrationBuilder.DropTable(
                 name: "Clanarina");
 
             migrationBuilder.DropTable(
-                name: "Proizvod");
-
-            migrationBuilder.DropTable(
-                name: "Admin");
+                name: "Korpa");
 
             migrationBuilder.DropTable(
                 name: "Narudzba");
 
             migrationBuilder.DropTable(
+                name: "Admin");
+
+            migrationBuilder.DropTable(
                 name: "Radnik");
+
+            migrationBuilder.DropTable(
+                name: "Proizvod");
+
+            migrationBuilder.DropTable(
+                name: "Korisnik");
 
             migrationBuilder.DropTable(
                 name: "Brend");
 
             migrationBuilder.DropTable(
                 name: "Kategorija");
-
-            migrationBuilder.DropTable(
-                name: "Korpa");
-
-            migrationBuilder.DropTable(
-                name: "Korisnik");
 
             migrationBuilder.DropTable(
                 name: "Grad");
