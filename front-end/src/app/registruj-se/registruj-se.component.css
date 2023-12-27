@@ -1,0 +1,36 @@
+.customHeight{
+  height: 86.3vh;
+}
+.text-container{
+  display: flex;
+}
+.text-container p{
+  margin-right: 2%;
+}
+.customMarginTop{
+  margin-top: 2.5%;
+}
+.col-5{
+  position: relative;
+}
+.p-container{
+  position: absolute;
+  right: 0;
+  top: 20%;
+  margin-right: 5%;
+}
+.customBackground{
+  background-image: url("https://wallpapercave.com/wp/wp4436660.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.customSpace{
+  padding: 3px;
+}
+.col-7{
+  position: static;
+}
+.custom{
+  margin-top: 2%;
+  margin-left: 5%;
+}
