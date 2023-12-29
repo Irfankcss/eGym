@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProizvodViewComponent } from "../proizvod-view/proizvod-view.component";
-import { RouterLink } from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import { ProizvodiGetAllResponse } from "./ProizvodiGetAllResponse";
 import { Mojconfig } from "../app/moj-config";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
@@ -10,7 +9,7 @@ import { SharedDataService } from "../app/shared-data-service";
 @Component({
   selector: 'app-pmain',
   standalone: true,
-  imports: [ProizvodViewComponent, RouterLink, HttpClientModule, CommonModule, NgOptimizedImage],
+  imports: [  RouterLink, HttpClientModule, CommonModule, NgOptimizedImage],
   templateUrl: './pmain.component.html',
   styleUrl: './pmain.component.css'
 })
@@ -20,7 +19,7 @@ export class PmainComponent implements OnInit {
   inputValue: string = "";
 
 
-  constructor(public httpClient: HttpClient, private sharedDataService: SharedDataService) {
+  constructor(public httpClient: HttpClient, private sharedDataService: SharedDataService, private router: Router) {
     this.sharedDataService.selectedBrend$.subscribe((selectedBrend) => {
       this.selectedBrend = selectedBrend;
       this.sharedDataService.selectedKategorija$.subscribe((selectedKategorija) => {
@@ -59,4 +58,10 @@ export class PmainComponent implements OnInit {
       }
     );
   }
+
+  protected readonly RouterLink = RouterLink;
+
+    IdiNaRutu(proizvodID: number) {
+        this.router.navigate(['/viewproizvod']);
+    }
 }

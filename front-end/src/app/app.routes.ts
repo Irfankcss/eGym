@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import {ProdavnicaComponent} from "../prodavnica/prodavnica.component";
-import {ProizvodViewComponent} from "../proizvod-view/proizvod-view.component";
+import {ViewProizvodComponent} from "../view-proizvod/view-proizvod.component";
 
 export const routes: Routes = [
   { path: 'prodavnica', component: ProdavnicaComponent },
-  { path: 'proizvod/:id', component: ProizvodViewComponent },
+  { path: 'viewproizvod', component: ViewProizvodComponent },
 ];

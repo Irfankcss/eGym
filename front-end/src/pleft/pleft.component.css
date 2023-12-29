@@ -6,7 +6,7 @@ label{
   height: 100%;
   min-height: 100vh;
   margin: 0;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.09);
 }
 p{
   margin: 0;
@@ -137,4 +137,10 @@ p{
 .brend-txt{
   cursor: pointer;
   font-size: 16px;
+}
+.brend:hover{
+  background-color: rgba(0, 0, 0, 0.08);
+}
+.kategorija:hover{
+  background-color: rgba(0, 0, 0, 0.08);
 }

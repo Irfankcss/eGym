@@ -1,0 +1,50 @@
+<app-ptop></app-ptop>
+<div class="main">
+  <div class="main-box">
+
+    <div class="slike-box">
+        <div class="slike-wrapper">
+          <div class="slikedesno"></div>
+          <div class="slikelijevo"></div>
+          <img src="assets/prodavnica-images/biciklo.jpg" class="slike-proizvoda">
+        </div>
+    </div>
+    <div class="DetaljiProizvoda">
+      <div class="detalji">
+        <div class="gornji-dio">
+       <div class="naziv-wrapper">
+        <label class="naziv-proizvoda">Biciklo M</label>
+       </div>
+      <div class="opis-wrapper">
+        <label class="opis-proizvoda">Super biciklo mountain bike za svakodnevnu upotrebu i zabavnu voznju </label>
+      </div>
+      <div class="boja-velicina-wrapper">
+        <label class="boja">Boja: Crna, Žuta</label>
+        <label class="velicina">Velicina: M</label>
+        <label class="spol">Spol: M</label>
+      </div>
+        </div>
+        <div class="donji-dio">
+        <div class="kolicina-wrapper">
+          <label class="kolicina">Količina:</label>
+          <div class="buttoni">
+            <div class="quantity-input">
+              <button class="btn-umanji" (click)="umanji()">-</button>
+              <input class="inp-kolicina" type="number" [(ngModel)]="kolicina" (input)="onInputChange()" />
+              <button class="btn-uvecaj" (click)="uvecaj()">+</button>
+            </div>
+            <div class="dodaj-proizvod">
+              <button class="btn-dodaj-proizvod" (click)="dodajuKorpu()">Dodaj u korpu 🛒</button>
+            </div>
+          </div>
+        </div>
+          <div class="cijena-box">
+            <h4 class="redovnacijena">500.00 BAM</h4>
+            <h4 class="popust">-10%</h4>
+            <h4 class="cijenaspopustom">450.00 BAM</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,362 @@
+p{
+    font-size: 30px;
+}
+:host {
+    height: 90%;
+    position: relative;
+    top: 18%;
+}
+.main{
+    height: 82%;
+    background-image:url("../assets/prodavnica-images/backgroundproizvodview.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;}
+.main-box{
+  border-radius: 30px;
+  width: 70%;
+  height:80%;
+  position: relative;
+  top:10%;
+  left:15%;
+  display: flex;
+  flex-direction: row;
+}
+.DetaljiProizvoda{
+  display: block;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(246, 243, 243, 0.09);
+}
+.slike-box{
+    width: 50%;
+    height: 100%;
+    background-color: #ffffff;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.slike-wrapper{
+    width: 95%;
+    height: 95%;
+  position: relative;
+  top : 2.5%;
+  left: 2.5%;
+  background-color: #ffffff;
+}
+.slike-proizvoda{
+    object-fit:fill;
+    width: 100%;
+    height: 100%;
+}
+.slikedesno{
+  position:absolute;
+  right:0;
+  width:50%;
+  height:100%;
+}
+.slikelijevo{
+  position:absolute;
+  left:0;
+  width:50%;
+  height:100%;
+}
+.detalji{
+  width: 80%;
+  height: 80%;
+  position: relative;
+  top: 5%;
+left: 10% ;
+  display: block;
+}
+.naziv-proizvoda{
+  font-size: 35px;
+  font-weight: bold;
+}
+.opis-proizvoda{
+  font-size: 18px;
+}
+.boja-velicina-wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.redovnacijena
+{
+  text-align: right;
+  position: relative;
+  left: 0%;
+  font-size: 20px;
+  text-decoration: line-through rgba(255, 0, 0, 0.53) 0.5px ;
+}
+.popust{
+  text-align: right;
+  position: relative;
+  font-weight: bold;
+  color: red;
+  font-size: 16px;
+}
+.cijenaspopustom{
+  text-align: right;
+  position: relative;
+  font-size: 30px;
+}
+label{
+  color: white;
+  text-shadow: -0.5px -0.5px 0 black,
+  0.5px -1px 0 black,
+  -1px  1px 0 black,
+  1px  1px 0 black;
+}
+.inp-kolicina{
+  border: none;
+  width: 37%;
+  text-align: center;
+  font-size: 21px;
+}
+.btn-uvecaj{
+  border-top-right-radius: 10px ;
+  border-bottom-right-radius : 10px ;
+  width: 30%;
+  font-size: 20px;
+  height: 33.6px;
+  background-color: #ffd200;
+  color: black;
+  font-weight: bold;
+  border: none;
+}
+.btn-umanji{
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  font-weight: bold;
+  width: 30%;
+  font-size: 20px;
+  height: 33.6px;
+  background-color: #ffd200;
+  color: black;
+  border: none;
+
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.quantity-input{
+  width:40%;
+  padding-right: 3%;
+}
+.kolicina-wrapper{
+  padding-top: 6%;
+}
+.cijena-box{
+  position: relative;
+  top: 10%;
+}
+.dodaj-proizvod{
+  width: 70%;
+  height: 100%;
+  position: relative;
+}
+.btn-dodaj-proizvod{
+  width: 100%;
+  height:35px;
+  background-color: #ffd200;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+
+}
+button:hover{
+  background-color: rgb(225, 184, 4);
+}
+button:active{
+  background-color: rgb(33, 37, 41);
+  color:#ffd200;
+}
+.buttoni{
+  display:flex;
+}
+h4 {
+  padding: 0;
+  margin: 0;
+  color: white;
+  text-shadow: -0.5px -0.5px 0 black,
+  0.5px -1px 0 black,
+  -1px 1px 0 black,
+  1px 1px 0 black;
+}
+.donji-dio{
+  display: block;
+  position: relative;
+  height: 35%;
+}
+.gornji-dio{
+  display: block;
+  height: 65%;
+}
+@media only screen and (min-width: 601px) and (max-width: 1024px) {
+  .cijenaspopustom {
+    font-size: 25px;
+  }
+  .redovnacijena {
+    font-size: 18px;
+  }
+  .popust {
+    font-size: 15px;
+  }
+  .opis-proizvoda {
+    font-size: 15px;
+  }
+  .naziv-proizvoda {
+    font-size: 30px;
+  }
+  .boja{
+  font-size: 10px;
+  }
+  .velicina{
+  font-size: 10px;
+  }
+  .spol{
+  font-size: 10px;
+  }
+  .kolicina{
+  font-size: 10px;
+  }
+  .btn-dodaj-proizvod{
+    font-size: 15px;
+  }
+  .inp-kolicina{
+    font-size: 15px;
+  }
+  .btn-uvecaj,
+  .btn-umanji {
+    font-size: 15px;
+    height: 26.4px;
+  }
+}
+@media only screen and (max-width: 660px) {
+  .cijenaspopustom {
+    font-size: 20px;
+  }
+  .redovnacijena {
+    font-size: 15px;
+  }
+  .popust {
+    font-size: 12px;
+  }
+  .opis-proizvoda {
+    font-size: 12px;
+  }
+  .naziv-proizvoda {
+    font-size: 25px;
+  }
+  .boja {
+    font-size: 8px;
+  }
+  .velicina {
+    font-size: 8px;
+  }
+  .spol {
+    font-size: 8px;
+  }
+  .kolicina {
+    font-size: 8px;
+  }
+  .btn-dodaj-proizvod {
+    font-size: 10px;
+  }
+  .btn-uvecaj,
+  .btn-umanji {
+    font-size: 15px;
+    height: 20.4px;
+  }
+  .inp-kolicina{
+    font-size: 10px;
+  }
+
+}
+@media only screen and (max-width: 430px) {
+.cijenaspopustom {
+  font-size: 18px;
+}
+.redovnacijena {
+  font-size: 14px;
+}
+.popust {
+  font-size: 11px;
+}
+.opis-proizvoda {
+  font-size: 11px;
+}
+.naziv-proizvoda {
+  font-size: 20px;
+}
+.boja {
+  font-size: 7px;
+}
+.velicina {
+  font-size: 7px;
+}
+.spol {
+  font-size: 7px;
+}
+.kolicina {
+  font-size: 7px;
+}
+.btn-dodaj-proizvod {
+  font-size: 6px;
+  height: 20px;
+  width: 40px;
+}
+.inp-kolicina{
+  font-size: 8px;
+}
+  .btn-uvecaj,
+  .btn-umanji {
+    font-size: 8px;
+    height: 13.44px;
+  }
+}
+@media only screen and (max-width: 300px) {
+  .cijenaspopustom {
+    font-size: 10px; /* Adjust as needed */
+  }
+  .redovnacijena {
+    font-size: 8px; /* Adjust as needed */
+  }
+  .popust {
+    font-size: 6px; /* Adjust as needed */
+  }
+  .opis-proizvoda {
+    font-size: 6px; /* Adjust as needed */
+  }
+  .naziv-proizvoda {
+    font-size: 10px; /* Adjust as needed */
+  }
+  .boja,
+  .velicina,
+  .spol,
+  .kolicina {
+    font-size: 8px; /* Adjust as needed */
+  }
+  .btn-dodaj-proizvod {
+    font-size: 4px;
+    width: 30px;
+  }
+  .btn-uvecaj,
+  .btn-umanji {
+    font-size: 6px;
+    height: 10.08px;
+  }
+}
