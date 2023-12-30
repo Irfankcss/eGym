@@ -4,5 +4,5 @@ import {ViewProizvodComponent} from "../view-proizvod/view-proizvod.component";
 
 export const routes: Routes = [
   { path: 'prodavnica', component: ProdavnicaComponent },
-  { path: 'viewproizvod', component: ViewProizvodComponent },
+  { path: 'viewproizvod/:proizvodID', component: ViewProizvodComponent },
 ];

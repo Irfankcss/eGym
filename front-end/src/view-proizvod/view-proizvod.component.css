@@ -6,6 +6,26 @@ p{
     position: relative;
     top: 18%;
 }
+.des{
+display: none ;
+}
+.slikedesno:hover .des{
+  display: block;
+  position: absolute;
+  right: 2%;
+  top: 42%;
+  font-size: 30px;
+}
+.lij{
+  display: none;
+}
+.slikelijevo:hover .lij{
+  display: block;
+  position: absolute;
+  left: 2%;
+  top: 42%;
+  font-size: 30px;
+}
 .main{
     height: 82%;
     background-image:url("../assets/prodavnica-images/backgroundproizvodview.jpg");
@@ -23,11 +43,8 @@ p{
 }
 .DetaljiProizvoda{
   display: block;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-    width: 50%;
+  border-radius: 0 20px 20px 0;
+  width: 50%;
     height: 100%;
     background-color: rgba(246, 243, 243, 0.09);
 }
@@ -35,10 +52,7 @@ p{
     width: 50%;
     height: 100%;
     background-color: #ffffff;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+  border-radius: 20px 0 0 20px;
 }
 .slike-wrapper{
     width: 95%;
@@ -89,7 +103,7 @@ left: 10% ;
 {
   text-align: right;
   position: relative;
-  left: 0%;
+  left: 0;
   font-size: 20px;
   text-decoration: line-through rgba(255, 0, 0, 0.53) 0.5px ;
 }
@@ -359,4 +373,5 @@ h4 {
     font-size: 6px;
     height: 10.08px;
   }
+
 }

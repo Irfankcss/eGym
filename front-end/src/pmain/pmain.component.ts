@@ -62,6 +62,6 @@ export class PmainComponent implements OnInit {
   protected readonly RouterLink = RouterLink;
 
     IdiNaRutu(proizvodID: number) {
-        this.router.navigate(['/viewproizvod']);
+        this.router.navigate(['/viewproizvod', proizvodID]);
     }
 }

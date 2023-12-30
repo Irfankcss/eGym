@@ -2,6 +2,8 @@
 using eGym.Data.ViewModels.ProizvodVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
+using System.Runtime.Intrinsics.X86;
 
 namespace eGym.Data.Controllers.NarudzbaProizvodC
 {
@@ -41,6 +43,52 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
                 return NotFound("Nema proizvoda u bazi");
             }
 
+            return Ok(proizvod);
+        }
+
+        [HttpGet("GetProizvodByID")]
+        public async Task<ActionResult<ProizvodVM>> GetProizvodByID(int proizvodId) {
+
+            var p = await _context.Proizvod.Include(p=>p.Kategorija).Include(p=>p.Brend).Include(p=>p.Slike).FirstOrDefaultAsync(p => p.ProizvodID == proizvodId);
+            
+            var proizvod = new ProizvodVM
+            {
+                Naziv = p.Naziv,
+                Cijena = p.Cijena,
+                DatumObjave = p.DatumObjave,
+                Slike = p.Slike,
+                Velicina = p.Velicina,
+                Kategorija = p.Kategorija,
+                Opis = p.Opis,
+                Brend = p.Brend,
+                Boja = p.Boja,
+                isIzdvojen = p.isIzdvojen,
+                KolicinaNaSkladistu = p.KolicinaNaSkladistu,
+                popust = p.popust,
+            };
+            if (p.Izbrisan)
+            {
+                proizvod = new ProizvodVM
+                {
+                    Naziv = "Izbrisan Proizvod",
+                    Cijena = p.Cijena,
+                    DatumObjave = p.DatumObjave,
+                    Slike = p.Slike,
+                    Velicina = p.Velicina,
+                    Kategorija = p.Kategorija,
+                    Opis = "Izbrisan Proizvod",
+                    Brend = p.Brend,
+                    Boja = p.Boja,
+                    isIzdvojen = p.isIzdvojen,
+                    KolicinaNaSkladistu = 0,
+                    popust = 0,
+                };
+            }
+
+            if (proizvod == null)
+            {
+                throw new Exception("Nepostojeci proizvod");
+            }
             return Ok(proizvod);
         }
 
