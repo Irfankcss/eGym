@@ -22,50 +22,95 @@
     <div class="col-7 customBackground customHeight">
         <div class="custom text-white w-50">
          <h3 style="text-align: center">KREIRAJTE SVOJ NALOG</h3>
-          <form>
-            <div class="form-group customSpace">
-              <label for="exampleInputIme">Ime</label>
-              <input type="text" class="form-control" id="exampleInputIme" placeholder="Unesite ime">
-            </div>
-            <div class="form-group customSpace">
-              <label for="exampleInputPrezime">Prezime</label>
-              <input type="text" class="form-control" id="exampleInputPrezime" placeholder="Unesite prezime">
-            </div>
-            <div class="form-group customSpace">
-              <label for="exampleInputKorisničkoIme">Korisničko ime</label>
-              <input type="text" class="form-control" id="exampleInputKorisničkoIme" placeholder="Unesite korisničko ime">
-            </div>
-            <div class="form-group customSpace">
-              <label>Opština rođenja</label>
-              <select class="form-select" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
-            <div class="form-group customSpace">
-              <label for="exampleInputDatumRođenja">Datum rođenja</label>
-              <input type="date" class="form-control" id="exampleInputDatumRođenja" placeholder="Unesite datum rođenja">
-            </div>
-            <div class="form-group customSpace">
-              <label for="exampleInputBrojTelefona">Broj telefona</label>
-              <input type="text" class="form-control" id="exampleInputBrojTelefona" placeholder="Unesite broj telefona">
-            </div>
-            <div class="form-group customSpace">
-              <label>Spol</label>
-              <select class="form-select" aria-label="Default select example">
-                <option selected>Muški</option>
-                <option>Ženski</option>
-              </select>
-            </div>
-            <div class="form-group customSpace">
-              <label for="exampleInputEmail1">Email adresa</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesite email adresu">
-            </div>
-            <div class="form-group customSpace">
-              <label for="exampleInputLozinka">Lozinka</label>
-              <input type="email" class="form-control" id="exampleInputLozinka" aria-describedby="emailHelp" placeholder="Unesite lozinku">
+          <form [formGroup]="userRegistration" (ngSubmit)="registrerSubmited()">
+            <div class="customDiv">
+              <div class="customLeft">
+                <div class="form-group customSpace">
+                  <label for="exampleInputIme">Ime</label>
+                  <input type="text" class="form-control" id="exampleInputIme" placeholder="Unesite ime" formControlName="ime">
+                    <div *ngIf="ime.errors?.['required'] && ime.touched" class="form-text text-danger">
+                      Ovo polje je obavezno.
+                    </div>
+                    <div *ngIf="ime.errors?.['pattern']" class="form-text text-danger">
+                      Neispravan format imena.
+                    </div>
+                    <div *ngIf="ime.errors?.['minlength']" class="form-text text-danger">
+                      Neispravna dužina imena, minimum tri karaktera.
+                    </div>
+                </div>
+                <div class="form-group customSpace">
+                  <label for="exampleInputPrezime">Prezime</label>
+                  <input type="text" class="form-control" id="exampleInputPrezime" placeholder="Unesite prezime" formControlName="prezime">
+                  <div *ngIf="prezime.errors?.['required'] && prezime.touched" class="form-text text-danger">
+                    Ovo polje je obavezno.
+                  </div>
+                  <div *ngIf="prezime.errors?.['pattern']" class="form-text text-danger">
+                    Neispravan format imena.
+                  </div>
+                  <div *ngIf="prezime.errors?.['minlength']" class="form-text text-danger">
+                    Neispravna dužina imena, minimum tri karaktera.
+                  </div>
+                </div>
+                <div class="form-group customSpace">
+                  <label for="exampleInputKorisničkoIme">Korisničko ime</label>
+                  <input type="text" class="form-control" id="exampleInputKorisničkoIme" placeholder="Unesite korisničko ime" formControlName="korisnickoIme">
+                  <div *ngIf="korisnickoIme.touched && korisnickoIme.errors?.['required']" class="form-text text-danger">
+                    Ovo polje je obavezno.
+                  </div>
+                </div>
+                <div class="form-group customSpace">
+                  <label>Opština rođenja</label>
+                  <select class="form-select" formControlName="opstinaRodjenja">
+                    <option *ngFor="let item of gradovi" value="{{item.id}}">{{item.naziv}}</option>
+                  </select>
+                </div>
+                <div class="form-group customSpace">
+                  <label for="exampleInputDatumRođenja">Datum rođenja</label>
+                  <input type="date" class="form-control" id="exampleInputDatumRođenja" placeholder="Unesite datum rođenja" formControlName="datumRodjenja">
+                  <div *ngIf="datumRodjenja.errors?.['required'] && datumRodjenja.touched" class="form-text text-danger">
+                    Ovo polje je obavezno
+                  </div>
+                </div>
+              </div>
+              <div class="customRight">
+                <div class="form-group customSpace">
+                  <label for="exampleInputBrojTelefona">Broj telefona</label>
+                  <input type="text" class="form-control" id="exampleInputBrojTelefona" placeholder="Unesite broj telefona" formControlName="brojTelefona">
+                  <div *ngIf="brojTelefona.errors?.['required'] && brojTelefona.touched" class="form-text text-danger">
+                    Ovo polje je obavezno
+                  </div>
+                  <div *ngIf="brojTelefona.errors?.['minlength'] || brojTelefona.errors?.['maxlength'] || brojTelefona.errors?.['pattern']" class="form-text text-danger">
+                    Neispravan format broja telefona.
+                  </div>
+                </div>
+                <div class="form-group customSpace">
+                  <label>Spol</label>
+                  <select class="form-select" formControlName="spol">
+                    <option>Muški</option>
+                    <option>Ženski</option>
+                  </select>
+                </div>
+                <div class="form-group customSpace">
+                  <label for="exampleInputEmail1">Email adresa</label>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesite email adresu" formControlName="email">
+                  <div *ngIf="email.errors?.['required'] && email.touched" class="form-text text-danger">
+                    Ovo polje je obavezno.
+                  </div>
+                  <div *ngIf="email.errors?.['email']" class="form-text text-danger">
+                    Neispravan format email-a.
+                  </div>
+                </div>
+                <div class="form-group customSpace">
+                  <label for="exampleInputLozinka">Lozinka</label>
+                  <input type="password" class="form-control" id="exampleInputLozinka" aria-describedby="emailHelp" placeholder="Unesite lozinku" formControlName="lozinka">
+                  <div *ngIf="lozinka.errors?.['required'] && lozinka.touched" class="form-text text-danger">
+                    Ovo polje je obavezno.
+                  </div>
+                  <div *ngIf="lozinka.errors?.['pattern']" class="form-text text-danger">
+                    Neispravan format lozinke.
+                  </div>
+                </div>
+              </div>
             </div>
             <button type="submit" class="w-100 btn btn-warning customMarginTop">Kreiraj nalog</button>
           </form>

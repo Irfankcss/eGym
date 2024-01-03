@@ -3990,19 +3990,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Gaming-PC\\.nuget\\packages\\": {}
+    "C:\\Users\\dell\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gaming-PC\\Documents\\GitHub\\webapp\\back-end\\eGym\\eGym.csproj",
+      "projectUniqueName": "C:\\Users\\dell\\Desktop\\webapp\\back-end\\eGym\\eGym.csproj",
       "projectName": "eGym",
-      "projectPath": "C:\\Users\\Gaming-PC\\Documents\\GitHub\\webapp\\back-end\\eGym\\eGym.csproj",
-      "packagesPath": "C:\\Users\\Gaming-PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gaming-PC\\Documents\\GitHub\\webapp\\back-end\\eGym\\obj\\",
+      "projectPath": "C:\\Users\\dell\\Desktop\\webapp\\back-end\\eGym\\eGym.csproj",
+      "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\dell\\Desktop\\webapp\\back-end\\eGym\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Gaming-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4078,7 +4078,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

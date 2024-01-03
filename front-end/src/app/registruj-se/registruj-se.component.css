@@ -34,3 +34,9 @@
   margin-top: 2%;
   margin-left: 5%;
 }
+.customDiv{
+  display: flex;
+}
+.customRight{
+  margin-left: 10%;
+}
