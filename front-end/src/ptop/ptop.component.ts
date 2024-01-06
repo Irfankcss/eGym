@@ -24,4 +24,10 @@ constructor(private sharedDataService: SharedDataService, private router:Router)
     this.sharedDataService.updateInputValue(this._inputValue);
     this._inputValue = "";
   }
+
+  OtvoriKorpu() {
+    if(this.router.url != '/korpa'){
+      this.router.navigate(['/korpa']);
+    }
+  }
 }

@@ -24,8 +24,8 @@ p{
 
 }
 button:hover{
-  background-color: rgb(225, 184, 4);
-}
+  background-color: rgb(238, 192, 2);
+  box-shadow: black 0 0 3px;}
 button:active{
   background-color: rgb(33, 37, 41);
   color:#ffd200;

@@ -11,6 +11,7 @@ display: none ;
 }
 .slikedesno:hover .des{
   display: block;
+  user-select: none;
   position: absolute;
   right: 2%;
   top: 42%;
@@ -18,8 +19,10 @@ display: none ;
 }
 .lij{
   display: none;
+
 }
 .slikelijevo:hover .lij{
+  user-select: none;
   display: block;
   position: absolute;
   left: 2%;
@@ -192,7 +195,8 @@ input[type="number"] {
 
 }
 button:hover{
-  background-color: rgb(225, 184, 4);
+  background-color: rgb(238, 192, 2);
+  box-shadow: black 0 0 3px;
 }
 button:active{
   background-color: rgb(33, 37, 41);

@@ -1,0 +1,124 @@
+<div class="main">
+  <div class="progress-indicator">
+    <div class="indikatori-box">
+    <button (click)="trenutnaStranica=1" class="stage1">Sadržaj</button>
+      <h3>→</h3>
+    <button (click)="trenutnaStranica=2" class="stage2">Dostava</button>
+      <h3>→</h3>
+    <button class="stage3" (click)="trenutnaStranica=3">Adresa</button>
+      <h3>→</h3>
+    <button class="stage4" (click)="prebaciNaStranicu4()">Plačanje</button>
+    </div>
+  </div>
+  <div *ngIf= "trenutnaStranica==1" class="tabela-proizvoda">
+    <table>
+      <tr>
+        <td>
+
+        </td>
+      <td>
+        Proizvod
+      </td>
+        <td>
+          Kolicina
+        </td>
+        <td>
+          Cijena
+        </td>
+        <td>
+          Popust
+        </td>
+        <td>
+          Ukupno
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td class="slika">
+          <img src="./assets/prodavnica-images/whey2.png" class="slika-proizvoda">
+        </td>
+        <td class="o-proizvodu">
+          <h5 class="naziv">Lopta</h5>
+          <h5 class="opis">Opis</h5>
+          <h5 class="velicina">Velicina</h5>
+        </td>
+        <td class="kolicina">1</td>
+        <td class="cijena">150.00 BAM</td>
+        <td class="popust">10%</td>
+        <td class="ukupno-proizvod">140.00 BAM</td>
+        <td class="ponisti">
+          <button>x</button>
+        </td>
+      </tr>
+      <tr>
+        <td class="slika">
+          <img src="./assets/prodavnica-images/whey2.png" class="slika-proizvoda">
+        </td>
+        <td class="o-proizvodu">
+          <h5 class="naziv">Lopta</h5>
+          <h5 class="opis">Opis</h5>
+          <h5 class="velicina">Velicina</h5>
+        </td>
+        <td class="kolicina">1</td>
+        <td class="cijena">150.00 BAM</td>
+        <td class="popust">10%</td>
+        <td class="ukupno-proizvod">140.00 BAM</td>
+        <td class="ponisti">
+          <button>x</button>
+        </td>
+      </tr>
+
+
+    </table>
+  </div>
+  <div *ngIf="trenutnaStranica==2" class="Dostava">
+    <div class="dostava-left">
+      <h5>Način dostave</h5>
+      <div class="nacini-dostave">
+        <div class="regularna-isporuka" (click)="handleCheckbox('regularna')">
+          <h6>Regularna isporuka</h6>
+          <p>Kuriri EuroExpress-a će vam donijeti porudžbinu na željenu adresu radnim danima od 8-16h. Besplatno za porudžbine iznad 99 KM. 3-5 RADNIH DANA</p>
+          <input [(ngModel)]="regularnaIsporukaChecked" type="checkbox" class="cb-regularna-isporuka">
+        </div>
+        <div class="click-n-collect" (click)="handleCheckbox('clickNCollect')">
+          <h6>Click and Collect</h6>
+          <p class="clickncollect-text">Preuzimanje u teretani. Kada porudžbina bude spremna za preuzimanje dobićete email obavještenje sa detaljnim instrukcijama za preuzimanje. Rok za preuzimanje je 5 dana nakon što dobijete obavještenje.</p>
+          <input [(ngModel)]="clickNCollectChecked" type="checkbox" class="cb-click-n-collect">
+        </div>
+      </div>
+    </div>
+
+    <div class="dostava-right">
+      <h5>Način plaćanja</h5>
+      <div class="nacini-placanja">
+        <div class="placanje-karticom" (click)="handleCheckbox('karticno')">
+          <h6>Kartično plaćanje</h6>
+          <p>Platite online sigurno i lako koristeći Visa, MasterCard, Maestro, Visa Premium, American Express, Discover i Diners platnu karticu koju je banka izdavalac odobrila za internet plaćanje.</p>
+          <input [(ngModel)]="karticnoPlacanjeChecked" type="checkbox" class="cb-karticno-placanje">
+        </div>
+        <div class="placanje-preuzimanje" (click)="handleCheckbox('preuzimanje')">
+          <h6>Plaćanje po preuzimanju</h6>
+          <p>Gotovnisko plaćanje pri preuzimanju narudžbe. Platite kuriru prilikom isporuke ili radniku prilikom preuzimanja u poslovnici. Ukoliko ste u mogućnosti pripremite tačnu sumu.</p>
+          <input [(ngModel)]="placanjePreuzimanjeChecked" type="checkbox" class="cb-placanje-preuzimanje">
+        </div>
+      </div>
+    </div>
+    </div>
+  <div *ngIf="trenutnaStranica==3" class="adresa">
+    <h3>adresa nije zavrseno</h3>
+  </div>
+  <div *ngIf="trenutnaStranica==4" class="placanje">
+    <h3>placanje nije zavrseno</h3>
+  </div>
+  <div class="ukupno">
+    <div class="ukupno-cijena">
+      <label class="cijena-korpe">Ukupno: 100.00 BAM</label>
+      <label *ngIf="regularnaIsporukaChecked" class="dodatno-dostava">+7.00 BAM dostava</label>
+    </div>
+    <div class="navigacija-btns">
+      <button class="btn-prethodni" *ngIf="trenutnaStranica>1" (click)="prethodnikorak()">Prethodni korak</button>
+      <button class="btn-sljedeci" (click)="sljedecikorak()">Sljedeći korak</button>
+    </div>
+  </div>
+</div>
