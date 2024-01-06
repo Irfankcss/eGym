@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {RouterLink} from "@angular/router";
+import {Route, Router, RouterLink, Routes} from "@angular/router";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {Gradovi, GradoviGetall} from "./gradovi-getall";
 import {MojConfig} from "../moj-config";
 import {NgForOf, NgIf} from "@angular/common";
-import {Form, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Form, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-registruj-se',
@@ -14,13 +14,28 @@ import {Form, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@an
     HttpClientModule,
     NgForOf,
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    FormsModule
   ],
   templateUrl: './registruj-se.component.html',
   styleUrl: './registruj-se.component.css'
 })
 export class RegistrujSeComponent implements OnInit{
-  constructor(public httpClient:HttpClient) {
+  txtIme:any;
+  txtPrezime:any;
+  txtOpstinaRodjenja:any;
+  txtDatumRodjenja:any;
+  txtBrojTelefona:any;
+  txtSpol:any;
+  txtKorisnickoIme:any;
+  txtEmail:any;
+  txtLozinka:any;
+
+  regexOnlyLetters = /^[A-Z][a-z]*$/;
+  regexPhoneNumber =/^[0-9]{9}/;
+  regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  regexPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+  constructor(public httpClient:HttpClient, private router:Router) {
   }
   gradovi:Gradovi[]=[];
   ngOnInit(): void {
@@ -29,64 +44,56 @@ export class RegistrujSeComponent implements OnInit{
       this.gradovi = x.gradovi;
     })
   }
-  userRegistration = new FormGroup({
-    ime: new FormControl("",
-      [Validators.required,
-        Validators.minLength(3),
-        Validators.pattern(/^[A-Z][a-z]*$/)]),
-    prezime: new FormControl("",
-      [Validators.required,
-      Validators.minLength(3),
-      Validators.pattern(/^[A-Z][a-z]*$/)]),
-    korisnickoIme : new FormControl("",
-      [Validators.required]),
-    datumRodjenja: new FormControl("",
-      [Validators.required]),
-    brojTelefona : new FormControl("",
-      [Validators.required,
-      Validators.minLength(9),
-      Validators.maxLength(10),
-      Validators.pattern(/^[0-9]*$/)]),
-    email: new FormControl("",
-      [Validators.required,
-      Validators.email]),
-    lozinka: new FormControl("",
-      [Validators.required,
-      Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]),
-    spol:new FormControl("",[Validators.required]),
-    opstinaRodjenja:new FormControl("",[Validators.required]),
-
-  })
-
-  registrerSubmited() {
-    console.log(this.userRegistration.value);
-    if(this.userRegistration.valid){
-      console.log('Uspjesno');
-      //console.log(this.userRegistration.get('ime')?.value)
+  // @ts-ignore
+  Validiraj():boolean{
+    if(this.txtIme == null || this.txtPrezime == null || this.txtDatumRodjenja == null ||this.txtBrojTelefona == null
+      || this.txtSpol == null || this.txtKorisnickoIme == null || this.txtEmail==null || this.txtLozinka == null
+      ||this.txtOpstinaRodjenja == null){
+      alert('Greska, sva polja su obavezna');
+      return false;
     }
-    else{
-      console.log('Neuspjesno')
+    if(!this.txtIme.match(this.regexOnlyLetters)){
+      alert('Greska, ime počinje sa velikim slovom i sadrži samo slova');
+      return false;
     }
+    if(!this.txtPrezime.match(this.regexOnlyLetters)){
+      alert('Greska, prezime počinje sa velikim slovom i sadrži samo slova');
+      return false;
+    }
+    if(!this.txtBrojTelefona.match(this.regexPhoneNumber)){
+      alert('Greska, neispravan format broja telefona');
+      return false;
+    }
+    if(!this.txtEmail.match(this.regexEmail)){
+      alert('Greška, neispravan format email-a');
+      return false;
+    }
+    if(!this.txtLozinka.match(this.regexPassword)){
+      alert('Greška, neispravan format lozinke');
+      return false;
+    }
+    return true;
   }
-  get ime():FormControl{
-    return this.userRegistration.get('ime') as FormControl;
-  }
-  get prezime():FormControl{
-    return this.userRegistration.get('prezime') as FormControl;
-  }
-  get korisnickoIme():FormControl{
-    return this.userRegistration.get('korisnickoIme') as FormControl;
-  }
-  get datumRodjenja():FormControl{
-    return this.userRegistration.get('datumRodjenja') as FormControl;
-  }
-  get brojTelefona():FormControl{
-    return this.userRegistration.get('brojTelefona') as FormControl;
-  }
-  get email():FormControl{
-    return this.userRegistration.get('email') as FormControl;
-  }
-  get lozinka():FormControl{
-    return this.userRegistration.get('lozinka') as FormControl;
+  sacuvajKorisnika() {
+    let url = MojConfig.adresa_servera + `/Obradi/KorisnikDodajEndpoint`;
+
+    if(this.Validiraj()) {
+
+      let noviKorisnik = {
+        ime: this.txtIme,
+        prezime: this.txtPrezime,
+        //opstinaRodjenja:parseInt(this.txtOpstinaRodjenja),
+        datumRodjenja: this.txtDatumRodjenja,
+        brojTelefona: this.txtBrojTelefona,
+        spol: this.txtSpol,
+        korisnickoIme: this.txtKorisnickoIme,
+        email: this.txtEmail,
+        lozinka: this.txtLozinka
+      };
+      console.log(noviKorisnik);
+      this.httpClient.post(url,noviKorisnik).subscribe(x=>{
+        this.router.navigate(['/prijavi-se']);
+      })
+    }
   }
 }

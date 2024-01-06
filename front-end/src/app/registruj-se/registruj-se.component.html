@@ -22,97 +22,55 @@
     <div class="col-7 customBackground customHeight">
         <div class="custom text-white w-50">
          <h3 style="text-align: center">KREIRAJTE SVOJ NALOG</h3>
-          <form [formGroup]="userRegistration" (ngSubmit)="registrerSubmited()">
+          <form>
             <div class="customDiv">
               <div class="customLeft">
                 <div class="form-group customSpace">
                   <label for="exampleInputIme">Ime</label>
-                  <input type="text" class="form-control" id="exampleInputIme" placeholder="Unesite ime" formControlName="ime">
-                    <div *ngIf="ime.errors?.['required'] && ime.touched" class="form-text text-danger">
-                      Ovo polje je obavezno.
-                    </div>
-                    <div *ngIf="ime.errors?.['pattern']" class="form-text text-danger">
-                      Neispravan format imena.
-                    </div>
-                    <div *ngIf="ime.errors?.['minlength']" class="form-text text-danger">
-                      Neispravna dužina imena, minimum tri karaktera.
-                    </div>
+                  <input type="text" class="form-control" id="exampleInputIme" placeholder="Unesite ime"[(ngModel)]="txtIme" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="form-group customSpace">
                   <label for="exampleInputPrezime">Prezime</label>
-                  <input type="text" class="form-control" id="exampleInputPrezime" placeholder="Unesite prezime" formControlName="prezime">
-                  <div *ngIf="prezime.errors?.['required'] && prezime.touched" class="form-text text-danger">
-                    Ovo polje je obavezno.
-                  </div>
-                  <div *ngIf="prezime.errors?.['pattern']" class="form-text text-danger">
-                    Neispravan format imena.
-                  </div>
-                  <div *ngIf="prezime.errors?.['minlength']" class="form-text text-danger">
-                    Neispravna dužina imena, minimum tri karaktera.
-                  </div>
+                  <input type="text" class="form-control" id="exampleInputPrezime" placeholder="Unesite prezime" [(ngModel)]="txtPrezime" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="form-group customSpace">
                   <label for="exampleInputKorisničkoIme">Korisničko ime</label>
-                  <input type="text" class="form-control" id="exampleInputKorisničkoIme" placeholder="Unesite korisničko ime" formControlName="korisnickoIme">
-                  <div *ngIf="korisnickoIme.touched && korisnickoIme.errors?.['required']" class="form-text text-danger">
-                    Ovo polje je obavezno.
-                  </div>
+                  <input type="text" class="form-control" id="exampleInputKorisničkoIme" placeholder="Unesite korisničko ime" [(ngModel)]="txtKorisnickoIme" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="form-group customSpace">
                   <label>Opština rođenja</label>
-                  <select class="form-select" formControlName="opstinaRodjenja">
+                  <select class="form-select" [(ngModel)]="txtOpstinaRodjenja" [ngModelOptions]="{standalone: true}">
                     <option *ngFor="let item of gradovi" value="{{item.id}}">{{item.naziv}}</option>
                   </select>
                 </div>
                 <div class="form-group customSpace">
                   <label for="exampleInputDatumRođenja">Datum rođenja</label>
-                  <input type="date" class="form-control" id="exampleInputDatumRođenja" placeholder="Unesite datum rođenja" formControlName="datumRodjenja">
-                  <div *ngIf="datumRodjenja.errors?.['required'] && datumRodjenja.touched" class="form-text text-danger">
-                    Ovo polje je obavezno
-                  </div>
+                  <input type="date" class="form-control" id="exampleInputDatumRođenja" placeholder="Unesite datum rođenja" [(ngModel)]="txtDatumRodjenja" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
               <div class="customRight">
                 <div class="form-group customSpace">
                   <label for="exampleInputBrojTelefona">Broj telefona</label>
-                  <input type="text" class="form-control" id="exampleInputBrojTelefona" placeholder="Unesite broj telefona" formControlName="brojTelefona">
-                  <div *ngIf="brojTelefona.errors?.['required'] && brojTelefona.touched" class="form-text text-danger">
-                    Ovo polje je obavezno
-                  </div>
-                  <div *ngIf="brojTelefona.errors?.['minlength'] || brojTelefona.errors?.['maxlength'] || brojTelefona.errors?.['pattern']" class="form-text text-danger">
-                    Neispravan format broja telefona.
-                  </div>
+                  <input type="text" class="form-control" id="exampleInputBrojTelefona" placeholder="Unesite broj telefona" [(ngModel)]="txtBrojTelefona" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="form-group customSpace">
                   <label>Spol</label>
-                  <select class="form-select" formControlName="spol">
+                  <select class="form-select" [(ngModel)]="txtSpol" [ngModelOptions]="{standalone: true}">
                     <option>Muški</option>
                     <option>Ženski</option>
                   </select>
                 </div>
                 <div class="form-group customSpace">
                   <label for="exampleInputEmail1">Email adresa</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesite email adresu" formControlName="email">
-                  <div *ngIf="email.errors?.['required'] && email.touched" class="form-text text-danger">
-                    Ovo polje je obavezno.
-                  </div>
-                  <div *ngIf="email.errors?.['email']" class="form-text text-danger">
-                    Neispravan format email-a.
-                  </div>
+                  <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Unesite email adresu" [(ngModel)]="txtEmail" [ngModelOptions]="{standalone: true}">
                 </div>
                 <div class="form-group customSpace">
                   <label for="exampleInputLozinka">Lozinka</label>
-                  <input type="password" class="form-control" id="exampleInputLozinka" aria-describedby="emailHelp" placeholder="Unesite lozinku" formControlName="lozinka">
-                  <div *ngIf="lozinka.errors?.['required'] && lozinka.touched" class="form-text text-danger">
-                    Ovo polje je obavezno.
-                  </div>
-                  <div *ngIf="lozinka.errors?.['pattern']" class="form-text text-danger">
-                    Neispravan format lozinke.
-                  </div>
+                  <input type="password" class="form-control" id="exampleInputLozinka" aria-describedby="emailHelp" placeholder="Unesite lozinku" [(ngModel)]="txtLozinka" [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
             </div>
-            <button type="submit" class="w-100 btn btn-warning customMarginTop">Kreiraj nalog</button>
+            <button type="submit" class="w-100 btn btn-warning customMarginTop" (click)="sacuvajKorisnika()">Kreiraj nalog</button>
           </form>
         </div>
     </div>
