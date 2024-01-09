@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using eGym.Data;
 
@@ -11,9 +12,11 @@ using eGym.Data;
 namespace eGym.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240105185812_novaMigracija")]
+    partial class novaMigracija
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -478,7 +481,7 @@ namespace eGym.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OpstinaRodjenjaID")
+                    b.Property<int>("OpstinaRodjenjaID")
                         .HasColumnType("int");
 
                     b.Property<string>("Prezime")
@@ -697,7 +700,8 @@ namespace eGym.Migrations
                     b.HasOne("eGym.Data.Models.Grad", "OpstinaRodjenja")
                         .WithMany()
                         .HasForeignKey("OpstinaRodjenjaID")
-                        .OnDelete(DeleteBehavior.NoAction);
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("OpstinaRodjenja");
                 });

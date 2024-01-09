@@ -12,8 +12,8 @@ namespace eGym.Data.Controllers.Korisnik.Pretraga
         public string Ime { get; set; }
         public string Prezime { get; set; }
         public bool isClan { get; set; }
-        public string OpstinaRodjenja { get; set; }
-        public DateTime DatumRodjenja { get; set; }
+        //public string OpstinaRodjenja { get; set; }
+        //public DateTime DatumRodjenja { get; set; }
         public string BrojTelefona { get; set; }
         public string Spol { get; set; }
     }

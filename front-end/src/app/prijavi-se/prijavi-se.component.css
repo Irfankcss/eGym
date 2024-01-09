@@ -1,0 +1,62 @@
+.customHeight{
+  height: 100vh;
+}
+.customBackground{
+ background-image: url("https://wallpapercave.com/wp/wp4436660.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.customFilter{
+  filter: brightness(0.0);
+}
+h2{
+  text-align: center;
+}
+.customPosition{
+  position: relative;
+}
+.customDiv{
+  position: absolute;
+  width: 45%;
+  right: 0;
+  top: 28%;
+  margin-right: 5%;
+}
+.customSpace{
+  padding: 10px;
+}
+.customMarginTop{
+  margin-top: 5%;
+}
+.customMarginBottom{
+  margin-bottom: 2.5%;
+}
+.customTextSize{
+  font-size: 1.2em;
+}
+.text-container{
+  display: flex;
+}
+.text-container p{
+  font-size: 1.2em;
+  margin-right: 10px;
+}
+.text-size{
+  font-size: 1.2em;
+}
+.col-5{
+  position:relative;
+}
+.p-container{
+  position: absolute;
+  left: 0;
+  top: 28%;
+  margin-left: 10%;
+}
+.button{
+  padding: 10px;
+}
+.customButtonPosition{
+  margin-left: 10%
+}
+

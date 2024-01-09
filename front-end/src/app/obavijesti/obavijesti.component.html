@@ -1,0 +1,30 @@
+<div id="carouselExampleCaptions" class="carousel slide">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button *ngFor="let y of obavijesti.slice(1);index as i" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></button>
+  </div>
+  <div class="carousel-inner">
+    <div *ngFor="let x of obavijesti.slice(0,1)" class="carousel-item active c-item">
+      <img src="{{x.slika}}" class="d-block w-100 c-img" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{x.naslov}}</h5>
+        <p>{{x.text}}</p>
+      </div>
+    </div>
+    <div *ngFor="let item of obavijesti.slice(1)" class="carousel-item c-item">
+      <img src="{{item.slika}}" class="d-block w-100 c-img" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>{{item.naslov}}</h5>
+        <p>{{item.text}}</p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

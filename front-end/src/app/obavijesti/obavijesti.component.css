@@ -1,0 +1,12 @@
+.c-item{
+  height: 55vh;
+}
+.c-img{
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6);
+}
+:host{
+  position: relative;
+  top: 15%;
+}

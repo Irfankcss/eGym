@@ -23,8 +23,8 @@ namespace eGym.Data.Controllers.Korisnik.Pretraga
                     Ime = x.Ime,
                     Prezime = x.Prezime,
                     isClan = x.isClan,
-                    OpstinaRodjenja = x.OpstinaRodjenja.Naziv,
-                    DatumRodjenja = x.DatumRodjenja,
+                    //OpstinaRodjenja = x.OpstinaRodjenja.Naziv,
+                    //DatumRodjenja = x.DatumRodjenja,
                     BrojTelefona = x.BrojTelefona,
                     Spol= x.Spol
                 }).ToListAsync();

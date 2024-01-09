@@ -1,9 +1,12 @@
+.customClass{
+  border-bottom: 1px solid white;
+}
 .navbar{
   padding: 0;
   position: fixed;
   width: 100%;
   z-index: 2;
 }
-.r-outlet{
-  height:100%;
+:host{
+  display: block;
 }

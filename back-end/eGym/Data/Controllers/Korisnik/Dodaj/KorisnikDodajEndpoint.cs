@@ -25,12 +25,12 @@ namespace eGym.Data.Controllers.Korisnik.Dodaj
                 BrojTelefona = request.BrojTelefona,
                 Spol = request.Spol,
                 Email = request.Email,
-                Slika = request.Slika,
                 isAdmin = false,
                 isKorisnik = true,
                 isRadnik = false,
                 KorisnickoIme = request.KorisnickoIme,
-                Lozinka = request.Lozinka
+                Lozinka = request.Lozinka,
+                isClan = false
             };
             _applicationDbContext.Add(noviObj);
             await _applicationDbContext.SaveChangesAsync();
