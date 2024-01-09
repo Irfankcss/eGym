@@ -1,5 +1,5 @@
 .customHeight{
-  height: 86.3vh;
+  height: 100vh;
 }
 .customBackground{
  background-image: url("https://wallpapercave.com/wp/wp4436660.jpg");
@@ -19,7 +19,7 @@ h2{
   position: absolute;
   width: 45%;
   right: 0;
-  top: 15%;
+  top: 28%;
   margin-right: 5%;
 }
 .customSpace{
@@ -50,8 +50,8 @@ h2{
 .p-container{
   position: absolute;
   left: 0;
-  top: 15%;
-  margin-left: 5%;
+  top: 28%;
+  margin-left: 10%;
 }
 .button{
   padding: 10px;

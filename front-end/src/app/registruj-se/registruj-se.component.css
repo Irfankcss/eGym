@@ -1,5 +1,5 @@
 .customHeight{
-  height: 86.3vh;
+  height: 100vh;
 }
 .text-container{
   display: flex;
@@ -16,7 +16,7 @@
 .p-container{
   position: absolute;
   right: 0;
-  top: 20%;
+  top: 30%;
   margin-right: 5%;
 }
 .customBackground{
@@ -36,6 +36,10 @@
 }
 .customDiv{
   display: flex;
+}
+.customDiv2{
+  position: absolute;
+  top: 20%;
 }
 .customRight{
   margin-left: 10%;
