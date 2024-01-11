@@ -10,7 +10,6 @@ import {ViewProizvodComponent} from "../view-proizvod/view-proizvod.component";
 
 @NgModule({
   declarations: [
-    ViewProizvodComponent
   ],
   imports: [
     BrowserModule,

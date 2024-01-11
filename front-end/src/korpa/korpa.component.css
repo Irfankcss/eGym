@@ -1,8 +1,8 @@
 :host {
-  height: 90%;
+  height: 80%;
   position: relative;
   display: block;
-  top: 10%;
+  padding-top: 10%;
 }
 .main{
 display:block;
@@ -30,7 +30,7 @@ th, td {
   top: 5%;
   display: flex;
   background-color: #ffffff;
-  height:9%;
+  height:50%;
   text-align: center;
   justify-content: center;
 }
@@ -51,6 +51,9 @@ th, td {
   border-radius: 50%;
   width: 10%;
   font-size: 12px;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .indikatori-box button:hover{
   color: #ffffff;
@@ -117,6 +120,7 @@ th, td {
   top: 10%;
   display: flex;
   min-height: 70%;
+  margin-top: 5%;
   width:100%;
 }
 .dostava-left{

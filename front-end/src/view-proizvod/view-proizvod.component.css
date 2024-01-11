@@ -30,17 +30,18 @@ display: none ;
   font-size: 30px;
 }
 .main{
-    height: 82%;
+    height: 100vh;
     background-image:url("../assets/prodavnica-images/backgroundproizvodview.jpg");
     background-size: cover;
     background-repeat: no-repeat;}
 .main-box{
   border-radius: 30px;
-  width: 70%;
-  height:80%;
+  width: 62%;
+  height: 85%;
   position: relative;
-  top:10%;
-  left:15%;
+  top: 10%;
+  left: 19%;
+  padding-top: 10%;
   display: flex;
   flex-direction: row;
 }

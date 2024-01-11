@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Route, Router, RouterLink, Routes} from "@angular/router";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {Gradovi, GradoviGetall} from "./gradovi-getall";
-import {MojConfig} from "../moj-config";
+import {Mojconfig} from "../moj-config";
 import {NgForOf, NgIf} from "@angular/common";
 import {Form, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 
@@ -39,7 +39,7 @@ export class RegistrujSeComponent implements OnInit{
   }
   gradovi:Gradovi[]=[];
   ngOnInit(): void {
-    let url=MojConfig.adresa_servera + `/Obradi/GradPretragaEndpoint`;
+    let url=Mojconfig.adresa_servera + `/Obradi/GradPretragaEndpoint`;
     this.httpClient.get<GradoviGetall>(url).subscribe((x:GradoviGetall)=>{
       this.gradovi = x.gradovi;
     })
@@ -75,7 +75,7 @@ export class RegistrujSeComponent implements OnInit{
     return true;
   }
   sacuvajKorisnika() {
-    let url = MojConfig.adresa_servera + `/Obradi/KorisnikDodajEndpoint`;
+    let url = Mojconfig.adresa_servera + `/Obradi/KorisnikDodajEndpoint`;
 
     if(this.Validiraj()) {
 
