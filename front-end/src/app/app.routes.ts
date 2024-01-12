@@ -7,6 +7,7 @@ import {PrijaviSeComponent} from "./prijavi-se/prijavi-se.component";
 import {RegistrujSeComponent} from "./registruj-se/registruj-se.component";
 
 export const routes: Routes = [
+  {path:'', redirectTo:'/obavijesti', pathMatch:'full'},
   { path: 'prodavnica', component: ProdavnicaComponent },
   { path: 'viewproizvod/:proizvodID', component: ViewProizvodComponent },
   { path: 'korpa', component: KorpaComponent },

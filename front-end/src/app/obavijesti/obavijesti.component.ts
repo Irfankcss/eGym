@@ -3,11 +3,12 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {Obavijesti, ObavijestiGetall} from "./obavijesti-getall";
 import {Mojconfig} from "../moj-config";
 import {NgForOf} from "@angular/common";
+import {ContactFooterComponent} from "../contact-footer/contact-footer.component";
 
 @Component({
   selector: 'app-obavijesti',
   standalone: true,
-  imports: [HttpClientModule, NgForOf],
+  imports: [HttpClientModule, NgForOf, ContactFooterComponent],
   templateUrl: './obavijesti.component.html',
   styleUrl: './obavijesti.component.css'
 })
