@@ -5,6 +5,7 @@ import {KorpaComponent} from "../korpa/korpa.component";
 import {ObavijestiComponent} from "./obavijesti/obavijesti.component";
 import {PrijaviSeComponent} from "./prijavi-se/prijavi-se.component";
 import {RegistrujSeComponent} from "./registruj-se/registruj-se.component";
+import {ClanarinaComponent} from "./clanarina/clanarina.component";
 
 export const routes: Routes = [
   {path:'', redirectTo:'/obavijesti', pathMatch:'full'},
@@ -14,4 +15,5 @@ export const routes: Routes = [
   {path:'obavijesti',component:ObavijestiComponent},
   {path:'prijavi-se',component:PrijaviSeComponent},
   {path:'registruj-se',component:RegistrujSeComponent},
+  {path:'clanarina',component: ClanarinaComponent}
 ];
