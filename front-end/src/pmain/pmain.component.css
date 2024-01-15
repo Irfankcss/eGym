@@ -20,6 +20,7 @@
   border: 2px solid rgba(0, 0, 0, 0.07);
   display: block;
   flex-direction: column;
+  transition: 0.5s;
 }
 
 .slika-proizvoda-box {

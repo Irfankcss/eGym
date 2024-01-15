@@ -9,6 +9,9 @@
   position:fixed;
   z-index: 2;
 }
+button{
+  transition: 0.5s;
+}
 p{
   margin: 0;
 }

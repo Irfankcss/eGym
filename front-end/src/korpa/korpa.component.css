@@ -30,7 +30,7 @@ th, td {
   top: 5%;
   display: flex;
   background-color: #ffffff;
-  height:50%;
+  height:14%;
   text-align: center;
   justify-content: center;
 }
@@ -54,6 +54,7 @@ th, td {
   text-align: center;
   padding-top: 20px;
   padding-bottom: 20px;
+  transition: 0.5s;
 }
 .indikatori-box button:hover{
   color: #ffffff;
@@ -222,4 +223,7 @@ th, td {
   min-height: 50%;
   margin-top: 5%;
   text-align: center;
+}
+button{
+  transition: 0.5s;
 }
