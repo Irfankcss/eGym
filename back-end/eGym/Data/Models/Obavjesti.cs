@@ -12,7 +12,7 @@ namespace eGym.Data.Models
         public string Text {  get; set; }
         public string Slika { get; set; }
         [ForeignKey(nameof(Admin))]
-        public int AdminID { get; set; }
-        public Admin Admin { get; set; }
+        public int? AdminID { get; set; }
+        public Admin? Admin { get; set; }
     }
 }

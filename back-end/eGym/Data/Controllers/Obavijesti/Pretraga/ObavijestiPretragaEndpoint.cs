@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eGym.Data.Controllers.Obavijesti.Pretraga
 {
-    [Tags("Obavijesti")]
+    [Tags("Obavijest")]
     public class ObavijestiPretragaEndpoint : MyBaseEndpoint<ObavijestiPretragaRequest, ObavijestiPretragaResponse>
     {
         public readonly ApplicationDbContext _applicationDbContext;

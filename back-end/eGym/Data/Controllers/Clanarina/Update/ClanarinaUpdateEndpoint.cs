@@ -24,7 +24,7 @@ namespace eGym.Data.Controllers.Clanarina.Update
             await _applicationDbContext.SaveChangesAsync();
             return new ClanarinaUpdateResponse
             {
-                ClanarinaID = clanarina.ID,
+                ClanarinaID = request.ClanarinaId
             };
         }
     }
