@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.Data.Controllers.Obavijesti.Dodaj
 {
+    [Tags("Obavijest")]
     public class ObavijestiDodajEndpoint : MyBaseEndpoint<ObavijestiDodajRequest, ObavijestiDodajResponse>
     {
         public readonly ApplicationDbContext _applicationDbContext;

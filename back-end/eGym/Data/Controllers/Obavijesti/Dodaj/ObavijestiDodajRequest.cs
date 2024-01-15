@@ -7,6 +7,6 @@
         public string Naslov { get; set; }
         public string Text { get; set; }
         public string Slika { get; set; }
-        public int AdminID { get; set; }
+        public int? AdminID { get; set; }
     }
 }

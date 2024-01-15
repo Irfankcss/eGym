@@ -1,0 +1,17 @@
+.customContainer{
+  width: 100%;
+}
+.customTittle{
+  text-align: center;
+}
+.news-data{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.news-control button{
+  margin-top: 3%;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 30%;
+}

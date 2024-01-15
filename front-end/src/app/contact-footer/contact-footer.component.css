@@ -1,0 +1,22 @@
+.customHeight{
+  height: 25vh;
+}
+.containerInfo{
+  width: 5vh;
+  height: 5vh;
+}
+.customSpace{
+  margin: 1.5%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.customImage img{
+  width: 30px;
+  height: 30px;
+}
+h3{
+  padding-top: 0.8%;
+}
+.customBorder{
+  border: 1px solid black;
+}

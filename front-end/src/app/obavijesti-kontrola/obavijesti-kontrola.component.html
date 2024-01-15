@@ -1,0 +1,107 @@
+<div class="container-fluid">
+  <div class="d-flex flex-row">
+    <button class="btn" (click)="dodajVidljivo()">Dodaj obavijest</button>
+    <button class="btn" (click)="obrisiVidljivo()">Obriši obavijest</button>
+    <button class="btn" (click)="urediVidljivo()">Uredi obavijest</button>
+  </div>
+
+  <div class="container customContainer" *ngIf="dodajIsVidljivo">
+    <div class="customTittle">
+      <h4>Unesite podatke o novoj obavijesi</h4>
+    </div>
+    <div class="news-data w-75">
+      <form #myForm= ngForm (ngSubmit)="dodajObavijest(myForm.value)">
+      <div class="form-group">
+        <label for="naslov">Naslov</label>
+        <input type="text" class="form-control" id="naslov" [(ngModel)]="naslov" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group">
+        <label for="sadrzaj">Sadržaj</label>
+        <input type="text" class="form-control" id="sadrzaj" [(ngModel)]="sadrzaj" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group">
+        <label for="slika">Slika</label>
+        <input type="text" class="form-control" id="slika" [(ngModel)]="slika" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="news-control">
+        <div class="d-flex justify-content-center">
+          <button type="button" class="btn btn-info" (click)="isprazniFormu()">Odustani</button>
+          <button type="submit" class="btn btn-info">Dodaj</button>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="container customContainer" *ngIf="obrisiIsVidljivo">
+    <div class="customTittle">
+      <h4>Obrišite obavijest</h4>
+    </div>
+    <div class="news-list">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Naslov</th>
+          <th scope="col">Sadržaj</th>
+          <th scope="col">Datum objave</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of obavijesti">
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.naslov}}</td>
+          <td>{{item.text}}</td>
+          <td>{{item.datumObjave}}</td>
+          <td><button (click)="obrisiObavijest(item)">Obriši</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="container customContainer" *ngIf="urediIsVidljivo">
+    <div class="customTittle">
+      <h4>Uredite obavijest</h4>
+    </div>
+    <div class="news-list">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Naslov</th>
+          <th scope="col">Sadržaj</th>
+          <th scope="col">Datum objave</th>
+          <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of obavijesti">
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.naslov}}</td>
+          <td>{{item.text}}</td>
+          <td>{{item.datumObjave}}</td>
+          <td><button (click)="uredi(item)">Uredi</button></td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="edit-container" *ngIf="odabranaObavijest != null">
+        <div class="form-group">
+          <label for="naslov1">Naslov</label>
+          <input type="text" class="form-control" id="naslov1" [(ngModel)]="odabranaObavijest.naslov" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <label for="sadrzaj1">Sadržaj</label>
+          <input type="text" class="form-control" id="sadrzaj1" [(ngModel)]="odabranaObavijest.sadrzaj" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="news-control">
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-info" (click)="isprazniSadrzaj()">Odustani</button>
+            <button type="submit" class="btn btn-info" (click)="izmeni()">Dodaj</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

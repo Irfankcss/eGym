@@ -1,0 +1,43 @@
+<div class="container-fluid custom">
+      <div class="conteiner-tittle text-white">
+        <h2>ŽELIŠ POSTAT DIO EKIPE? UČLANI SE</h2>
+      </div>
+  <button class="btn btn-warning customBtn" (click)="isVidljivo = !isVidljivo">Učlani se</button>
+
+  <div *ngIf="isVidljivo" class="container">
+    <div class="membership-info bg-warning">
+          <div class="membership-tittle">
+            <h3 class="customTittle">Unesite podatke</h3>
+          </div>
+      <div class="membership-data w-75 customMembershipDiv">
+        <div class="membership-code">
+          <div class="form-group w-100">
+            <label for="kod">Članski kod</label>
+            <input type="text" class="form-control" id="kod" minlength="1" maxlength="5" [(ngModel)]="kod">
+          </div>
+        </div>
+        <div class="membership-type">
+          <label for="tip">Tip članarine:</label>
+          <select class="form-control w-100 " id="tip" [(ngModel)]="tipMjesecne">
+            <option>Mjesečna</option>
+            <option>Polu mjesečna</option>
+            <option>Sedmična</option>
+            <option>Dnevna</option>
+          </select>
+        </div>
+        <div class="membership-date">
+          <div class="form-group w-100">
+            <label for="datum">Datum početka:</label>
+            <input type="date" class="form-control" id="datum" [(ngModel)]="datumPocetkaMjesecne">
+          </div>
+        </div>
+        <div class="membership-buttons customButtons">
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-info" (click)="obrisiPodatke()">Odustani</button>
+            <button type="button" class="btn btn-info">Nastavi dalje</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

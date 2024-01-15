@@ -1,0 +1,42 @@
+.custom{
+  height: 100vh;
+  background-image: url("https://wallpapercave.com/wp/wp7578886.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.conteiner-tittle{
+  padding-top: 10%;
+  text-align: center;
+}
+.customBtn{
+  padding: 10px;
+  width: 9%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 2%;
+}
+.membership-info {
+  width: 100vh;
+  height: 50vh;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-top: 3.5%;
+  border-radius: 10px;
+}
+.customTittle{
+  padding-top: 1%;
+  text-align: center;
+}
+.customMembershipDiv{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.customButtons button{
+  margin-top: 7%;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 30%;
+}
