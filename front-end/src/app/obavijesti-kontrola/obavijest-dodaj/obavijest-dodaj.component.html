@@ -1,0 +1,28 @@
+<div class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Nova obavijest</h5>
+        <button type="button" class="btn-close" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label">Naslov</label>
+          <input  class="form-control" type="text"  placeholder="Naslov" [(ngModel)]="ngNaslov">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Sadržaj</label>
+          <input  class="form-control" type="text"  placeholder="Sadržaj" [(ngModel)]="ngSadrzaj">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Slika</label>
+          <input  class="form-control" type="text"  placeholder="Slika" [(ngModel)]="ngSlika">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary">Odustani</button>
+        <button type="button" class="btn btn-primary" (click)="dodajNovuObavijest()">Spasi</button>
+      </div>
+    </div>
+  </div>
+</div>

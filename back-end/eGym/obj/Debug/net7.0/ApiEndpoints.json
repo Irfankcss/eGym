@@ -1,0 +1,1547 @@
+[
+  {
+    "ContainingType": "eGym.Data.Controllers.KorpaC.KorpaController",
+    "Method": "DodajProizvodUKorpu",
+    "RelativePath": "api/Korpa/DodajProizvodUKorpu",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ProizvodID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "KorisnikID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Kolicina",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.KorpaC.KorpaController",
+    "Method": "GetKorpaByKorisnikID",
+    "RelativePath": "api/Korpa/GetKorpaByKorisnikID/{korisnikID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "korisnikID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.KorpaC.KorpaController",
+    "Method": "RemoveProizvodFromKorpa",
+    "RelativePath": "api/Korpa/RemoveProizvodFromKorpa/{korpaID}/{proizvodID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "korpaID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "proizvodID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.NarudzbaProizvodC.NarudzbaProizvodController",
+    "Method": "GetProizvodiForNarudzba",
+    "RelativePath": "api/orders/Get Proizvodi u narudzbi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "narudzbaId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.NarudzbaProizvodC.ProizvodController",
+    "Method": "PostProizvod",
+    "RelativePath": "api/products",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "proizvodvm",
+        "Type": "eGym.Data.ViewModels.ProizvodVMs.ProizvodVM",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.NarudzbaProizvodC.ProizvodController",
+    "Method": "DeleteProizvod",
+    "RelativePath": "api/products/DeleteProizvod/{proizvodID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "proizvodID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.NarudzbaProizvodC.ProizvodController",
+    "Method": "GetProizvod",
+    "RelativePath": "api/products/GetProizvod/{id} NE KORISTI SE",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.NarudzbaProizvodC.ProizvodController",
+    "Method": "GetProizvodByID",
+    "RelativePath": "api/products/GetProizvodByID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "proizvodId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.ViewModels.ProizvodVMs.ProizvodVM",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.NarudzbaProizvodC.ProizvodController",
+    "Method": "GetProizvodByNaziv",
+    "RelativePath": "api/products/GetProizvodByNaziv/{nazivProizvoda}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nazivProizvoda",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.NarudzbaProizvodC.ProizvodController",
+    "Method": "GetProizvodByNaziv",
+    "RelativePath": "api/products/GetProizvodi",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.NarudzbaProizvodC.ProizvodController",
+    "Method": "GetProizvodiByKategorijaID2",
+    "RelativePath": "api/products/GetProizvodiByKategorijaID/{kategorijaID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "kategorijaID",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.BrendEndpoints.GetById.BrendGetByIdEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Brend/Brend po Id",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Endpoints.BrendEndpoints.GetById.BrendGetByIdResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.BrendEndpoints.Izbri\u0161i.BrendIzbrisiEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Brend/BrenIzbrisi",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.BrendEndpoints.Dodaj.BrendDodajEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Brend/Dodaj",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "BrendNaziv",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Endpoints.BrendEndpoints.Dodaj.BrendDodajResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.BrendEndpoints.GetAll.BrendGetAllEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Brend/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Endpoints.BrendEndpoints.GetAll.BrendGetAllRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Endpoints.BrendEndpoints.GetAll.BrendGetAllResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.ClanEndpoints.Dodaj.ClanDodajEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Clan/Dodaj",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Endpoints.ClanEndpoints.Dodaj.ClanDodajRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Endpoints.ClanEndpoints.Dodaj.ClanDodajResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.ClanEndpoints.GetAll.ClanGetAllEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Clan/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Endpoints.ClanEndpoints.GetAll.ClanGetAllRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[eGym.Data.Endpoints.ClanEndpoints.GetAll.ClanGetAllResponse, eGym, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.Kategorija.Dodaj.KategorijaDodajEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Kategorija/dodaj",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Endpoints.Kategorija.Dodaj.KategorijaDodajRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Endpoints.KategorijaEndpoints.Dodaj.KategorijaDodajResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.KategorijaEndpoints.Izbri\u0161i.KategorijaObrisiEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Kategorija/KategorijaObrisi",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.KategorijaEndpoints.GetById.KategorijaGetByNameEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Kategorija/Pretraga po nazivu",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "KategorijaNaziv",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Endpoints.KategorijaEndpoints.GetAll.KategorijaGetResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.NarudzbaProizvodC.NarudzbaController2",
+    "Method": "PostNarudzba",
+    "RelativePath": "Narudzba2/DodajNarudzbu",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dodajNarudzbuVM",
+        "Type": "eGym.Data.ViewModels.NarudzbaVMs.DodajNarudzbuVM",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Models.Narudzba",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.NarudzbaProizvodC.NarudzbaController2",
+    "Method": "GetNarudzba",
+    "RelativePath": "Narudzba2/NarudzbaGetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[eGym.Data.ViewModels.NarudzbaVMs.NarudzbaVM, eGym, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.NarudzbaProizvodC.NarudzbaController2",
+    "Method": "GetNarudzba",
+    "RelativePath": "Narudzba2/NarudzbaGetBy{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.ViewModels.NarudzbaVMs.NarudzbaVM",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Admin.Dodaj.AdminDodajEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/AdminDodajEndpoint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Admin.Dodaj.AdminDodajRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Admin.Dodaj.AdminDodajResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Admin.Obrisi.AdminObrisiEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/AdminObrisiEndpoint",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "AdminID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Admin.Obrisi.AdminObrisiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Admin.Pretraga.AdminPretragaEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/AdminPretragaEndpoint",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Admin.Pretraga.AdminPretragaRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Admin.Pretraga.AdminPretragaResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Admin.Update.AdminUpdateEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/AdminUpdateEndpoint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Admin.Update.AdminUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Admin.Update.AdminUpdateResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Clanarina.Dodaj.ClanarinaDodajEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/ClanarinaDodajEndpoint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Clanarina.Dodaj.ClanarinaDodajRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Clanarina.Dodaj.ClanarinaDodajResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Clanarina.Pretrazi.ClanarinaPretraziEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/ClanarinaPretraziEndpoint",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Clanarina.Pretrazi.ClanarinaPretraziRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Clanarina.Pretrazi.ClanarinaPretraziResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Clanarina.Update.ClanarinaUpdateEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/ClanarinaUpdateEndpoint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Clanarina.Update.ClanarinaUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Clanarina.Update.ClanarinaUpdateResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Drzava.Dodaj.DrzavaDodajEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/DrzavaDodajEndpoint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Drzava.Dodaj.DrzavaDodajRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Drzava.Dodaj.DrzavaDodajResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Drzava.Pretraga.DrzavaPretragaEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/DrzavaPretragaEndpoint",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Drzava.Pretraga.DrzavaPretragaRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Drzava.Pretraga.DrzavaPretragaResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Grad.Pretraga.GradPretragaEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/GradPretragaEndpoint",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Grad.Pretraga.GradPretragaRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Grad.Pretraga.GradPretragaResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Korisnicki_nalog.Dodaj.KorisnickiNalogDodajEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/KorisnickiNalogDodajEndpoint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Korisnicki_nalog.Dodaj.KorisnickiNalogDodajRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Korisnicki_nalog.Dodaj.KorisnickiNalogDodajResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Korisnicki_nalog.Obrisi.KorisnickiNalogObrisiEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/KorisnickiNalogObrisiEndpoint",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "KorisnickiNalogID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Korisnicki_nalog.Obrisi.KorisnickiNalogObrisiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Korisnicki_nalog.Pretraga.KorisnickiNalogPretragaEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/KorisnickiNalogPretragaEndpoint",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Korisnicki_nalog.Pretraga.KorisnickiNalogPretragaRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Korisnicki_nalog.Pretraga.KorisnickiNalogPretragaResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Korisnicki_nalog.Update.KorisnickiNalogUpdateEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/KorisnickiNalogUpdateEndpoint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Korisnicki_nalog.Update.KorisnickiNalogUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Korisnicki_nalog.Update.KorisnickiNalogUpdateResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Korisnik.Dodaj.KorisnikDodajEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/KorisnikDodajEndpoint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Korisnik.Dodaj.KorisnikDodajRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Korisnik.Dodaj.KorisnikDodajResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Korisnik.Obrisi.KorisnikObrisiEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/KorisnikObrisiEndpoint",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "KorisnikID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Korisnik.Obrisi.KorisnikObrisiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Korisnik.Pretraga.KorisnikPretragaEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/KorisnikPretragaEndpoint",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Korisnik.Pretraga.KorisnikPretragaRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Korisnik.Pretraga.KorisnikPetragaResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Kreditna_kartica.Dodaj.KreditnaKarticaDodajEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/KreditnaKarticaDodajEndpoint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Kreditna_kartica.Dodaj.KreditnaKarticaDodajRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Kreditna_kartica.Dodaj.KreditnaKarticaDodajResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Kreditna_kartica.Obrisi.KreditnaKarticaObrisiEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/KreditnaKarticaObrisiEndpoint",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "KreditnaKarticaID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Kreditna_kartica.Obrisi.KreditnaKarticaObrisiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Kreditna_kartica.Pretrazi.KreditnaKarticaPretraziEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/KreditnaKarticaPretraziEndpoint",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Kreditna_kartica.Pretrazi.KredtinaKarticaPretraziRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Kreditna_kartica.Pretrazi.KreditnaKarticaPretraziResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Obavijesti.Dodaj.ObavijestiDodajEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/ObavijestiDodajEndpoint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Obavijesti.Dodaj.ObavijestiDodajRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Obavijesti.Dodaj.ObavijestiDodajResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Obavijesti.Obrisi.ObavijestiObrisiEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/ObavijestiObrisiEndpoint",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ObavijestID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Obavijesti.Obrisi.ObavijestiObrisiResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Obavijesti.Pretraga.ObavijestiPretragaEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/ObavijestiPretragaEndpoint",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Obavijesti.Pretraga.ObavijestiPretragaRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Obavijesti.Pretraga.ObavijestiPretragaResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Controllers.Obavijesti.Update.ObavijestiUpdateEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Obradi/ObavijestiUpdateEndpoint",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Controllers.Obavijesti.Update.ObavijestiUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Controllers.Obavijesti.Update.ObavijestiUpdateResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "PodaciController",
+    "Method": "Generisi",
+    "RelativePath": "Podaci/Generisi",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.PoslanaNarudzbaEndpoints.Dodaj.PoslanaNarudzbaDodajEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "PoslanaNarudzba/Posalji narudzbu",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Endpoints.PoslanaNarudzbaEndpoints.Dodaj.PoslanaNarudzbaDodajRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.PoslanaNarudzbaEndpoints.GetAll.PoslanaNarudzbaGetAllEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "PoslanaNarudzba/PoslanaNarudzba Get by NarudzbaID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "NarudzbaID",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[eGym.Data.Endpoints.PoslanaNarudzbaEndpoints.GetAll.PoslanaNarudzbaGetAllResponse, eGym, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.PoslanaNarudzbaEndpoints.GetAll.PoslanaNarudzbaGetByRadnikIDEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "PoslanaNarudzba/PoslanaNarudzba Get by RadnikID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RadnikID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[eGym.Data.Endpoints.PoslanaNarudzbaEndpoints.GetAll.PoslanaNarudzbaGetAllResponse, eGym, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.PoslanaNarudzbaEndpoints.Izbrisi.PoslanaNarudzbaIzbrisiEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "PoslanaNarudzba/PoslanaNarudzba izbrisi",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.PoslanaNarudzbaEndpoints.Update.PoslanaNarudzbaUpdateEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "PoslanaNarudzba/PoslanaNarudzba Update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Endpoints.PoslanaNarudzbaEndpoints.Update.PoslanaNarudzbaUpdateRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.RadnikEndpoints.Dodaj.RadnikDodajEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Radnik/Dodaj Radnika",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Ime",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Prezime",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DatumRodjenja",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "BrojTelefona",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DatumZaposlenja",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "GradID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Spol",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "KorisnickiNalog.ID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "KorisnickiNalog.KorisnickoIme",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "KorisnickiNalog.Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "KorisnickiNalog.Lozinka",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "KorisnickiNalog.Slika",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "KorisnickiNalog.isAdmin",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "KorisnickiNalog.isKorisnik",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "KorisnickiNalog.isRadnik",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.RadnikEndpoints.GetById.RadnikGetByIdEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Radnik/Get by Id",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Endpoints.RadnikEndpoints.GetById.RadnikGetByIdResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.RadnikEndpoints.GetAll.RadnikGetAllEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Radnik/GetAll",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "eGym.Data.Endpoints.RadnikEndpoints.GetAll.RadnikGetAllRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Endpoints.RadnikEndpoints.GetAll.RadnikGetAllResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.RadnikEndpoints.Obri\u0161i.RadnikObrisiEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Radnik/Obrisi",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Int32",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "eGym.Data.Endpoints.RadnikEndpoints.Update.RadnikUpdateEndpoint",
+    "Method": "Obradi",
+    "RelativePath": "Radnik/Radnik update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "RadnikID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Ime",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Prezime",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DatumRodjenja",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "BrojTelefona",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "DatumZaposlenja",
+        "Type": "System.Nullable\u00601[[System.DateTime, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "GradID",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "grad.ID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "grad.Naziv",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "grad.PostanskiBroj",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "grad.DrzavaID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "grad.Drzava.ID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "grad.Drzava.Naziv",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "grad.Drzava.Skracenica",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Spol",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Slika",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "eGym.Data.Endpoints.RadnikEndpoints.Update.RadnikUpdateResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

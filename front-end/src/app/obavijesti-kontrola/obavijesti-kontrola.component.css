@@ -1,17 +1,8 @@
-.customContainer{
-  width: 100%;
+.customStyle{
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
 }
-.customTittle{
-  text-align: center;
-}
-.news-data{
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-}
-.news-control button{
-  margin-top: 3%;
-  margin-left: 2%;
-  margin-right: 2%;
-  width: 30%;
+.customStyle:hover{
+  text-decoration: underline;
 }

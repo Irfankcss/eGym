@@ -21,6 +21,7 @@ namespace eGym.Data.Controllers.Obavijesti.Update
             }
             obavijest.Text = request.Sadrzaj;
             obavijest.Naslov = request.Naslov;
+            obavijest.Slika = request.Slika;
             await _applicationDbContext.SaveChangesAsync();
             return new ObavijestiUpdateResponse
             {

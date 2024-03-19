@@ -1,30 +1,29 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, ViewChild} from '@angular/core';
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {Obavijesti, ObavijestiGetall} from "./obavijesti-getall";
 import {Mojconfig} from "../moj-config";
 import {NgForOf} from "@angular/common";
-import {ContactFooterComponent} from "../contact-footer/contact-footer.component";
 import {ObavijestiKontrolaComponent} from "../obavijesti-kontrola/obavijesti-kontrola.component";
+import {ContactFooterComponent} from "../contact-footer/contact-footer.component";
 
+declare function nest():void;
 @Component({
   selector: 'app-obavijesti',
   standalone: true,
-  imports: [HttpClientModule, NgForOf, ContactFooterComponent, ObavijestiKontrolaComponent],
+  imports: [HttpClientModule, NgForOf, ObavijestiKontrolaComponent, ContactFooterComponent],
   templateUrl: './obavijesti.component.html',
   styleUrl: './obavijesti.component.css'
 })
 export class ObavijestiComponent implements OnInit{
-  constructor(public httpClient: HttpClient ) {
+  constructor(public httpClient: HttpClient) {
+
   }
   obavijesti:Obavijesti[]=[];
-  public sliderNumber:number = 1;
+  public slideIndex = 0;
   ngOnInit(): void {
     let url = Mojconfig.adresa_servera + `/Obradi/ObavijestiPretragaEndpoint`;
     this.httpClient.get<ObavijestiGetall>(url).subscribe((x:ObavijestiGetall)=>{
       this.obavijesti = x.obavijesti;
     })
-  }
-  countSliderNumber(){
-    this.sliderNumber++;
   }
 }

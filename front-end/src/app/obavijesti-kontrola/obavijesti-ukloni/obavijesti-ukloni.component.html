@@ -1,0 +1,36 @@
+<div class="modal fade show" id="exampleModalLive" tabindex="-1" aria-labelledby="exampleModalLiveLabel" aria-modal="true" role="dialog" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLiveLabel">Ukloni obavijest obavijest</h5>
+        <button type="button" class="btn-close" aria-label="Close"></button>
+      </div>
+      <table class="table" *ngIf="isObavijestiVidljive">
+        <thead>
+        <tr>
+          <th scope="col">Redni broj</th>
+          <th scope="col">Naslov</th>
+          <th scope="col">Sadržaj</th>
+          <th scope="col">Akcija</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let o of obavijesti">
+          <th scope="row">{{o.id}}</th>
+          <td>{{o.naslov}}</td>
+          <td>{{ o.text }}</td>
+          <td><button (click)="ukloniObavijest(o);
+          potvrdiIsVidljivo= !potvrdiIsVidljivo;
+          isObavijestiVidljive= !isObavijestiVidljive;
+          isNaslovPotvrdeVidljiv = !isNaslovPotvrdeVidljiv">Ukloni</button></td>
+        </tr>
+        </tbody>
+      </table>
+      <h4 class="confirmTitle" *ngIf="isNaslovPotvrdeVidljiv">Jeste li sigurni da želite obrisati obavijest?</h4>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary">Odustani</button>
+        <button type="button" class="btn btn-primary" *ngIf="potvrdiIsVidljivo" (click)="obrisiObavijest()">Potvrdi</button>
+      </div>
+    </div>
+  </div>
+</div>

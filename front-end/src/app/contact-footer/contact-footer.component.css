@@ -1,22 +1,47 @@
-.customHeight{
-  height: 25vh;
+.customDiv {
+  background-color: #ffd200;
+  border-radius: 10px;
+  margin: 10vh;
+  width: 33vh;
+  }
+.customDiv:hover{
+  background-color: #c5a51d;
 }
-.containerInfo{
-  width: 5vh;
-  height: 5vh;
+.customPhone{
+  background-image: url('/assets/prodavnica-images/kontakt-ikone/telephone.png');
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.customSpace{
-  margin: 1.5%;
-  margin-left: 5%;
-  margin-right: 5%;
+.customPhoneFont,.customEmailFont,.customLocationFont{
+  font-size: 22px;
+  color: white;
+  margin-left: 10px;
 }
-.customImage img{
-  width: 30px;
-  height: 30px;
+.customEmail{
+  background-image: url('/assets/prodavnica-images/kontakt-ikone/email.png');
+  width: 55px;
+  height: 55px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-h3{
-  padding-top: 0.8%;
+.customLocation{
+  background-image: url('/assets/prodavnica-images/kontakt-ikone/place.png');
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.customBorder{
-  border: 1px solid black;
+.footerBody{
+  height: 35vh;
+  background-image: url("/assets/prodavnica-images/backgroundproizvodview.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.title p{
+  color: white;
+  text-align: center;
+  font-size: 2.5em;
+  padding: 10px;
 }
