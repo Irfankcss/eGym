@@ -4,8 +4,11 @@
   <div class="p-2 customStyle" (click)="IsObrisiVidljivo =!IsObrisiVidljivo">Ukloni</div>
 </div>
 
-<app-obavijest-dodaj *ngIf="IsDodajVidljivo"></app-obavijest-dodaj>
-<app-obavijesti-uredi *ngIf="IsUrediVidljivo"></app-obavijesti-uredi>
-<app-obavijesti-ukloni *ngIf="IsObrisiVidljivo"></app-obavijesti-ukloni>
+<app-obavijest-dodaj *ngIf="IsDodajVidljivo"
+(otvori)="this.otvaranjeAdd($event)"></app-obavijest-dodaj>
+<app-obavijesti-uredi *ngIf="IsUrediVidljivo"
+(otvori)="this.otvaranjeUredi($event)"></app-obavijesti-uredi>
+<app-obavijesti-ukloni *ngIf="IsObrisiVidljivo"
+(otvori)="this.otvaranjeUkloni($event)"></app-obavijesti-ukloni>
 
 

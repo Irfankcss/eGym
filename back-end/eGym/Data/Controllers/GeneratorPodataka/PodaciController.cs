@@ -73,8 +73,8 @@ public class PodaciController : ControllerBase
         var obavjesti = _dbContext.Obavjesti.ToList();
         if (obavjesti.Count < 1)
         {
-            _dbContext.Obavjesti.Add(new Obavjesti { DatumObjave = DateTime.Now, Naslov = "Novi proteini u ponudi", Text = "Ukusni proteini samo za tebe :3", AdminID = 2, Slika = "https://media.post.rvohealth.io/wp-content/uploads/2023/11/3256105-18_Best_Protein_Powders_by_Type_According_to_a_Dietitian-1200x628-Facebook.jpg" });
-            _dbContext.Obavjesti.Add(new Obavjesti { DatumObjave = DateTime.Now, Naslov = "Akcije na članarinu", Text = "Akcije na godišnju članarinu 20% do kraja mjeseca", AdminID = 2, Slika = "https://www.fitness.com.hr/images/articles/trener-veslanje.jpg" });
+            _dbContext.Obavjesti.Add(new Obavjesti { DatumObjave = DateTime.Now, Naslov = "Novi proteini u ponudi", Text = "Ukusni proteini samo za tebe :3", AdminID = 2, Slika = "https://media.post.rvohealth.io/wp-content/uploads/2023/11/3256105-18_Best_Protein_Powders_by_Type_According_to_a_Dietitian-1200x628-Facebook.jpg", isHidden = false});
+            _dbContext.Obavjesti.Add(new Obavjesti { DatumObjave = DateTime.Now, Naslov = "Akcije na članarinu", Text = "Akcije na godišnju članarinu 20% do kraja mjeseca", AdminID = 2, Slika = "https://www.fitness.com.hr/images/articles/trener-veslanje.jpg", isHidden = false });
         }
         _dbContext.SaveChanges();
         var korisnici = _dbContext.Korisnik.ToList();

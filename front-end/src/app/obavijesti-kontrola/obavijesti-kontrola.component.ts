@@ -21,4 +21,15 @@ export class ObavijestiKontrolaComponent {
   IsUrediVidljivo: boolean = false;
   IsObrisiVidljivo: boolean = false;
 
+  otvaranjeAdd($event : boolean)
+  {
+    this.IsDodajVidljivo = $event;
+  }
+
+  otvaranjeUredi($event:boolean) {
+    this.IsUrediVidljivo = $event;
+  }
+  otvaranjeUkloni($event:boolean){
+    this.IsObrisiVidljivo = $event;
+  }
 }

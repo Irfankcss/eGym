@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormsModule} from "@angular/forms";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {Mojconfig} from "../../moj-config";
 import {ObavijestiGetall} from "../../obavijesti/obavijesti-getall";
 import {NgForOf, NgIf} from "@angular/common";
 import {OdabranaObavijest} from "../obavijesti-uredi/odabrana-obavijest";
+declare function porukaSuccess(m:string):any;
 
 @Component({
   selector: 'app-obavijesti-ukloni',
@@ -19,6 +20,10 @@ import {OdabranaObavijest} from "../obavijesti-uredi/odabrana-obavijest";
   styleUrl: './obavijesti-ukloni.component.css'
 })
 export class ObavijestiUkloniComponent implements OnInit{
+
+    @Output() otvori = new EventEmitter<boolean>();
+
+    prikaz:boolean = true;
 
     public obavijesti:any;
     potvrdiIsVidljivo: boolean = false;
@@ -42,14 +47,19 @@ export class ObavijestiUkloniComponent implements OnInit{
       sadrzaj:o.text,
       slika:o.slika
       };
-    console.log(this.odabranaObavijest);
   }
 
   obrisiObavijest() {
       let id = this.odabranaObavijest?.id;
       let url = Mojconfig.adresa_servera + `/Obradi/ObavijestiObrisiEndpoint?ObavijestID=${id}`;
       this.httpClient.delete(url).subscribe(x=>{
-        alert('Obavijest uspjesno obrisana');
+        this.zatvori();
+        window.location.reload();
       });
+  }
+
+  zatvori() {
+      this.prikaz = !this.prikaz;
+      this.otvori.emit(this.prikaz);
   }
 }

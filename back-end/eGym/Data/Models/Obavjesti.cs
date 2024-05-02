@@ -14,5 +14,6 @@ namespace eGym.Data.Models
         [ForeignKey(nameof(Admin))]
         public int? AdminID { get; set; }
         public Admin? Admin { get; set; }
+        public bool isHidden {  get; set; }
     }
 }

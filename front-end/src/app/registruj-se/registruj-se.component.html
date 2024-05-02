@@ -41,7 +41,7 @@
                 <div class="form-group customSpace">
                   <label>Opština rođenja</label>
                   <select class="form-select" [(ngModel)]="txtOpstinaRodjenja" [ngModelOptions]="{standalone: true}">
-                    <option *ngFor="let item of gradovi" value="{{item.id}}">{{item.naziv}}</option>
+                    <option *ngFor="let item of gradovi" [value]="item.id">{{item.naziv}}</option>
                   </select>
                 </div>
                 <div class="form-group customSpace">

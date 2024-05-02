@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLiveLabel">Ukloni obavijest obavijest</h5>
-        <button type="button" class="btn-close" aria-label="Close"></button>
+        <button type="button" class="btn-close" aria-label="Close" (click)="zatvori()"></button>
       </div>
       <table class="table" *ngIf="isObavijestiVidljive">
         <thead>
@@ -28,7 +28,7 @@
       </table>
       <h4 class="confirmTitle" *ngIf="isNaslovPotvrdeVidljiv">Jeste li sigurni da želite obrisati obavijest?</h4>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary">Odustani</button>
+        <button type="button" class="btn btn-secondary" (click)="zatvori()">Odustani</button>
         <button type="button" class="btn btn-primary" *ngIf="potvrdiIsVidljivo" (click)="obrisiObavijest()">Potvrdi</button>
       </div>
     </div>

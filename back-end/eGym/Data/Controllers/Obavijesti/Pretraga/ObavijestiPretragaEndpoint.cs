@@ -15,7 +15,7 @@ namespace eGym.Data.Controllers.Obavijesti.Pretraga
         [HttpGet]
         public override async Task<ObavijestiPretragaResponse> Obradi([FromQuery]ObavijestiPretragaRequest request, CancellationToken cancellationToken)
         {
-            var obavijesti = await _applicationDbContext.Obavjesti
+            var obavijesti = await _applicationDbContext.Obavjesti.Where(x=>x.isHidden == false)
                 .Select(x => new ObavijestiPretragaResponseObavijest
                 {
                     ID = x.ID,

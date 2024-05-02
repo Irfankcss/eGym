@@ -25,9 +25,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/fit-messagebox.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/fit-messagebox.js",
+              "src/assets/carousel.js"
+            ]
           },
           "configurations": {
             "production": {

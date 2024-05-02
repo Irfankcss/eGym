@@ -5,6 +5,8 @@ import {Gradovi, GradoviGetall} from "./gradovi-getall";
 import {Mojconfig} from "../moj-config";
 import {NgForOf, NgIf} from "@angular/common";
 import {Form, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+declare function porukaSuccess(m:string):any;
+declare function porukaError(m:string):any;
 
 @Component({
   selector: 'app-registruj-se',
@@ -23,7 +25,7 @@ import {Form, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validato
 export class RegistrujSeComponent implements OnInit{
   txtIme:any;
   txtPrezime:any;
-  txtOpstinaRodjenja:any;
+  txtOpstinaRodjenja:number = 1;
   txtDatumRodjenja:any;
   txtBrojTelefona:any;
   txtSpol:any;
@@ -49,27 +51,27 @@ export class RegistrujSeComponent implements OnInit{
     if(this.txtIme == null || this.txtPrezime == null || this.txtDatumRodjenja == null ||this.txtBrojTelefona == null
       || this.txtSpol == null || this.txtKorisnickoIme == null || this.txtEmail==null || this.txtLozinka == null
       ||this.txtOpstinaRodjenja == null){
-      alert('Greska, sva polja su obavezna');
+      porukaError('Greska, sva polja su obavezna');
       return false;
     }
     if(!this.txtIme.match(this.regexOnlyLetters)){
-      alert('Greska, ime počinje sa velikim slovom i sadrži samo slova');
+      porukaError('Greska, ime počinje sa velikim slovom i sadrži samo slova');
       return false;
     }
     if(!this.txtPrezime.match(this.regexOnlyLetters)){
-      alert('Greska, prezime počinje sa velikim slovom i sadrži samo slova');
+      porukaError('Greska, prezime počinje sa velikim slovom i sadrži samo slova');
       return false;
     }
     if(!this.txtBrojTelefona.match(this.regexPhoneNumber)){
-      alert('Greska, neispravan format broja telefona');
+      porukaError('Greska, neispravan format broja telefona');
       return false;
     }
     if(!this.txtEmail.match(this.regexEmail)){
-      alert('Greška, neispravan format email-a');
+      porukaError('Greška, neispravan format email-a');
       return false;
     }
     if(!this.txtLozinka.match(this.regexPassword)){
-      alert('Greška, neispravan format lozinke');
+      porukaError('Greška, neispravan format lozinke');
       return false;
     }
     return true;
@@ -82,7 +84,7 @@ export class RegistrujSeComponent implements OnInit{
       let noviKorisnik = {
         ime: this.txtIme,
         prezime: this.txtPrezime,
-        //opstinaRodjenja:parseInt(this.txtOpstinaRodjenja),
+        opstinaRodjenja:this.txtOpstinaRodjenja,
         datumRodjenja: this.txtDatumRodjenja,
         brojTelefona: this.txtBrojTelefona,
         spol: this.txtSpol,
@@ -92,6 +94,7 @@ export class RegistrujSeComponent implements OnInit{
       };
       console.log(noviKorisnik);
       this.httpClient.post(url,noviKorisnik).subscribe(x=>{
+        porukaSuccess('Uspješno kreiran korisnički nalog');
         this.router.navigate(['/prijavi-se']);
       })
     }

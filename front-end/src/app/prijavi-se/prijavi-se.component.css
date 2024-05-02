@@ -2,7 +2,7 @@
   height: 100vh;
 }
 .customBackground{
- background-image: url("https://wallpapercave.com/wp/wp4436660.jpg");
+ background-image: url('/assets/background-images/login-background.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }

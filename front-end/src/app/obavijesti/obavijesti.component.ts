@@ -5,12 +5,15 @@ import {Mojconfig} from "../moj-config";
 import {NgForOf} from "@angular/common";
 import {ObavijestiKontrolaComponent} from "../obavijesti-kontrola/obavijesti-kontrola.component";
 import {ContactFooterComponent} from "../contact-footer/contact-footer.component";
+import {IzdvojeniProizvodiComponent} from "../izdvojeni-proizvodi/izdvojeni-proizvodi.component";
 
-declare function nest():void;
+declare function sakrijDugme():any;
+declare function prikaziDugme():any;
+
 @Component({
   selector: 'app-obavijesti',
   standalone: true,
-  imports: [HttpClientModule, NgForOf, ObavijestiKontrolaComponent, ContactFooterComponent],
+  imports: [HttpClientModule, NgForOf, ObavijestiKontrolaComponent, ContactFooterComponent, IzdvojeniProizvodiComponent],
   templateUrl: './obavijesti.component.html',
   styleUrl: './obavijesti.component.css'
 })
@@ -24,6 +27,12 @@ export class ObavijestiComponent implements OnInit{
     let url = Mojconfig.adresa_servera + `/Obradi/ObavijestiPretragaEndpoint`;
     this.httpClient.get<ObavijestiGetall>(url).subscribe((x:ObavijestiGetall)=>{
       this.obavijesti = x.obavijesti;
+      if(this.obavijesti.length < 3){
+          sakrijDugme();
+      }else if(this.obavijesti.length == 3){
+          prikaziDugme();
+      }
     })
+
   }
 }
