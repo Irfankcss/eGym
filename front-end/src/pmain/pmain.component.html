@@ -15,8 +15,10 @@
           <label *ngIf="proizvod.popust !== 0" class="popust-proizvoda">-{{proizvod.popust}}%</label>
         </div>
       </a>
+      <button class="izdvoji" (click)="isPotvrdaVidljiva= !isPotvrdaVidljiva;pripremiProizvod(proizvod)">Izdvoji</button>
     </div>
   </div>
+  <app-izdvoji-potvrda *ngIf="isPotvrdaVidljiva" (otvori)="this.otvaranjePotvrda($event)" [proizvodID]="IDproizvod"></app-izdvoji-potvrda>
 
 
 

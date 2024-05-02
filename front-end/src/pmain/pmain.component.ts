@@ -5,11 +5,12 @@ import { Mojconfig } from "../app/moj-config";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { SharedDataService } from "../app/shared-data-service";
+import {IzdvojiPotvrdaComponent} from "./izdvoji-potvrda/izdvoji-potvrda.component";
 
 @Component({
   selector: 'app-pmain',
   standalone: true,
-  imports: [  RouterLink, HttpClientModule, CommonModule, NgOptimizedImage],
+  imports: [RouterLink, HttpClientModule, CommonModule, NgOptimizedImage, IzdvojiPotvrdaComponent],
   templateUrl: './pmain.component.html',
   styleUrl: './pmain.component.css'
 })
@@ -60,8 +61,19 @@ export class PmainComponent implements OnInit {
   }
 
   protected readonly RouterLink = RouterLink;
+  isPotvrdaVidljiva: boolean = false;
 
-    IdiNaRutu(proizvodID: number) {
-        this.router.navigate(['/viewproizvod', proizvodID]);
-    }
+  otvaranjePotvrda($event:boolean){
+    this.isPotvrdaVidljiva = $event;
+  }
+
+  IdiNaRutu(proizvodID: number) {
+    this.router.navigate(['/viewproizvod', proizvodID]);
+  }
+
+  IDproizvod:any;
+
+  pripremiProizvod(proizvod: ProizvodiGetAllResponse) {
+    this.IDproizvod=proizvod.proizvodID;
+  }
 }
