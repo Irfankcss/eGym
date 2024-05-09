@@ -120,6 +120,28 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
 
             return Ok(proizvod);
         }
+        [HttpGet("GetIzdvojeniProizvodi")]
+        public async Task<IActionResult> GetIzdvojeniProizvodi(CancellationToken cancellationToken)
+        {
+            var proizvod = await _context.Proizvod
+                .Where(p => p.isIzdvojen == true).Select(p => new IzdvojeniProizvodiGetVM
+                {
+                   
+                    Naziv = p.Naziv,
+                    Slika = p.Slike[0].Putanja,
+                    Cijena = p.Cijena,
+                    Opis = p.Opis,
+                    popust = p.popust
+                }).ToListAsync(); ;
+
+            if (proizvod == null)
+            {
+                return NotFound("Proizvod nije pronadjen");
+            }
+
+            return Ok(proizvod);
+        }
+
         [HttpPost]
         public async Task<IActionResult> PostProizvod(ProizvodVM proizvodvm)
         {

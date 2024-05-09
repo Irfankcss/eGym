@@ -2,14 +2,20 @@
   <div class="container-title">
       <h4>IZDVOJENI PROIZVODI</h4>
   </div>
-  <div class="container-products">
+  <div class="productList">
+  <div *ngFor="let ip of izdvojeniProizovdi" class="container-products" >
     <div class="card product" style="width: 18rem;">
-      <img class="card-img-top" src="https://cdn.staticans.com/image/tr:e-sharpen-01,h-1500,w-1500,cm-pad_resize/data/Optimum-Nutrition/13-June-2023/1101759_1.jpg" alt="Card image cap">
+      <img class="card-img-top" src="{{ip.slika}}" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title" style="text-align: center">Card title</h5>
-        <p class="card-text"></p>
+        <h5 class="card-title" style="text-align: center">{{ip.naziv}}</h5>
+        <p class="card-text" style="text-align: center">{{ip.opis}}</p>
+        <div class="product-info">
+          <h5>{{ (ip.cijena - (ip.cijena * ip.popust / 100)).toFixed(2) }} BAM</h5>
+          <p>-{{ip.popust}}%</p>
+        </div>
         <a class="btn btn-primary customButton">DODAJ U KORPU</a>
       </div>
     </div>
+  </div>
   </div>
 </div>

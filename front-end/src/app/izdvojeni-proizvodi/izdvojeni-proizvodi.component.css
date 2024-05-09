@@ -2,9 +2,10 @@
   text-align: center;
 }
 .container-products{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  margin-left: 1%;
+  margin-right: 1%;
+  margin-top: 2%;
+  margin-bottom: 2%;
 }
 .product{
   margin-top: 2%;
@@ -26,4 +27,15 @@
 }
 .card-img-top:hover{
   transform: scale(0.93);
+}
+.productList{
+  display: flex;
+  flex-wrap: wrap;
+}
+.product-info{
+  display: flex;
+  justify-content: space-between;
+}
+.product-info p{
+  color:red;
 }
