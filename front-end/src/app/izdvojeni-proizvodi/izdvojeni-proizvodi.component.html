@@ -5,6 +5,7 @@
   <div class="productList">
   <div *ngFor="let ip of izdvojeniProizovdi" class="container-products" >
     <div class="card product" style="width: 18rem;">
+      <button type="button" class="btn-close customClose" aria-label="Close" (click)="ukloniIsVidljivo = !ukloniIsVidljivo;pripremiProizvod(ip)"></button>
       <img class="card-img-top" src="{{ip.slika}}" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title" style="text-align: center">{{ip.naziv}}</h5>
@@ -19,3 +20,5 @@
   </div>
   </div>
 </div>
+
+<app-ukloni-potvrda *ngIf="ukloniIsVidljivo" (otvori)="this.otvaranjePotvrda($event)"></app-ukloni-potvrda>

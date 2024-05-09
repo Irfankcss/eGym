@@ -39,3 +39,7 @@
 .product-info p{
   color:red;
 }
+.customClose{
+  margin-left: auto;
+  display: block;
+}

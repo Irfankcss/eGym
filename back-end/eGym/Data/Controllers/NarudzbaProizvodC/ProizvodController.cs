@@ -126,7 +126,7 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
             var proizvod = await _context.Proizvod
                 .Where(p => p.isIzdvojen == true).Select(p => new IzdvojeniProizvodiGetVM
                 {
-                   
+                    ID = p.ProizvodID,
                     Naziv = p.Naziv,
                     Slika = p.Slike[0].Putanja,
                     Cijena = p.Cijena,
