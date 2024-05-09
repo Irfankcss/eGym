@@ -21,4 +21,4 @@
   </div>
 </div>
 
-<app-ukloni-potvrda *ngIf="ukloniIsVidljivo" (otvori)="this.otvaranjePotvrda($event)"></app-ukloni-potvrda>
+<app-ukloni-potvrda *ngIf="ukloniIsVidljivo" (otvori)="this.otvaranjePotvrda($event)" [proizvodID]="proizvodID"></app-ukloni-potvrda>

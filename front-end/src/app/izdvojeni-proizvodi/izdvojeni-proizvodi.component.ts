@@ -4,6 +4,8 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {NgForOf, NgIf} from "@angular/common";
 import {UkloniPotvrdaComponent} from "./ukloni-potvrda/ukloni-potvrda.component";
 
+
+
 @Component({
   selector: 'app-izdvojeni-proizvodi',
   standalone: true,
@@ -20,6 +22,7 @@ export class IzdvojeniProizvodiComponent implements OnInit{
 
   public izdvojeniProizovdi:any;
   ukloniIsVidljivo: boolean = false;
+  proizvodID:any;
 
   constructor(public httpClient:HttpClient) {
   }
@@ -28,7 +31,6 @@ export class IzdvojeniProizvodiComponent implements OnInit{
 
       this.httpClient.get<any>(url).subscribe(x=>{
         this.izdvojeniProizovdi=x;
-        console.log(this.izdvojeniProizovdi);
       })
   }
   otvaranjePotvrda($event:boolean){
@@ -36,6 +38,6 @@ export class IzdvojeniProizvodiComponent implements OnInit{
   }
 
   pripremiProizvod(ip: any) {
-    let proizvodID = ip.id;
+    this.proizvodID = ip.id;
   }
 }
