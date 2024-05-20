@@ -1,0 +1,23 @@
+<div class="body">
+  <div class="title">
+    <h2>CJENOVNIK USLUGA</h2>
+  </div>
+  <div class="content">
+    <div class="options" *ngFor="let o of clanarine">
+      <div class="options-title">
+        <h3>{{o.tip}}</h3>
+      </div>
+      <div class="options-price">
+        <p>{{o.cijena}} KM</p>
+      </div>
+      <div class="options-features">
+        <div class="feature" *ngFor="let m of o.mogucnosti">
+          <div class="feature-icon"></div>
+            <div class="feature-text">
+              <p>{{m.mogucnost}}</p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
