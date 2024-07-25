@@ -1,4 +1,4 @@
-﻿using eGym.Helper;
+﻿using eGym.Helpers;
 using eGym.Data.Models;
 using eGym.Data.Endpoints.KategorijaEndpoints.Dodaj;
 using Microsoft.AspNetCore.Mvc;

@@ -5,14 +5,14 @@
         <h2 class="text-white ">PRIJAVI SE NA ZALIK.GYM</h2>
         <form class="customSpace">
           <div class="form-group text-white customSpace">
-            <label for="exampleInputEmail1" class="customMarginBottom customTextSize">Email adresa</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <label for="exampleInputEmail1" class="customMarginBottom customTextSize">Korisničko ime</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Korisničko ime" [ngModelOptions]="{standalone: true}" [(ngModel)]="loginRequest.korisnickoIme">
           </div>
           <div class="form-group text-white customSpace">
             <label for="exampleInputPassword1" class="customMarginBottom customTextSize">Lozinka</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" [ngModelOptions]="{standalone: true}" [(ngModel)]="loginRequest.lozinka">
           </div>
-          <button type="submit" class=" button btn btn-warning w-75 customMarginTop customButtonPosition">Prijava</button>
+          <button (click)="signIn()" class=" button btn btn-warning w-75 customMarginTop customButtonPosition">Prijava</button>
         </form>
       </div>
     </div>

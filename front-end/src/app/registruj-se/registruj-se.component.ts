@@ -5,6 +5,7 @@ import {Gradovi, GradoviGetall} from "./gradovi-getall";
 import {Mojconfig} from "../moj-config";
 import {NgForOf, NgIf} from "@angular/common";
 import {Form, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
+
 declare function porukaSuccess(m:string):any;
 declare function porukaError(m:string):any;
 

@@ -1,4 +1,4 @@
-﻿using eGym.Helper;
+﻿using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.Data.Controllers.Kreditna_kartica.Obrisi

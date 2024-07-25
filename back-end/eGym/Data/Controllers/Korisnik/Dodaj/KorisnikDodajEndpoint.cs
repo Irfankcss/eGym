@@ -1,4 +1,4 @@
-﻿using eGym.Helper;
+﻿using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.Identity.Client;

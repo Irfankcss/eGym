@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace eGym.Helper;
+namespace eGym.Helpers;
 
 [ApiController]
 [Route("[Action]/[Controller]")]

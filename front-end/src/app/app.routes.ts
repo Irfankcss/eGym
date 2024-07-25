@@ -8,6 +8,7 @@ import {RegistrujSeComponent} from "./registruj-se/registruj-se.component";
 import {ClanarinaComponent} from "./clanarina/clanarina.component";
 import {KontaktComponent} from "../kontakt/kontakt.component";
 import {CjenovnikComponent} from "./cjenovnik/cjenovnik.component";
+import {ListaKorisnikaComponent} from "./lista-korisnika/lista-korisnika.component";
 
 export const routes: Routes = [
   {path:'', redirectTo:'/obavijesti', pathMatch:'full'},
@@ -19,5 +20,6 @@ export const routes: Routes = [
   {path:'registruj-se',component:RegistrujSeComponent},
   {path:'clanarina',component: ClanarinaComponent},
   {path:'kontakt',component:KontaktComponent},
-  {path:'cjenovnik',component: CjenovnikComponent}
+  {path:'cjenovnik',component: CjenovnikComponent},
+  {path:'korisnici',component:ListaKorisnikaComponent}
 ];

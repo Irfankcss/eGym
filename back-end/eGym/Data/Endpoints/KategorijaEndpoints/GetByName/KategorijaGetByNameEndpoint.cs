@@ -1,5 +1,5 @@
 ﻿using eGym.Data.Endpoints.KategorijaEndpoints.GetAll;
-using eGym.Helper;
+using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

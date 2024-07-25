@@ -1,4 +1,4 @@
-﻿using eGym.Helper;
+﻿using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using static eGym.Data.Controllers.Grad.Pretraga.GradPretragaResponse;

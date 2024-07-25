@@ -1,5 +1,5 @@
 ﻿using eGym.Data.Controllers.Obavijesti.Update;
-using eGym.Helper;
+using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.Data.Controllers.ProizvodStatus.UpdateON

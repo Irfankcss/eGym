@@ -1,6 +1,6 @@
 ﻿using Azure.Core;
 using eGym.Data.Models;
-using eGym.Helper;
+using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
