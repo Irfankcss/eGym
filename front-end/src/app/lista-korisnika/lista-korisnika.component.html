@@ -21,7 +21,8 @@
         <td>{{lk.isAdmin}}</td>
         <td>{{lk.isKorisnik}}</td>
         <td>{{lk.isRadnik}}</td>
-        <td> <button *ngIf="!lk.isAdmin" (click)="odaberi(lk)">Obriši</button></td>
+        <td> <button *ngIf="!lk.isAdmin" class="customDugme" (click)="odaberi(lk)">Obriši</button>
+        </td>
       </tr>
       </tbody>
     </table>

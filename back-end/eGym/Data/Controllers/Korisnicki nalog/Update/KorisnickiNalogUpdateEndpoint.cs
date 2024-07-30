@@ -19,7 +19,17 @@ namespace eGym.Data.Controllers.Korisnicki_nalog.Update
             {
                 throw new Exception("Ne postoji korisnicki nalog za Id= " + request.KorisnickiNalogID);
             }
-            korisnickiNalog.Lozinka = request.Lozinka;
+
+            if(korisnickiNalog.isKorisnik == true && request.isRadnik == true)
+            {
+                korisnickiNalog.isRadnik = request.isRadnik;
+                korisnickiNalog.isKorisnik = false;
+            }
+            if(korisnickiNalog.isRadnik == true && request.isKorisnik == true)
+            {
+                korisnickiNalog.isKorisnik = request.isKorisnik;
+                korisnickiNalog.isRadnik = false;
+            }
             await _applicationDbContext.SaveChangesAsync();
             return new KorisnickiNalogUpdateResponse
             {
