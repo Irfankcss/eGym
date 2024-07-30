@@ -15,6 +15,15 @@ namespace eGym.Data.Controllers.Korisnicki_nalog.Obrisi
         public override async Task<KorisnickiNalogObrisiResponse> Obradi([FromQuery] KorisnickiNalogObrisiRequest request, CancellationToken cancellationToken)
         {
             var korisnickiNalozi = _applicationDbContext.KorisnickiNalog.FirstOrDefault(x => x.ID == request.KorisnickiNalogID);
+
+            var korisnickiNalogID = korisnickiNalozi.ID;
+
+            var clanKorisnik = _applicationDbContext.Clan.FirstOrDefault(c=>c.KorisnikID == korisnickiNalogID);
+            if(clanKorisnik != null)
+            {
+                _applicationDbContext.Remove(clanKorisnik);
+                await _applicationDbContext.SaveChangesAsync();
+            }
             if(korisnickiNalozi == null)
             {
                 throw new Exception("Nije pronadjen korisnicki nalog za id= " + request.KorisnickiNalogID);
