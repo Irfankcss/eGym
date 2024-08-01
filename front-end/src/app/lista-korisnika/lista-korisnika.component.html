@@ -22,6 +22,7 @@
         <td>{{lk.isKorisnik}}</td>
         <td>{{lk.isRadnik}}</td>
         <td> <button *ngIf="!lk.isAdmin" class="customDugme" (click)="odaberi(lk)">Obriši</button>
+          <button *ngIf="!lk.isAdmin" class="customDugme" (click)="pripremiKorisnika(lk); isUrediVidljivo= !isUrediVidljivo">Uredi</button>
         </td>
       </tr>
       </tbody>
@@ -29,4 +30,10 @@
   </div>
 </div>
 
+<app-uredi-korisnik *ngIf="isUrediVidljivo" (otvori)="this.otvaranjeEdit($event)"
+                    [ID]="this.ID"
+                    [KorisnickoIme] = "this.KorisnickoIme"
+                    [IsAdmin] = "this.IsAdmin"
+                    [IsKorisnik]="this.IsKorisnik"
+                    [IsRadnik]="this.IsRadnik"></app-uredi-korisnik>
 
