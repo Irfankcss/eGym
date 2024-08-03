@@ -1,6 +1,15 @@
 <div class="pmain-box">
 
   <div class="pmain-box">
+    <div class="proizvod-box"> <!--Ako je korisnik admin-->
+      <a (click)="OtvoriDodavanjeProizvoda()">
+        <div class="slika-proizvoda-box">
+          <img alt="slika proizvoda" class="slika-proizvod" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8oWGlLYDH5kWpR2cXEksBqIjdn-HYQkHpDw&s" height="500" width="500">
+        </div>
+        <label class="naziv-proizvoda">Novi Proizvod</label>
+      </a>
+    </div>
+
     <div *ngFor="let proizvod of proizvodi" class="proizvod-box">
       <a (click)="IdiNaRutu(proizvod.proizvodID)">
         <div class="slika-proizvoda-box">
@@ -15,11 +24,14 @@
           <label *ngIf="proizvod.popust !== 0" class="popust-proizvoda">-{{proizvod.popust}}%</label>
         </div>
       </a>
+      <div class="buttoniZaUloge">
       <button class="izdvoji" (click)="isPotvrdaVidljiva= !isPotvrdaVidljiva;pripremiProizvod(proizvod)">Izdvoji</button>
+      <button class="ukloni" (click)="isPotvrdaVidljiva= !isPotvrdaVidljiva;pripremiProizvod(proizvod)">Ukloni</button>
+      </div>
     </div>
+
   </div>
   <app-izdvoji-potvrda *ngIf="isPotvrdaVidljiva" (otvori)="this.otvaranjePotvrda($event)" [proizvodID]="IDproizvod"></app-izdvoji-potvrda>
-
 
 
 </div>

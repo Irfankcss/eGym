@@ -6,6 +6,7 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { SharedDataService } from "../app/shared-data-service";
 import {IzdvojiPotvrdaComponent} from "./izdvoji-potvrda/izdvoji-potvrda.component";
+import {KategorijaGetAllResponse} from "../pleft/KategorijaGetAllResponse";
 
 @Component({
   selector: 'app-pmain',
@@ -18,6 +19,7 @@ export class PmainComponent implements OnInit {
   selectedBrend: { id: number; naziv: string } = {id: 0, naziv: ''};
   selectedKategorija: { kategorijaId: number; naziv: string; opis: string } = {kategorijaId: 0, naziv: '', opis: ''};
   inputValue: string = "";
+  DodajProizvodOtvoren: boolean = false;
 
 
   constructor(public httpClient: HttpClient, private sharedDataService: SharedDataService, private router: Router) {
@@ -36,7 +38,9 @@ export class PmainComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("test");
     this.GetProizvodi();
+
   }
 
   proizvodi: ProizvodiGetAllResponse[] = [];
@@ -75,5 +79,9 @@ export class PmainComponent implements OnInit {
 
   pripremiProizvod(proizvod: ProizvodiGetAllResponse) {
     this.IDproizvod=proizvod.proizvodID;
+  }
+
+  OtvoriDodavanjeProizvoda() {
+    this.DodajProizvodOtvoren = true;
   }
 }
