@@ -27,7 +27,6 @@ interface Product {
   datumObjave: string;
   slike: Slika[];
   popust: number;
-  isIzdvojen: boolean;
 }
 @Component({
   selector: 'app-pmain',
@@ -146,10 +145,9 @@ export class PmainComponent implements OnInit {
       boja: '',
       brend: { brendId: 0, nazivBrenda: '' },
       velicina: '',
-      datumObjave: "2024-08-04T15:32:35.956Z",
+      datumObjave: new Date().toISOString(),
       slike: [{ putanja: '' }],
       popust: 0,
-      isIzdvojen: false
     };
   }
 
@@ -186,25 +184,7 @@ export class PmainComponent implements OnInit {
         this.product.kategorija.opis=kt.opis;
       }
     }
-      console.log("NAKON PREUZIMANJA SA FOROVIMA: ", this.product.brend,this.product.kategorija);
-    /*
-    var novaKategorija = this.httpClient.get<Kategorije>(
-      Mojconfig.adresa_servera + `/Kategorija/Pretraga po Id?Id=${this.product.kategorija.id}`
-    ).subscribe(x => {
-      this.product.kategorija.id = x.kategorijaId;
-      this.product.kategorija.opis= x.opis;
-      this.product.kategorija.nazivKategorije = x.naziv;
-      console.log("ALO", this.product.kategorija);
-    });
 
-    this.httpClient.get<Brendovi>(
-      Mojconfig.adresa_servera + `/Brend/Brend po Id?request=${this.product.brend.brendId}`
-    ).subscribe(x => {
-      this.product.brend.brendId = x.brendID;
-      this.product.brend.nazivBrenda = x.naziv;
-      console.log("ALO", this.product.brend);
-    });
-    */
     var body = {
       "naziv": this.product.naziv,
       "opis": this.product.opis,
@@ -221,10 +201,10 @@ export class PmainComponent implements OnInit {
         "nazivBrenda": this.product.brend.nazivBrenda
       },
       "velicina": this.product.velicina,
-      "datumObjave": "2024-08-04T15:32:35.956Z",
+      "datumObjave": new Date().toISOString(),
       "slike": this.product.slike,
       "popust": this.product.popust,
-      "isIzdvojen": this.product.isIzdvojen
+      "isIzdvojen": false
     };
 
     console.log("Nakon formiranja bodija: ",body);

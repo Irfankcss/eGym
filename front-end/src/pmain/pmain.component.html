@@ -31,7 +31,7 @@
     </div>
 
   </div>
-  <app-ukloni-proizvod *ngIf="isPotvrdaBrisanjaVidljiva" (otvori)="this.otvorenjeBrisanja($event)" [proizvodID]="proizvodZaBrisanjeID"></app-ukloni-proizvod>
+  <app-ukloni-proizvod *ngIf="isPotvrdaBrisanjaVidljiva" (otvori2)="this.otvorenjeBrisanja($event)" [proizvodID]="proizvodZaBrisanjeID"></app-ukloni-proizvod>
   <app-izdvoji-potvrda *ngIf="isPotvrdaVidljiva" (otvori)="this.otvaranjePotvrda($event)" [proizvodID]="IDproizvod"></app-izdvoji-potvrda>
   <div *ngIf="DodajProizvodOtvoren" class="overlay">
     <div *ngIf="DodajProizvodOtvoren" class="add-product-form">
@@ -63,14 +63,8 @@
       <label for="velicina">Veličina:</label>
       <input id="velicina" [(ngModel)]="product.velicina" type="text" />
 
-      <label for="datumObjave">Datum objave:</label>
-      <input id="datumObjave" [(ngModel)]="product.datumObjave" type="datetime-local" />
-
       <label for="popust">Popust:</label>
       <input id="popust" [(ngModel)]="product.popust" type="number" />
-
-      <label for="isIzdvojen">Izdvojen:</label>
-      <input id="isIzdvojen" [(ngModel)]="product.isIzdvojen" type="checkbox" />
 
       <div *ngFor="let slika of product.slike; let i = index">
         <label for="slika{{i}}">Slika {{i + 1}}:</label>
@@ -79,8 +73,10 @@
       </div>
       <button (click)="addSlika()">Add Slika</button>
 
-      <button (click)="dodajProizvod()">Add</button>
-      <button (click)="DodajProizvodOtvoren=!DodajProizvodOtvoren">Cancel</button>
+        <div class="ed-buttons">
+        <button (click)="dodajProizvod()">Add</button>
+        <button (click)="DodajProizvodOtvoren=!DodajProizvodOtvoren">Cancel</button>
+        </div>
     </div>
   </div>
 

@@ -19,7 +19,7 @@ declare function porukaError(m: string): any;
 })
 export class UkloniProizvodComponent {
 
-  @Output() otvori = new EventEmitter<boolean>();
+  @Output() otvori2 = new EventEmitter<boolean>();
 
   prikaz: boolean = true;
 
@@ -27,7 +27,8 @@ export class UkloniProizvodComponent {
 
   zatvori() {
     this.prikaz = false;
-    this.otvori.emit(this.prikaz);
+    this.otvori2.emit(this.prikaz);
+    window.location.reload()
   }
 
   @Input() proizvodID: any;
@@ -38,7 +39,8 @@ export class UkloniProizvodComponent {
 
     this.httpClient.delete(url, { responseType: 'text' }).subscribe(response => {
       this.zatvori();
-      this.router.navigate(['/obavijesti']);
+
+      this.router.navigate(['/prodavnica']);
       porukaSuccess(response);
     }, error => {
       porukaError('Greška prilikom brisanja proizvoda');
