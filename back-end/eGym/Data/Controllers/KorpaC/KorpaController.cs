@@ -62,7 +62,8 @@ namespace eGym.Data.Controllers.KorpaC
         {
             var korpa = await _context.Korpa
                 .Include(k => k.Proizvodi)
-                .ThenInclude(kp => kp.Proizvod) 
+                .ThenInclude(kp => kp.Proizvod)
+                .ThenInclude(p => p.Slike)
                 .FirstOrDefaultAsync(k => k.KorisnikID == korisnikID);
 
             if (korpa == null)
@@ -78,9 +79,10 @@ namespace eGym.Data.Controllers.KorpaC
                 {
                     ProizvodID = kp.ProizvodID,
                     Naziv = kp.Proizvod.Naziv,
-                    Opis = kp.Proizvod.Opis,
+                    Popust = kp.Proizvod.popust,
                     Cijena = kp.Proizvod.Cijena,
-                    Kolicina = kp.Kolicina
+                    Kolicina = kp.Kolicina,
+                    SlikaProizvoda = kp.Proizvod.Slike.FirstOrDefault().Putanja
                 }),
                 Vrijednost = korpa.Proizvodi.Sum(kp => kp.Proizvod.Cijena * kp.Kolicina)
             };

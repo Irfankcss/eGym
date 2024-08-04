@@ -24,8 +24,7 @@ namespace eGym.Data.Models
         public int BrendID { get; set; }
         public Brend Brend { get; set; }
         public string? Velicina { get; set; }
-        public DateTime DatumObjave {  get; set; }
-        [JsonIgnore]
+        public DateTime DatumObjave { get; set; }
         public List<Slika> Slike { get; set; } = new List<Slika>();
         public bool Izbrisan {  get; set; }
         public double? popust {  get; set; }
