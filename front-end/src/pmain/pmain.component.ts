@@ -7,6 +7,7 @@ import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { SharedDataService } from "../app/shared-data-service";
 import {IzdvojiPotvrdaComponent} from "./izdvoji-potvrda/izdvoji-potvrda.component";
 import {KategorijaGetAllResponse} from "../pleft/KategorijaGetAllResponse";
+import {BrendGetAllResponse} from "../pleft/BrendGetAllResponse";
 
 @Component({
   selector: 'app-pmain',
@@ -20,6 +21,8 @@ export class PmainComponent implements OnInit {
   selectedKategorija: { kategorijaId: number; naziv: string; opis: string } = {kategorijaId: 0, naziv: '', opis: ''};
   inputValue: string = "";
   DodajProizvodOtvoren: boolean = false;
+  Kategorije: any[] = [];
+  Brendovi:any[] = [];
 
 
   constructor(public httpClient: HttpClient, private sharedDataService: SharedDataService, private router: Router) {
@@ -40,11 +43,38 @@ export class PmainComponent implements OnInit {
   ngOnInit(): void {
     console.log("test");
     this.GetProizvodi();
+    this.getKategorije();
+    this.getBrendovi();
+
 
   }
 
   proizvodi: ProizvodiGetAllResponse[] = [];
 
+  getKategorije() {
+    let url = Mojconfig.adresa_servera + "/Kategorija/Pretraga po nazivu";
+    this.httpClient.get<any[]>(url).subscribe(
+      response => {
+        this.Kategorije = response;
+      },
+      error => {
+        console.log("Greska pri dohvacanju kategorija");
+      }
+
+    );
+  }
+
+  getBrendovi() {
+    let url = Mojconfig.adresa_servera + "/Brend/GetAll";
+    this.httpClient.get<any[]>(url).subscribe(
+      response => {
+        this.Brendovi = response;
+      },
+      error => {
+        console.log("Greska pri dohvacanju brendova");
+      }
+    );
+  }
   GetProizvodi() {
     let url = Mojconfig.adresa_servera + "/api/products/GetProizvodi";
     this.httpClient.get<ProizvodiGetAllResponse[]>(url).subscribe(
