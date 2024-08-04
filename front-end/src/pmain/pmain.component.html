@@ -26,12 +26,65 @@
       </a>
       <div class="buttoniZaUloge">
       <button class="izdvoji" (click)="isPotvrdaVidljiva= !isPotvrdaVidljiva;pripremiProizvod(proizvod)">Izdvoji</button>
-      <button class="ukloni" (click)="isPotvrdaVidljiva= !isPotvrdaVidljiva;pripremiProizvod(proizvod)">Ukloni</button>
+        <button class="ukloni" (click)="pripremiBrisanje(proizvod.proizvodID)">Ukloni</button>
       </div>
     </div>
 
   </div>
+  <app-ukloni-proizvod *ngIf="isPotvrdaBrisanjaVidljiva" (otvori)="this.otvorenjeBrisanja($event)" [proizvodID]="proizvodZaBrisanjeID"></app-ukloni-proizvod>
   <app-izdvoji-potvrda *ngIf="isPotvrdaVidljiva" (otvori)="this.otvaranjePotvrda($event)" [proizvodID]="IDproizvod"></app-izdvoji-potvrda>
+  <div *ngIf="DodajProizvodOtvoren" class="overlay">
+   <div *ngIf="DodajProizvodOtvoren" class="add-product-form">
+    <label for="naziv">Naziv:</label>
+    <input id="naziv" [(ngModel)]="product.naziv" type="text" />
+
+    <label for="opis">Opis:</label>
+    <input id="opis" [(ngModel)]="product.opis" type="text" />
+
+    <label for="cijena">Cijena:</label>
+    <input id="cijena" [(ngModel)]="product.cijena" type="number" />
+
+    <label for="kategorija">Kategorija:</label>
+    <select id="kategorija" [(ngModel)]="product.kategorija.id" [ngModelOptions]="{standalone: true}">
+      <option  *ngFor="let k of Kategorije" [value]="k.kategorijaId">{{ k.naziv }}</option>
+    </select>
+
+
+    <label for="kolicinaNaSkladistu">Količina na skladištu:</label>
+    <input id="kolicinaNaSkladistu" [(ngModel)]="product.kolicinaNaSkladistu" type="number" />
+
+    <label for="boja">Boja:</label>
+    <input id="boja" [(ngModel)]="product.boja" type="text" />
+
+    <label for="brend">Brend:</label>
+    <select id="brend" [(ngModel)]="product.brend.brendId" [ngModelOptions]="{standalone: true}">
+      <option *ngFor="let b of Brendovi" [value]="b.BrendId">{{ b.naziv }}</option>
+    </select>
+
+    <label for="velicina">Veličina:</label>
+    <input id="velicina" [(ngModel)]="product.velicina" type="text" />
+
+    <label for="datumObjave">Datum objave:</label>
+    <input id="datumObjave" [(ngModel)]="product.datumObjave" type="datetime-local" />
+
+    <label for="popust">Popust:</label>
+    <input id="popust" [(ngModel)]="product.popust" type="number" />
+
+    <label for="isIzdvojen">Izdvojen:</label>
+    <input id="isIzdvojen" [(ngModel)]="product.isIzdvojen" type="checkbox" />
+
+    <div *ngFor="let slika of product.slike; let i = index">
+      <label for="slika{{i}}">Slika {{i + 1}}:</label>
+      <input id="slika{{i}}" [(ngModel)]="slika.putanja" type="text" />
+      <button (click)="removeSlika(i)">Remove</button>
+    </div>
+    <button (click)="addSlika()">Add Slika</button>
+
+    <button (click)="DodajProizvod()">Add</button>
+    <button (click)="DodajProizvodOtvoren=!DodajProizvodOtvoren">Cancel</button>
+    </div>
+  </div>
+
 
 
 </div>

@@ -6,13 +6,34 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { SharedDataService } from "../app/shared-data-service";
 import {IzdvojiPotvrdaComponent} from "./izdvoji-potvrda/izdvoji-potvrda.component";
+import {FormsModule} from "@angular/forms";
 import {KategorijaGetAllResponse} from "../pleft/KategorijaGetAllResponse";
 import {BrendGetAllResponse} from "../pleft/BrendGetAllResponse";
+import {UkloniProizvodComponent} from "./ukloni-proizvod/ukloni-proizvod.component";
+import {KategorijeR} from "./KategorijaResponse";
+import {BrendR} from "./BrendResponse";
 
+interface Slika {
+  putanja: string;
+}
+interface Product {
+  naziv: string;
+  opis: string;
+  cijena: number;
+  kategorija: { id: number; nazivKategorije: string; opis: string };
+  kolicinaNaSkladistu: number;
+  boja: string;
+  brend: { brendId: number; nazivBrenda: string };
+  velicina: string;
+  datumObjave: string;
+  slike: Slika[];
+  popust: number;
+  isIzdvojen: boolean;
+}
 @Component({
   selector: 'app-pmain',
   standalone: true,
-  imports: [RouterLink, HttpClientModule, CommonModule, NgOptimizedImage, IzdvojiPotvrdaComponent],
+  imports: [RouterLink, HttpClientModule, CommonModule, NgOptimizedImage, IzdvojiPotvrdaComponent, FormsModule, UkloniProizvodComponent],
   templateUrl: './pmain.component.html',
   styleUrl: './pmain.component.css'
 })
@@ -21,8 +42,11 @@ export class PmainComponent implements OnInit {
   selectedKategorija: { kategorijaId: number; naziv: string; opis: string } = {kategorijaId: 0, naziv: '', opis: ''};
   inputValue: string = "";
   DodajProizvodOtvoren: boolean = false;
-  Kategorije: any[] = [];
-  Brendovi:any[] = [];
+  Kategorije: any;
+  Brendovi: any;
+  product: Product = this.initializeProduct();
+  isPotvrdaBrisanjaVidljiva: boolean = false;
+  proizvodZaBrisanjeID: any;
 
 
   constructor(public httpClient: HttpClient, private sharedDataService: SharedDataService, private router: Router) {
@@ -30,8 +54,6 @@ export class PmainComponent implements OnInit {
       this.selectedBrend = selectedBrend;
       this.sharedDataService.selectedKategorija$.subscribe((selectedKategorija) => {
         this.selectedKategorija = selectedKategorija;
-
-        // Subscribe to inputValue$
         this.sharedDataService.inputValue$.subscribe((value) => {
           this.inputValue = value;
           this.GetProizvodi();
@@ -51,11 +73,12 @@ export class PmainComponent implements OnInit {
 
   proizvodi: ProizvodiGetAllResponse[] = [];
 
-  getKategorije() {
+   getKategorije () {
     let url = Mojconfig.adresa_servera + "/Kategorija/Pretraga po nazivu";
-    this.httpClient.get<any[]>(url).subscribe(
+    this.httpClient.get<KategorijeR>(url).subscribe(
       response => {
-        this.Kategorije = response;
+        this.Kategorije = response.kategorije;
+        console.log("kategorije", this.Kategorije);
       },
       error => {
         console.log("Greska pri dohvacanju kategorija");
@@ -66,9 +89,10 @@ export class PmainComponent implements OnInit {
 
   getBrendovi() {
     let url = Mojconfig.adresa_servera + "/Brend/GetAll";
-    this.httpClient.get<any[]>(url).subscribe(
+    this.httpClient.get<BrendR>(url).subscribe(
       response => {
-        this.Brendovi = response;
+        this.Brendovi = response.brendovi;
+        console.log("brendovi", this.Brendovi);
       },
       error => {
         console.log("Greska pri dohvacanju brendova");
@@ -112,6 +136,46 @@ export class PmainComponent implements OnInit {
   }
 
   OtvoriDodavanjeProizvoda() {
+    this.getKategorije();
+    this.getBrendovi();
     this.DodajProizvodOtvoren = true;
+  }
+
+  initializeProduct(): Product {
+    return {
+      naziv: '',
+      opis: '',
+      cijena: 0,
+      kategorija: { id: 0, nazivKategorije: '', opis: '' },
+      kolicinaNaSkladistu: 0,
+      boja: '',
+      brend: { brendId: 0, nazivBrenda: '' },
+      velicina: '',
+      datumObjave: new Date().toISOString().slice(0, -1),
+      slike: [{ putanja: '' }],
+      popust: 0,
+      isIzdvojen: false
+    };
+  }
+
+addSlika() {
+  this.product.slike.push({ putanja: '' });
+}
+
+removeSlika(index: number) {
+  this.product.slike.splice(index, 1);
+}
+
+  pripremiBrisanje(proizvodID: any) {
+    this.proizvodZaBrisanjeID = proizvodID;
+    this.isPotvrdaBrisanjaVidljiva = true;
+  }
+
+  otvorenjeBrisanja($event: boolean) {
+    this.isPotvrdaVidljiva = $event;
+  }
+
+  DodajProizvod() {
+    console.log(this.product);
   }
 }

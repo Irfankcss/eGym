@@ -195,18 +195,27 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
         [HttpDelete("DeleteProizvod/{proizvodID}")]
         public async Task<IActionResult> DeleteProizvod(int proizvodID)
         {
-            var proizvod = await _context.Proizvod.FindAsync(proizvodID);
+            // Find the product
+            var proizvod = await _context.Proizvod
+                .Include(p => p.Slike) // Ensure Slike is loaded
+                .FirstOrDefaultAsync(p => p.ProizvodID == proizvodID);
 
             if (proizvod == null)
             {
-                return NotFound("Proizvod nije pronadjen");
+                return NotFound("Proizvod nije pronađen");
             }
 
+            // Remove related images
+            _context.Slika.RemoveRange(proizvod.Slike);
+
+            // Remove the product
             _context.Proizvod.Remove(proizvod);
             await _context.SaveChangesAsync();
 
             return Ok("Proizvod obrisan");
         }
+
+
 
         [HttpGet("GetProizvodiByKategorijaID/{kategorijaID}")]
         public async Task<IActionResult> GetProizvodiByKategorijaID2(int kategorijaID)
