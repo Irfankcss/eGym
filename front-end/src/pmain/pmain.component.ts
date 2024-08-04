@@ -7,12 +7,11 @@ import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { SharedDataService } from "../app/shared-data-service";
 import {IzdvojiPotvrdaComponent} from "./izdvoji-potvrda/izdvoji-potvrda.component";
 import {FormsModule} from "@angular/forms";
-import {KategorijaGetAllResponse} from "../pleft/KategorijaGetAllResponse";
-import {BrendGetAllResponse} from "../pleft/BrendGetAllResponse";
 import {UkloniProizvodComponent} from "./ukloni-proizvod/ukloni-proizvod.component";
-import {KategorijeR} from "./KategorijaResponse";
-import {BrendR} from "./BrendResponse";
-
+import {KategorijaRequest, Kategorije, KategorijeR} from "./KategorijaResponse";
+import {Brendovi, BrendR} from "./BrendResponse";
+declare function porukaSuccess(m: string): any;
+declare function porukaError(m: string): any;
 interface Slika {
   putanja: string;
 }
@@ -42,12 +41,11 @@ export class PmainComponent implements OnInit {
   selectedKategorija: { kategorijaId: number; naziv: string; opis: string } = {kategorijaId: 0, naziv: '', opis: ''};
   inputValue: string = "";
   DodajProizvodOtvoren: boolean = false;
-  Kategorije: any;
-  Brendovi: any;
+  Kategorije: Kategorije[]=[];
+  Brendovi: Brendovi[]=[];
   product: Product = this.initializeProduct();
   isPotvrdaBrisanjaVidljiva: boolean = false;
   proizvodZaBrisanjeID: any;
-
 
   constructor(public httpClient: HttpClient, private sharedDataService: SharedDataService, private router: Router) {
     this.sharedDataService.selectedBrend$.subscribe((selectedBrend) => {
@@ -67,13 +65,11 @@ export class PmainComponent implements OnInit {
     this.GetProizvodi();
     this.getKategorije();
     this.getBrendovi();
-
-
   }
 
   proizvodi: ProizvodiGetAllResponse[] = [];
 
-   getKategorije () {
+  getKategorije() {
     let url = Mojconfig.adresa_servera + "/Kategorija/Pretraga po nazivu";
     this.httpClient.get<KategorijeR>(url).subscribe(
       response => {
@@ -83,7 +79,6 @@ export class PmainComponent implements OnInit {
       error => {
         console.log("Greska pri dohvacanju kategorija");
       }
-
     );
   }
 
@@ -99,11 +94,13 @@ export class PmainComponent implements OnInit {
       }
     );
   }
+
   GetProizvodi() {
     let url = Mojconfig.adresa_servera + "/api/products/GetProizvodi";
     this.httpClient.get<ProizvodiGetAllResponse[]>(url).subscribe(
       x => {
-        this.proizvodi = x.filter(proizvod => {console.log(this.inputValue);
+        this.proizvodi = x.filter(proizvod => {
+          console.log(this.inputValue);
           const isBrendMatch = this.selectedBrend.naziv === "" || proizvod.brend.nazivBrenda === this.selectedBrend.naziv;
           const isKategorijaMatch = this.selectedKategorija.naziv === "" || proizvod.kategorija.id === this.selectedKategorija.kategorijaId;
           const isInputMatch = this.inputValue === "" ||
@@ -129,15 +126,13 @@ export class PmainComponent implements OnInit {
     this.router.navigate(['/viewproizvod', proizvodID]);
   }
 
-  IDproizvod:any;
+  IDproizvod: any;
 
   pripremiProizvod(proizvod: ProizvodiGetAllResponse) {
-    this.IDproizvod=proizvod.proizvodID;
+    this.IDproizvod = proizvod.proizvodID;
   }
 
   OtvoriDodavanjeProizvoda() {
-    this.getKategorije();
-    this.getBrendovi();
     this.DodajProizvodOtvoren = true;
   }
 
@@ -151,20 +146,20 @@ export class PmainComponent implements OnInit {
       boja: '',
       brend: { brendId: 0, nazivBrenda: '' },
       velicina: '',
-      datumObjave: new Date().toISOString().slice(0, -1),
+      datumObjave: "2024-08-04T15:32:35.956Z",
       slike: [{ putanja: '' }],
       popust: 0,
       isIzdvojen: false
     };
   }
 
-addSlika() {
-  this.product.slike.push({ putanja: '' });
-}
+  addSlika() {
+    this.product.slike.push({ putanja: '' });
+  }
 
-removeSlika(index: number) {
-  this.product.slike.splice(index, 1);
-}
+  removeSlika(index: number) {
+    this.product.slike.splice(index, 1);
+  }
 
   pripremiBrisanje(proizvodID: any) {
     this.proizvodZaBrisanjeID = proizvodID;
@@ -175,7 +170,77 @@ removeSlika(index: number) {
     this.isPotvrdaVidljiva = $event;
   }
 
-  DodajProizvod() {
-    console.log(this.product);
+  dodajProizvod() {
+
+
+    for (let br of this.Brendovi) {
+      if(br.brendID == this.product.brend.brendId){
+        this.product.brend.brendId=br.brendID;
+        this.product.brend.nazivBrenda=br.naziv;
+      }
+    }
+    for(let kt of this.Kategorije){
+      if(kt.kategorijaId == this.product.kategorija.id){
+        this.product.kategorija.id=kt.kategorijaId;
+        this.product.kategorija.nazivKategorije=kt.naziv;
+        this.product.kategorija.opis=kt.opis;
+      }
+    }
+      console.log("NAKON PREUZIMANJA SA FOROVIMA: ", this.product.brend,this.product.kategorija);
+    /*
+    var novaKategorija = this.httpClient.get<Kategorije>(
+      Mojconfig.adresa_servera + `/Kategorija/Pretraga po Id?Id=${this.product.kategorija.id}`
+    ).subscribe(x => {
+      this.product.kategorija.id = x.kategorijaId;
+      this.product.kategorija.opis= x.opis;
+      this.product.kategorija.nazivKategorije = x.naziv;
+      console.log("ALO", this.product.kategorija);
+    });
+
+    this.httpClient.get<Brendovi>(
+      Mojconfig.adresa_servera + `/Brend/Brend po Id?request=${this.product.brend.brendId}`
+    ).subscribe(x => {
+      this.product.brend.brendId = x.brendID;
+      this.product.brend.nazivBrenda = x.naziv;
+      console.log("ALO", this.product.brend);
+    });
+    */
+    var body = {
+      "naziv": this.product.naziv,
+      "opis": this.product.opis,
+      "cijena": this.product.cijena,
+      "kategorija": {
+        "id": this.product.kategorija.id,
+        "nazivKategorije": this.product.kategorija.nazivKategorije,
+        "opis": this.product.kategorija.opis
+      },
+      "kolicinaNaSkladistu": this.product.kolicinaNaSkladistu,
+      "boja": this.product.boja,
+      "brend": {
+        "brendId": this.product.brend.brendId,
+        "nazivBrenda": this.product.brend.nazivBrenda
+      },
+      "velicina": this.product.velicina,
+      "datumObjave": "2024-08-04T15:32:35.956Z",
+      "slike": this.product.slike,
+      "popust": this.product.popust,
+      "isIzdvojen": this.product.isIzdvojen
+    };
+
+    console.log("Nakon formiranja bodija: ",body);
+    this.httpClient.post(Mojconfig.adresa_servera + "/api/products", body).subscribe(x => {
+        this.DodajProizvodOtvoren = false;
+        porukaSuccess(`Uspjesno dodan proizvod ${this.product.naziv}`);
+        this.GetProizvodi();
+      },
+      error => {
+        porukaError("Greska pri dodavanju proizvoda");
+      }
+    );
+  }
+
+  funkcija() {
+    console.log("BREND", this.product.brend);
+    console.log("KATEGORIJA", this.product.kategorija);
   }
 }

@@ -8,3 +8,9 @@ export interface Kategorije {
   naziv: string
   opis: string
 }
+
+export interface KategorijaRequest{
+  id: number
+  nazivKategorije: string
+  opis: string
+}

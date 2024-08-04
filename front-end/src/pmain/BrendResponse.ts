@@ -4,6 +4,6 @@ export interface BrendR {
 
 
 export interface Brendovi {
-  brendId: number
-  nazivBrenda: string
+  brendID: number
+  naziv: string
 }
