@@ -8,6 +8,9 @@ import {HttpClient,HttpClientModule} from "@angular/common/http";
 import {CommonModule, DecimalPipe} from "@angular/common";
 import {ProizvodiGetAllResponseSlika} from "../pmain/ProizvodiGetAllResponse";
 
+declare function porukaSuccess(m:string):any;
+declare function porukaError(m:string):any;
+
 @Component({
   selector: 'app-view-proizvod',
   standalone: true,
@@ -29,6 +32,7 @@ export class ViewProizvodComponent  implements OnInit{
     proizvodID: number = 0;
     slikeproizvoda:ProizvodiGetAllResponseSlika[]=[];
     prikazanaSlika:number=0;
+    korisnikString: string = "";
     proizvod:ProizvodGetByIDResponse = {
     proizvodID: 0,
     naziv: "",
@@ -50,6 +54,7 @@ export class ViewProizvodComponent  implements OnInit{
   ngOnInit(): void {
     this.proizvodID = Number(this.route.snapshot.paramMap.get('proizvodID'));
     this.getProizvod();
+    this.korisnikString = window.localStorage.getItem("korisnik")??"";
   }
   uvecaj() {
     this.kolicina++;
@@ -68,11 +73,29 @@ export class ViewProizvodComponent  implements OnInit{
   }
 
   dodajuKorpu() {
-    if(this.kolicina==1){
-      alert("Uspjesno ste dodali 1 proizvod u korpu");
-    }else{
-    alert("Uspjesno ste dodali " + this.kolicina + " proizvoda u korpu");
-  }}
+
+    const korisnikObject = JSON.parse(this.korisnikString);
+    const korisnikId = korisnikObject.autentifikacijaToken.korisnickiNalogId;
+
+    if (this.korisnikString == "") {
+      porukaError("Morate biti prijavljeni da biste mogli dodati proizvode u korpu");
+      return;
+    }
+    if (this.kolicina < 1) {
+      porukaError("Kolicina ne moze biti manja od 1");
+      return;
+    }
+    this.httpClient.post(Mojconfig.adresa_servera + `/api/Korpa/DodajProizvodUKorpu?ProizvodID=${this.proizvodID}&KorisnikID=${korisnikId}&Kolicina=${this.kolicina}`, {})
+      .subscribe(x => {
+        if (this.kolicina == 1) {
+          porukaSuccess(`Uspjesno ste dodali ${this.kolicina} "${this.proizvod.naziv}" u korpu`);
+        } else {
+          porukaSuccess(`Uspjesno ste dodali ` + this.kolicina + ` "${this.proizvod.naziv}" u korpu`);
+        }
+
+      });
+
+  }
 
   async getProizvod(): Promise<void> {
     let url = Mojconfig.adresa_servera + "/api/products/GetProizvodByID?proizvodId=" + this.proizvodID;
