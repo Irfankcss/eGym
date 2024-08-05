@@ -14,7 +14,7 @@ export const routes: Routes = [
   {path:'', redirectTo:'/obavijesti', pathMatch:'full'},
   { path: 'prodavnica', component: ProdavnicaComponent },
   { path: 'viewproizvod/:proizvodID', component: ViewProizvodComponent },
-  { path: 'korpa', component: KorpaComponent },
+  { path: 'korpa/:korisnikID', component: KorpaComponent },
   {path:'obavijesti',component:ObavijestiComponent},
   {path:'prijavi-se',component:PrijaviSeComponent},
   {path:'registruj-se',component:RegistrujSeComponent},

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PtopComponent} from "../ptop/ptop.component";
 import {FormsModule} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ProizvodGetByIDResponse} from "./ProizvodGetByIDResponse";
 import {Mojconfig} from "../app/moj-config";
 import {HttpClient,HttpClientModule} from "@angular/common/http";
@@ -50,7 +50,7 @@ export class ViewProizvodComponent  implements OnInit{
     popust: 0,
     isIzdvojen: false
   };
-  constructor(private route: ActivatedRoute, public httpClient: HttpClient) {}
+  constructor(private route: ActivatedRoute,public router:Router, public httpClient: HttpClient) {}
   ngOnInit(): void {
     this.proizvodID = Number(this.route.snapshot.paramMap.get('proizvodID'));
     this.getProizvod();
@@ -73,18 +73,17 @@ export class ViewProizvodComponent  implements OnInit{
   }
 
   dodajuKorpu() {
-
-    const korisnikObject = JSON.parse(this.korisnikString);
-    const korisnikId = korisnikObject.autentifikacijaToken.korisnickiNalogId;
-
     if (this.korisnikString == "") {
       porukaError("Morate biti prijavljeni da biste mogli dodati proizvode u korpu");
+      this.router.navigate(['/prijavi-se']);
       return;
     }
     if (this.kolicina < 1) {
       porukaError("Kolicina ne moze biti manja od 1");
       return;
     }
+    const korisnikObject = JSON.parse(this.korisnikString);
+    const korisnikId = korisnikObject.autentifikacijaToken.korisnickiNalogId;
     this.httpClient.post(Mojconfig.adresa_servera + `/api/Korpa/DodajProizvodUKorpu?ProizvodID=${this.proizvodID}&KorisnikID=${korisnikId}&Kolicina=${this.kolicina}`, {})
       .subscribe(x => {
         if (this.kolicina == 1) {

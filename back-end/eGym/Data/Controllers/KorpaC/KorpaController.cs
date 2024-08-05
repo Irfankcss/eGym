@@ -27,12 +27,12 @@ namespace eGym.Data.Controllers.KorpaC
         {
             var korpa = await _context.Korpa
                 .Include(k => k.Proizvodi)
-                .Include(k=>k.korisnik)
+                .ThenInclude(kp => kp.Proizvod)
                 .FirstOrDefaultAsync(k => k.KorisnikID == dodajukorpuvm.KorisnikID);
 
             if (korpa == null)
             {
-                korpa = new Korpa { KorisnikID = dodajukorpuvm.KorisnikID};
+                korpa = new Korpa { KorisnikID = dodajukorpuvm.KorisnikID };
                 _context.Korpa.Add(korpa);
             }
 
@@ -43,19 +43,30 @@ namespace eGym.Data.Controllers.KorpaC
                 return NotFound("Proizvod not found");
             }
 
-            var korpaProizvod = new KorpaProizvod
-            {
-                Korpa = korpa,
-                Proizvod = proizvod,
-                Kolicina = dodajukorpuvm.Kolicina
-            };
+            var existingKorpaProizvod = korpa.Proizvodi
+                .FirstOrDefault(kp => kp.ProizvodID == dodajukorpuvm.ProizvodID);
 
-            _context.KorpaProizvod.Add(korpaProizvod);
+            if (existingKorpaProizvod != null)
+            {
+                existingKorpaProizvod.Kolicina += dodajukorpuvm.Kolicina;
+            }
+            else
+            {
+                var korpaProizvod = new KorpaProizvod
+                {
+                    Korpa = korpa,
+                    Proizvod = proizvod,
+                    Kolicina = dodajukorpuvm.Kolicina
+                };
+
+                _context.KorpaProizvod.Add(korpaProizvod);
+            }
 
             await _context.SaveChangesAsync();
 
             return Ok(korpa);
         }
+
 
         [HttpGet("GetKorpaByKorisnikID/{korisnikID}")]
         public async Task<IActionResult> GetKorpaByKorisnikID(int korisnikID)
@@ -67,8 +78,14 @@ namespace eGym.Data.Controllers.KorpaC
                 .FirstOrDefaultAsync(k => k.KorisnikID == korisnikID);
 
             if (korpa == null)
-            {
-                return NotFound("Korpa not found");
+            {   
+                //vracam praznu korpu da izbjegnem error u konzoli
+                return Ok(new Korpa
+                {
+                    KorpaID = 0,
+                    Proizvodi = new List<KorpaProizvod>(),
+                    Vrijednost = 0
+                });
             }
 
             var korpaDto = new

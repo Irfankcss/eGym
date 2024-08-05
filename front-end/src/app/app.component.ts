@@ -1,11 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import {FormsModule} from "@angular/forms";
 import {Mojconfig} from "./moj-config";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 
+
 declare function porukaSuccess(m:string):any;
+
 
 @Component({
   selector: 'app-root',
@@ -16,6 +18,8 @@ declare function porukaSuccess(m:string):any;
 })
 export class AppComponent implements OnInit{
   title = 'front-end';
+
+
 
   constructor(private httpClient:HttpClient) {
   }
@@ -42,5 +46,9 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
+
   }
+
+
 }

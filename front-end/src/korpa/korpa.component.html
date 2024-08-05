@@ -12,64 +12,34 @@
   </div>
   <div *ngIf= "trenutnaStranica==1" class="tabela-proizvoda">
     <table>
+      <thead>
       <tr>
-        <td>
-
-        </td>
-      <td>
-        Proizvod
-      </td>
-        <td>
-          Kolicina
-        </td>
-        <td>
-          Cijena
-        </td>
-        <td>
-          Popust
-        </td>
-        <td>
-          Ukupno
-        </td>
-        <td>
-        </td>
+        <th></th>
+        <th>Proizvod</th>
+        <th>Količina</th>
+        <th>Cijena</th>
+        <th>Popust</th>
+        <th>Ukupno</th>
+        <th>Akcije</th>
       </tr>
-      <tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let proizvod of korpa.proizvodi">
         <td class="slika">
-          <img src="./assets/prodavnica-images/whey2.png" class="slika-proizvoda">
+          <img [src]="proizvod.slikaProizvoda" alt="{{proizvod.naziv}}" class="slika-proizvoda">
         </td>
         <td class="o-proizvodu">
-          <h5 class="naziv">Lopta</h5>
-          <h5 class="opis">Opis</h5>
-          <h5 class="velicina">Velicina</h5>
+          <h5 class="naziv">{{proizvod.naziv}}</h5>
         </td>
-        <td class="kolicina">1</td>
-        <td class="cijena">150.00 BAM</td>
-        <td class="popust">10%</td>
-        <td class="ukupno-proizvod">140.00 BAM</td>
+        <td class="kolicina">{{proizvod.kolicina}}</td>
+        <td class="cijena">{{proizvod.cijena}} BAM</td>
+        <td class="popust">{{proizvod.popust}}%</td>
+        <td class="ukupno-proizvod">{{(proizvod.cijena - (proizvod.cijena * (proizvod.popust / 100))) * proizvod.kolicina}} BAM</td>
         <td class="ponisti">
           <button>x</button>
         </td>
       </tr>
-      <tr>
-        <td class="slika">
-          <img src="./assets/prodavnica-images/whey2.png" class="slika-proizvoda">
-        </td>
-        <td class="o-proizvodu">
-          <h5 class="naziv">Lopta</h5>
-          <h5 class="opis">Opis</h5>
-          <h5 class="velicina">Velicina</h5>
-        </td>
-        <td class="kolicina">1</td>
-        <td class="cijena">150.00 BAM</td>
-        <td class="popust">10%</td>
-        <td class="ukupno-proizvod">140.00 BAM</td>
-        <td class="ponisti">
-          <button>x</button>
-        </td>
-      </tr>
-
-
+      </tbody>
     </table>
   </div>
   <div *ngIf="trenutnaStranica==2" class="Dostava">

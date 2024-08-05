@@ -1,7 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-
+import {Mojconfig} from "../app/moj-config";
+import {KorpaResponse} from "./KorpaResponse";
+import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
+declare function porukaError(m:string):any;
+declare function porukaSuccess(m:string):any;
 @Component({
   selector: 'app-korpa',
   standalone: true,
@@ -17,10 +22,19 @@ export class KorpaComponent  implements OnInit{
   clickNCollectChecked: boolean = false;
   karticnoPlacanjeChecked: boolean = false;
   placanjePreuzimanjeChecked: boolean = false;
+  korpa: KorpaResponse ={
+    korpaID: 0,
+    proizvodi: [],
+    vrijednost: 0
+  }
+  korisnikId:number=0;
 
-
+  constructor(private httpClient:HttpClient, private router:Router) {
+  }
 
   ngOnInit(): void {
+    this.provjeriJelLogovan();
+    this.ucitajProizvode();
   }
 
   prebaciNaStranicu4() {
@@ -70,5 +84,23 @@ export class KorpaComponent  implements OnInit{
 
   prethodnikorak() {
     this.trenutnaStranica--;
+  }
+
+  provjeriJelLogovan() {
+    let korisnikString = window.localStorage.getItem("korisnik")??"";
+    if(korisnikString == "") {
+      porukaError("Morate biti prijavljeni da biste mogli pregledati korpu");
+      this.router.navigate(['/prijavi-se']);
+      return;
+    }
+    const korisnikObject = JSON.parse(korisnikString);
+    this.korisnikId = korisnikObject.autentifikacijaToken.korisnickiNalogId;
+  }
+
+  ucitajProizvode() {
+    let url = Mojconfig.adresa_servera + `/api/Korpa/GetKorpaByKorisnikID/${this.korisnikId}`;
+    this.httpClient.get(url).subscribe(x=>{
+      this.korpa = x as KorpaResponse;
+    })
   }
 }
