@@ -3,7 +3,7 @@ import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {Mojconfig} from "../app/moj-config";
 import {KorpaResponse} from "./KorpaResponse";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 declare function porukaError(m:string):any;
 declare function porukaSuccess(m:string):any;
@@ -103,4 +103,20 @@ export class KorpaComponent  implements OnInit{
       this.korpa = x as KorpaResponse;
     })
   }
+
+  izbaciIzKorpe(proizvodID: number) {
+    this.httpClient.delete(Mojconfig.adresa_servera+`/api/Korpa/RemoveProizvodFromKorpa/${this.korpa.korpaID}/${proizvodID}`)
+      .subscribe({
+        next: (response: any) => {
+          console.log(response.message);
+          this.ucitajProizvode();
+          porukaSuccess("Uspjesno ste obrisali proizvod iz korpe");
+        },
+        error: (error: HttpErrorResponse) => {
+          console.error('Error removing product from cart', error);
+          porukaError('Error removing product from cart');
+        }
+      });
+  }
 }
+

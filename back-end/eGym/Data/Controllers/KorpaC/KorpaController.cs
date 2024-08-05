@@ -115,20 +115,20 @@ namespace eGym.Data.Controllers.KorpaC
 
             if (korpa == null)
             {
-                return NotFound("Korpa not found");
+                return NotFound(new { message = "Korpa not found" });
             }
 
             var korpaProizvod = korpa.Proizvodi.FirstOrDefault(kp => kp.ProizvodID == proizvodID);
 
             if (korpaProizvod == null)
             {
-                return NotFound("Proizvod not found in the Korpa");
+                return NotFound(new { message = "Proizvod not found" });
             }
 
             _context.KorpaProizvod.Remove(korpaProizvod);
             await _context.SaveChangesAsync();
 
-            return Ok("Proizvod removed from Korpa");
+            return Ok(new { message = "Proizvod uspjesno izbrisan" });
         }
     }
 }

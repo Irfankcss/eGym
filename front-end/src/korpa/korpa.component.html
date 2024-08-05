@@ -36,7 +36,7 @@
         <td class="popust">{{proizvod.popust}}%</td>
         <td class="ukupno-proizvod">{{(proizvod.cijena - (proizvod.cijena * (proizvod.popust / 100))) * proizvod.kolicina}} BAM</td>
         <td class="ponisti">
-          <button>x</button>
+          <button (click)="izbaciIzKorpe(proizvod.proizvodID)">x</button>
         </td>
       </tr>
       </tbody>
