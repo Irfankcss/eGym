@@ -8,7 +8,6 @@ namespace eGym.Data.Models
     {
         public string Ime { get; set; }
         public string Prezime { get; set; }
-        public bool isClan { get; set; }
         [ForeignKey(nameof(OpstinaRodjenja))]
         public int? OpstinaRodjenjaID { get; set; }
         public Grad? OpstinaRodjenja {  get; set; }

@@ -1,27 +1,69 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {timeoutProvider} from "rxjs/internal/scheduler/timeoutProvider";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {Router, RouterLink} from "@angular/router";
+import {Mojconfig} from "../moj-config";
+import {ClanarinaKorisnikComponent} from "./clanarina-korisnik/clanarina-korisnik.component";
 
 @Component({
   selector: 'app-clanarina',
   standalone: true,
   imports: [
     NgIf,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    ClanarinaKorisnikComponent
   ],
   templateUrl: './clanarina.component.html',
   styleUrl: './clanarina.component.css'
 })
-export class ClanarinaComponent {
-  isVidljivo = false;
-  kod:string = '';
-  tipMjesecne:string = '';
-  datumPocetkaMjesecne: string = '';
+export class ClanarinaComponent implements OnInit{
 
-  obrisiPodatke() {
-      this.kod = '';
-      this.tipMjesecne = '';
-      this.datumPocetkaMjesecne = '';
-      this.isVidljivo = false;
+  constructor(public httpClient:HttpClient, private router:Router) {
   }
+  jelLogiran():boolean{
+    let token = window.localStorage.getItem("my-auth-token");
+
+    return token != "";
+  }
+  uclaniSe() {
+    var tipMjesecne = document.getElementById("tipMjesecne") as HTMLSelectElement;
+
+    if(!this.jelLogiran()){
+      this.router.navigate(["/prijavi-se"]);
+    }
+    else{
+      if(tipMjesecne.value == ""){
+        tipMjesecne.style.border = "3px solid red";
+      }
+      else{
+        let url = Mojconfig.adresa_servera + `/Clan/Dodaj`;
+        let requestBody = {
+          "vrsta": tipMjesecne.value
+        }
+        this.httpClient.post(url,requestBody).subscribe(x=>{
+          alert('Uspješno učlanjen');
+        })
+      }
+    }
+  }
+
+  ngOnInit(): void {
+
+  }
+
+  dohvatiToken(){
+    let korisnik = window.localStorage.getItem("korisnik")??"";
+    let uloge = JSON.parse(korisnik);
+    return uloge;
+  }
+  isClan(){
+    return this.dohvatiToken().autentifikacijaToken.korisnickiNalog.isClan;
+  }
+  isPrijavljen(){
+    return this.dohvatiToken().isLogiran;
+  }
+
 }

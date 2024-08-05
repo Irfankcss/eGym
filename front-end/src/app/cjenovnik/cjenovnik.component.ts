@@ -28,6 +28,6 @@ export class CjenovnikComponent implements OnInit{
   ]
 
   ngOnInit(): void {
-    console.log(this.clanarine);
+    //console.log(this.clanarine);
   }
 }

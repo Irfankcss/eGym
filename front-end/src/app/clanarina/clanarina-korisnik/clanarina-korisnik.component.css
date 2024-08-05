@@ -1,0 +1,21 @@
+.member-title{
+  text-align: center;
+  color: white;
+}
+.member-info{
+  color: white;
+}
+.member-header{
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.6%;
+}
+.customTable{
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1.5%;
+}

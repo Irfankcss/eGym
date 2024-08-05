@@ -21,4 +21,5 @@ export interface KorisnickiNalog {
   isAdmin: boolean
   isKorisnik: boolean
   isRadnik: boolean
+  isClan:boolean
 }

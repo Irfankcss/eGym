@@ -1,0 +1,38 @@
+<div class="container-member">
+  <div class="member-title">
+    <h2>Izvještaj o </h2>
+  </div>
+  <div class="member-info">
+    <div class="member-header">
+      <div class="member-number">
+        <h4>Broj: </h4>
+      </div>
+      <div class="member-type">
+        <h4>Tip: </h4>
+      </div>
+      <div class="member-firstdate">
+        <h4>Datum uplate: </h4>
+      </div>
+      <div class="member-lastdate">
+        <h4>Datum isteka: </h4>
+      </div>
+    </div>
+    <div class="member-attendance">
+      <h3 style="text-align: center">Evidencija dolazaka</h3>
+      <table class="table table-bordered customTable">
+        <thead>
+        <tr>
+          <th scope="col">Redni broj</th>
+          <th scope="col">Datum</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let e of evidencija;let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{e.datum}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

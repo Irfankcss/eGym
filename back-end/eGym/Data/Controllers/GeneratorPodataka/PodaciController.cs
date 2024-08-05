@@ -65,8 +65,8 @@ public class PodaciController : ControllerBase
         if (admini.Count < 1)
         {
 
-            _dbContext.Admin.Add(new Admin { AdminKod = r.Next(1000, 100000).ToString(), Email = "ahmed@gmail.com", isAdmin = true, KorisnickoIme = "ahmed_g", Lozinka = "0000", Slika = "empty.png" });
-            _dbContext.Admin.Add(new Admin { AdminKod = r.Next(1000, 100000).ToString(), Email = "admir@gmail.com", isAdmin = true, KorisnickoIme = "admir_admin", Lozinka = "0000", Slika = "empty.png" });
+            _dbContext.Admin.Add(new Admin { AdminKod = r.Next(1000, 100000).ToString(), Email = "ahmed@gmail.com", isAdmin = true, KorisnickoIme = "ahmed_g", Lozinka = "0000", Slika = "empty.png",isClan = false });
+            _dbContext.Admin.Add(new Admin { AdminKod = r.Next(1000, 100000).ToString(), Email = "admir@gmail.com", isAdmin = true, KorisnickoIme = "admir_admin", Lozinka = "0000", Slika = "empty.png", isClan = false });
         }
         _dbContext.SaveChanges();
 
@@ -138,8 +138,8 @@ public class PodaciController : ControllerBase
         var clanovii = new List<Clan>();
         if(clanovi.Count < 1)
         {
-            clanovii.Add(new Clan { BrojClana = r.Next(1300, 13000), ClanarinaID = 1, KorisnikID = 3 });
-            clanovii.Add(new Clan { BrojClana = r.Next(1300, 13000), ClanarinaID = 2, KorisnikID = 4 });
+            clanovii.Add(new Clan { BrojClana = r.Next(1300, 13000), Vrsta="VIP", ClanarinaID = 1, KorisnikID = 3 });
+            clanovii.Add(new Clan { BrojClana = r.Next(1300, 13000), Vrsta="Student poludnevna", ClanarinaID = 2, KorisnikID = 4 });
             _dbContext.Clan.AddRange(clanovii);
         }
         _dbContext.SaveChanges();
@@ -222,7 +222,8 @@ public class PodaciController : ControllerBase
                 KorisnickoIme = "kerim.abs",
                 Lozinka = "Random",
                 Slika = "https://cdn.shopify.com/s/files/1/0279/7482/8116/files/BOLDE-Bottle-Black-Open.jpg?v=1658444672&width=2048",
-                Spol = "M"
+                Spol = "M",
+                isClan = false
             });
             _dbContext.Radnik.Add(new Radnik
             {
@@ -237,7 +238,8 @@ public class PodaciController : ControllerBase
                 KorisnickoIme = "lamija.sda",
                 Lozinka = "Random",
                 Slika = "https://cdn.shopify.com/s/files/1/0279/7482/8116/files/BOLDE-Bottle-Black-Open.jpg?v=1658444672&width=2048",
-                Spol = "Ž"
+                Spol = "Ž",
+                isClan = false
             });
             _dbContext.SaveChanges();
         }
