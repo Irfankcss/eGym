@@ -54,16 +54,17 @@ export class ClanarinaComponent implements OnInit{
 
   }
 
-  dohvatiToken(){
-    let korisnik = window.localStorage.getItem("korisnik")??"";
-    let uloge = JSON.parse(korisnik);
-    return uloge;
+  dohvatiLogiranogKorisnika(){
+    let token = window.localStorage.getItem("korisnik")??"";
+    try {
+      return JSON.parse(token);
+    }
+    catch (e){
+      return null;
+    }
   }
   isClan(){
-    return this.dohvatiToken().autentifikacijaToken.korisnickiNalog.isClan;
-  }
-  isPrijavljen(){
-    return this.dohvatiToken().isLogiran;
+    return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isClan;
   }
 
 }

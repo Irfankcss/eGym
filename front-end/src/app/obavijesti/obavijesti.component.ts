@@ -2,7 +2,7 @@ import {AfterViewInit, Component, ElementRef, OnInit, QueryList, Renderer2, View
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {Obavijesti, ObavijestiGetall} from "./obavijesti-getall";
 import {Mojconfig} from "../moj-config";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {ObavijestiKontrolaComponent} from "../obavijesti-kontrola/obavijesti-kontrola.component";
 import {ContactFooterComponent} from "../contact-footer/contact-footer.component";
 import {IzdvojeniProizvodiComponent} from "../izdvojeni-proizvodi/izdvojeni-proizvodi.component";
@@ -13,7 +13,7 @@ declare function prikaziDugme():any;
 @Component({
   selector: 'app-obavijesti',
   standalone: true,
-  imports: [HttpClientModule, NgForOf, ObavijestiKontrolaComponent, ContactFooterComponent, IzdvojeniProizvodiComponent],
+  imports: [HttpClientModule, NgForOf, ObavijestiKontrolaComponent, ContactFooterComponent, IzdvojeniProizvodiComponent, NgIf],
   templateUrl: './obavijesti.component.html',
   styleUrl: './obavijesti.component.css'
 })
@@ -34,5 +34,17 @@ export class ObavijestiComponent implements OnInit{
       }
     })
 
+  }
+  dohvatiLogiranogKorisnika(){
+    let token = window.localStorage.getItem("korisnik")??"";
+    try {
+      return JSON.parse(token);
+    }
+    catch (e){
+      return null;
+    }
+  }
+  isAdmin(){
+    return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isAdmin;
   }
 }

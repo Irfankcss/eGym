@@ -3,6 +3,7 @@ import {EvidencijaDolazaka} from "./evidencija-dolazaka";
 import {NgForOf} from "@angular/common";
 import {Mojconfig} from "../../moj-config";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {LogiraniClan} from "./logiraniClan";
 
 @Component({
   selector: 'app-clanarina-korisnik',
@@ -16,6 +17,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 })
 export class ClanarinaKorisnikComponent implements OnInit{
 
+  logiraniClan:any;
   trenutniDatum = new Date();
   evidencija:EvidencijaDolazaka[] = [];
   prviBroj:number = 0;
@@ -52,7 +54,15 @@ export class ClanarinaKorisnikComponent implements OnInit{
       this.evidencija.push({redniBroj: i, datum: new Date(izracunatiDatum.getFullYear(),izracunatiDatum.getMonth(),izracunatiDatum.getDay(),izracunatiDatum.getHours(),izracunatiDatum.getMinutes(),izracunatiDatum.getSeconds()), vrijemeIzlaska: randomNumber, vrijemeUlaska: randomNumber})
 
       this.evidencija.sort((a, b) => a.datum.getTime() - b.datum.getTime());
+    }
 
+    let url = Mojconfig.adresa_servera + `/Obradi/ClanGetByEndpoint/GetByID`;
+
+    if(this.isClan())
+    {
+      this.httpClient.get<LogiraniClan>(url).subscribe(x=>{
+        this.logiraniClan = x.clanovi;
+      })
     }
 
   }
@@ -61,5 +71,17 @@ export class ClanarinaKorisnikComponent implements OnInit{
     max = Math.floor(max);
 
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  dohvatiLogiranogKorisnika(){
+    let token = window.localStorage.getItem("korisnik")??"";
+    try {
+      return JSON.parse(token);
+    }
+    catch (e){
+      return null;
+    }
+  }
+  isClan(){
+    return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isClan;
   }
 }

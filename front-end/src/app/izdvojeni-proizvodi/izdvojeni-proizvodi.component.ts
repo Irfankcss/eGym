@@ -40,4 +40,16 @@ export class IzdvojeniProizvodiComponent implements OnInit{
   pripremiProizvod(ip: any) {
     this.proizvodID = ip.id;
   }
+  dohvatiLogiranogKorisnika(){
+    let token = window.localStorage.getItem("korisnik")??"";
+    try {
+      return JSON.parse(token);
+    }
+    catch (e){
+      return null;
+    }
+  }
+  isAdmin(){
+    return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isAdmin;
+  }
 }

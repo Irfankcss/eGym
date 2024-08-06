@@ -1,8 +1,8 @@
 <div class="container-fluid custom">
-      <div class="conteiner-tittle text-white">
-        <h2>ŽELIŠ POSTAT DIO EKIPE? UČLANI SE</h2>
-      </div>
-  <div class="container-steps">
+  <div class="container-steps" *ngIf="!isClan()">
+    <div class="conteiner-tittle text-white">
+      <h2>ŽELIŠ POSTAT DIO EKIPE? UČLANI SE</h2>
+    </div>
     <select class="customSelect" id="tipMjesecne">
       <option disabled selected value="">Odaberite tip mjesečne</option>
       <option value="Student poludnevna">Student poludnevna</option>
