@@ -102,6 +102,11 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
                 korisnik = korpa.korisnik,
                 NacinPlacanja = dto.NacinPlacanja,
                 Popust = dto.Popust,
+                NacinDostave= dto.NacinDostave,
+                GradID = dto.GradID,
+                ImePrimaoca = dto.ImePrimaoca,
+                PrezimePrimaoca= dto.PrezimePrimaoca,
+                Adresa= dto.Adresa,
                 Proizvodi = new List<NarudzbaProizvod>()
             };
 
@@ -136,6 +141,7 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
                     .ThenInclude(np => np.Proizvod)
                         .ThenInclude(p => p.Brend)
                     .Include(p => p.Proizvodi).ThenInclude(np=> np.Proizvod).ThenInclude(p=>p.Kategorija)
+                    .Include(n=>n.Grad)
                 .FirstOrDefaultAsync(n => n.Id == id);
 
             if (narudzba == null)
@@ -152,6 +158,11 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
                 Popust = narudzba.Popust,
                 KorisnikID = narudzba.KorisnikID,
                 NacinPlacanja = narudzba.NacinPlacanja,
+                NacinDostave = narudzba.NacinDostave,
+                ImePrimaoca = narudzba.ImePrimaoca,
+                PrezimePrimaoca= narudzba.PrezimePrimaoca,
+                Adresa = narudzba.Adresa,
+                Grad= narudzba.Grad,
                 Proizvodi = narudzba.Proizvodi.Select(np => np.Proizvod).ToList()
             };
 

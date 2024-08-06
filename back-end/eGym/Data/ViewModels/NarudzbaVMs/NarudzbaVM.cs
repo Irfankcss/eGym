@@ -12,6 +12,11 @@ namespace eGym.Data.ViewModels.NarudzbaVMs
         public double? Popust { get; set; }
         public int KorisnikID { get; set; }
         public string NacinPlacanja { get; set; }
+        public string NacinDostave {  get; set; }
+        public string? ImePrimaoca { get; set; }
+        public string? PrezimePrimaoca { get; set; }
+        public string? Adresa { get; set; }
+        public Grad Grad { get; set; }
 
         public List<Proizvod> Proizvodi { get; set; }
     }
