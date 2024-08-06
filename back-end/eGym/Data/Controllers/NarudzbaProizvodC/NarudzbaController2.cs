@@ -66,7 +66,7 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
                 {
                     ProizvodId = proizvodId,
                     Proizvod = proizvod,
-                    Kolicina = 1 
+                    Kolicina = 1
                 };
 
                 narudzba.Proizvodi.Add(narudzbaProizvod);
@@ -77,6 +77,57 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
 
             return CreatedAtAction(nameof(GetNarudzba), new { id = narudzba.Id }, narudzba);
         }
+
+
+        [HttpPost("CreateNarudzbaFromKorpa/{korpaId}")]
+        public async Task<IActionResult> CreateNarudzbaFromKorpa(int korpaId, [FromBody] CreateNarudzbaDto dto)
+        {
+            var korpa = await _context.Korpa
+                .Include(k => k.Proizvodi)
+                    .ThenInclude(kp => kp.Proizvod)
+                .Include(k => k.korisnik)
+                .FirstOrDefaultAsync(k => k.KorpaID == korpaId);
+
+            if (korpa == null)
+            {
+                return NotFound("Korpa not found");
+            }
+
+            var narudzba = new Narudzba
+            {
+                DatumKreiranja = DateTime.Now,
+                isOdobrena = false,
+                Vrijednost = korpa.Vrijednost,
+                KorisnikID = korpa.KorisnikID,
+                korisnik = korpa.korisnik,
+                NacinPlacanja = dto.NacinPlacanja,
+                Popust = dto.Popust,
+                Proizvodi = new List<NarudzbaProizvod>()
+            };
+
+            foreach (var korpaProizvod in korpa.Proizvodi)
+            {
+                var narudzbaProizvod = new NarudzbaProizvod
+                {
+                    Narudzba = narudzba,
+                    Proizvod = korpaProizvod.Proizvod,
+                    Kolicina = korpaProizvod.Kolicina
+                };
+                narudzba.Proizvodi.Add(narudzbaProizvod);
+            }
+
+            _context.Narudzba.Add(narudzba);
+
+            _context.KorpaProizvod.RemoveRange(korpa.Proizvodi);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(narudzba);
+        }
+
+
+
+
         [HttpGet("NarudzbaGetBy{id}")]
         public async Task<ActionResult<NarudzbaVM>> GetNarudzba(int id)
         {

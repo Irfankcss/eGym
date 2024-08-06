@@ -9,20 +9,7 @@
   left: 3%;
 }
 
-.proizvod-box {
-  background-color: white;
-  cursor: pointer;
-  margin-left: 3%;
-  margin-top: 3%;
-  margin-bottom: 1%;
-  width: calc(35% - 6%);
-  height: 360px;
-  border-radius: 5%;
-  border: 2px solid rgba(0, 0, 0, 0.07);
-  display: block;
-  flex-direction: column;
-  transition: 0.5s;
-}
+
 
 .buttoniZaUloge {
   display: flex;
@@ -37,11 +24,16 @@
   left: 5%;
 }
 
+.slika-proizvod:hover{
+  transform: scale(1.04);
+}
+
 .slika-proizvod {
   width: 100%;
   height: 100%;
   image-rendering: auto;
   overflow: hidden;
+  transition: transform 0.3s ease;;
 }
 
 .naziv-proizvoda {
@@ -95,6 +87,20 @@
 
 .proizvod-box:hover {
   background-color: rgba(0, 0, 0, 0.08);
+}
+.proizvod-box {
+  background-color: white;
+  cursor: pointer;
+  margin-left: 3%;
+  margin-top: 3%;
+  margin-bottom: 1%;
+  width: calc(35% - 6%);
+  height: 360px;
+  border-radius: 5%;
+  border: 2px solid rgba(0, 0, 0, 0.07);
+  display: block;
+  flex-direction: column;
+  transition: 0.5s;
 }
 
 .izdvoji {
