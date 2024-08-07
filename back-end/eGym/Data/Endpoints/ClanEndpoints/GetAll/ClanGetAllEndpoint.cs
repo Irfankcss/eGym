@@ -1,12 +1,13 @@
 ﻿using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static eGym.Data.Endpoints.ClanEndpoints.GetAll.ClanGetAllResponse;
 
 namespace eGym.Data.Endpoints.ClanEndpoints.GetAll
 {
     [Route("Clan")]
     [Tags("Clan")]
-    public class ClanGetAllEndpoint : MyBaseEndpoint<ClanGetAllRequest, List<ClanGetAllResponse>>
+    public class ClanGetAllEndpoint : MyBaseEndpoint<ClanGetAllRequest, ClanGetAllResponse>
     {
         private readonly ApplicationDbContext _context;
 
@@ -14,21 +15,23 @@ namespace eGym.Data.Endpoints.ClanEndpoints.GetAll
         {
             _context = context;
         }
-
         [HttpGet("GetAll")]
-        public override async Task<List<ClanGetAllResponse>> Obradi([FromQuery]ClanGetAllRequest request, CancellationToken cancellationToken)
+        public override async Task<ClanGetAllResponse> Obradi([FromQuery]ClanGetAllRequest request, CancellationToken cancellationToken)
         {
-            var clanovi = await _context.Clan.Select(x =>
-            new ClanGetAllResponse {
+            var clanovi = await _context.Clan.Select(x => new ClanGetAllResponseClan()
+            {
+                Ime = x.Korisnik.Ime,
+                Prezime = x.Korisnik.Prezime,
+                VrstaMjesecne = x.Vrsta,
                 BrojClana = x.BrojClana,
-                ClanarinaID = x.ClanarinaID,
-                ClanID = x.ClanID,
-                KorisnikID = x.KorisnikID,
-                Korisnik=x.Korisnik }).ToListAsync();
-            if (clanovi == null)
-                throw new Exception("Nema clanova ili je greska");
-            return clanovi;
+                DatumUplate = DateOnly.FromDateTime(x.Clanarina.DatumUplate),
+                DatumIsteka = DateOnly.FromDateTime(x.Clanarina.DatumIsteka)
+            }).ToListAsync();
+
+            return new ClanGetAllResponse
+            {
+                clanovi = clanovi
+            };
         }
-        
     }
 }
