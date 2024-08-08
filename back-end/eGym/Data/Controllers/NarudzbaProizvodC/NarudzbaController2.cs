@@ -93,11 +93,19 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
                 return NotFound("Korpa not found");
             }
 
+            double ukupnaVrijednost = korpa.Proizvodi.Sum(kp =>
+            {
+                var cijena = kp.Proizvod.Cijena;
+                var popust = kp.Proizvod.popust;
+                var cijenaNakonPopusta = cijena - (cijena * (popust / 100));
+                return cijenaNakonPopusta * kp.Kolicina ?? 0;
+            });
+
             var narudzba = new Narudzba
             {
                 DatumKreiranja = DateTime.Now,
                 isOdobrena = false,
-                Vrijednost = korpa.Vrijednost,
+                Vrijednost = ukupnaVrijednost,
                 KorisnikID = korpa.KorisnikID,
                 korisnik = korpa.korisnik,
                 NacinPlacanja = dto.NacinPlacanja,
@@ -107,6 +115,8 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
                 ImePrimaoca = dto.ImePrimaoca,
                 PrezimePrimaoca= dto.PrezimePrimaoca,
                 Adresa= dto.Adresa,
+                Telefon= dto.Telefon,
+                Email= dto.Email,
                 Proizvodi = new List<NarudzbaProizvod>()
             };
 
@@ -163,6 +173,8 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
                 PrezimePrimaoca= narudzba.PrezimePrimaoca,
                 Adresa = narudzba.Adresa,
                 Grad= narudzba.Grad,
+                Telefon= narudzba.Telefon,
+                Email= narudzba.Email,
                 Proizvodi = narudzba.Proizvodi.Select(np => np.Proizvod).ToList()
             };
 

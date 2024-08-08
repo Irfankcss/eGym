@@ -27,6 +27,8 @@ namespace eGym.Data.Models
         public int GradID { get; set; }
         public Grad Grad { get; set; }
         public string? Adresa { get; set; }
+        public string Telefon {  get; set; }
+        public string Email { get; set; }
 
     }
 }

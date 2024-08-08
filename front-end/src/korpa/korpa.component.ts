@@ -16,8 +16,8 @@ declare function porukaSuccess(m:string):any;
 })
 export class KorpaComponent  implements OnInit{
   trenutnaStranica = 1 ;
-  nacinDostave:string ="";
-  nacinPlacanja:string ="";
+  nacinDostave:string ="Regular";
+  nacinPlacanja:string ="Gotovina";
   regularnaIsporukaChecked: boolean = false;
   clickNCollectChecked: boolean = false;
   karticnoPlacanjeChecked: boolean = false;
@@ -28,6 +28,15 @@ export class KorpaComponent  implements OnInit{
     vrijednost: 0
   }
   korisnikId:number=0;
+  adresa: string = "";
+  telefon: string = "";
+  email: string ="";
+  prezimePrimaoca: string="";
+  imePrimaoca: string="";
+  gradID:number=1;
+  gradovi:any[]=[];
+  Uslovi: boolean=false;
+  troskoviDostave: number = 0;
 
   constructor(private httpClient:HttpClient, private router:Router) {
   }
@@ -35,6 +44,7 @@ export class KorpaComponent  implements OnInit{
   ngOnInit(): void {
     this.provjeriJelLogovan();
     this.ucitajProizvode();
+    this.getGradovi();
   }
 
   prebaciNaStranicu4() {
@@ -48,7 +58,8 @@ export class KorpaComponent  implements OnInit{
         if(this.clickNCollectChecked){
           this.clickNCollectChecked = false;
         }
-        this.nacinDostave=selected;
+        this.troskoviDostave = 7;
+        this.nacinDostave="Regular";
         console.log(this.nacinDostave);
         break;
       case  'clickNCollect':
@@ -56,7 +67,8 @@ export class KorpaComponent  implements OnInit{
         if(this.regularnaIsporukaChecked){
           this.regularnaIsporukaChecked = false;
         }
-        this.nacinDostave=selected;
+        this.troskoviDostave = 0;
+        this.nacinDostave="clickNcollect";
         console.log(this.nacinDostave);
         break;
         case  'karticno':
@@ -64,7 +76,7 @@ export class KorpaComponent  implements OnInit{
           if(this.placanjePreuzimanjeChecked){
             this.placanjePreuzimanjeChecked = false;
           }
-          this.nacinPlacanja=selected;
+          this.nacinPlacanja="Kartica";
           console.log(this.nacinPlacanja);
           break;
         case  'preuzimanje':
@@ -72,7 +84,7 @@ export class KorpaComponent  implements OnInit{
           if(this.karticnoPlacanjeChecked){
             this.karticnoPlacanjeChecked = false;
           }
-          this.nacinPlacanja=selected;
+          this.nacinPlacanja="Gotovina";
           console.log(this.nacinPlacanja);
           break;
     }
@@ -118,5 +130,77 @@ export class KorpaComponent  implements OnInit{
         }
       });
   }
+
+  kreirajNarudzbu() {
+    if(this.Uslovi==false){
+      porukaError("Morate se slagati sa uslovima korištenja, prodaje te politikom privatnosti");
+      return;
+    }
+    if(this.imePrimaoca ==""){
+      porukaError("Morate unijeti ime");
+      return;
+    }
+    if(this.prezimePrimaoca ==""){
+      porukaError("Morate unijeti prezime");
+      return;
+    }
+    if(this.adresa ==""){
+      porukaError("Morate unijeti adresu");
+      return;
+    }
+    if(this.telefon ==""){
+      porukaError("Morate unijeti telefon");
+      return;
+    }
+    if(this.email ==""){
+      porukaError("Morate unijeti email");
+      return;
+    }
+    if(this.nacinPlacanja==""){
+      porukaError("Morate odabrati nacin placanja");
+      return;
+    }
+    if(this.nacinDostave==""){
+      porukaError("Morate odabrati nacin dostave");
+      return;
+    }
+
+    let body = {
+      "nacinPlacanja": "Cash",
+      "popust": 0,
+      "nacinDostave": "Regular",
+      "imePrimaoca": this.imePrimaoca,
+      "prezimePrimaoca": this.prezimePrimaoca,
+      "gradID": 1,
+      "adresa": this.adresa,
+      "telefon": this.telefon,
+      "email": this.email
+    }
+      if(this.nacinDostave=="Regular"){
+        this.korpa.vrijednost+=this.troskoviDostave;
+      }
+    this.httpClient.post(Mojconfig.adresa_servera+`/Narudzba2/CreateNarudzbaFromKorpa/${this.korpa.korpaID}`,body).subscribe({
+      next: (response: any) => {
+        console.log(response);
+        porukaSuccess("Uspjesno ste narucili proizvode");
+        this.router.navigate(['/prodavnica']);
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Error creating order', error);
+        porukaError('Error creating order');
+      }
+    })
+  }
+
+  private getGradovi() {
+    this.httpClient.get<any[]>(Mojconfig.adresa_servera + '/Obradi/GradPretragaEndpoint').subscribe(x => {
+      // @ts-ignore
+      this.gradovi = x.gradovi;
+      console.log(this.gradovi)
+    },error => {
+      console.log(error);
+    })
+  }
+
 }
 

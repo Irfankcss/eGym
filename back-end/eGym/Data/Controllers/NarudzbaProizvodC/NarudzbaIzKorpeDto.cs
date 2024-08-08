@@ -11,5 +11,8 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
         public string PrezimePrimaoca { get; set; }
         public int GradID { get; set; }
         public string Adresa { get; set; }
+
+        public string Telefon {  get; set; }
+        public string Email { get; set; }
     }
 }

@@ -76,19 +76,98 @@
     </div>
     </div>
   <div *ngIf="trenutnaStranica==3" class="adresa">
-    <h3>adresa nije zavrseno</h3>
+    <form action="/submit-address" method="POST" class="address-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="ime">Ime:</label>
+          <input type="text" id="ime" name="ime" required [(ngModel)]="imePrimaoca">
+        </div>
+        <div class="form-group">
+          <label for="prezime">Prezime:</label>
+          <input type="text" id="prezime" name="prezime" required [(ngModel)]="prezimePrimaoca">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required [(ngModel)]="email">
+        </div>
+        <div class="form-group">
+          <label for="telefon">Telefon:</label>
+          <input type="tel" id="telefon" name="telefon" required [(ngModel)]="telefon">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="grad">Grad:</label>
+          <select id="grad" name="grad" required [(ngModel)]="gradID">
+            <option *ngFor="let g of gradovi" [value]="g.id">{{g.naziv}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="adresa">Adresa:</label>
+          <input type="text" id="adresa" name="adresa" required [(ngModel)]="adresa">
+        </div>
+      </div>
+
+      <div class="form-group form-checkbox">
+        <input type="checkbox" id="popuniProfil" name="popuniProfil">
+        <label for="popuniProfil">Popuni podacima sa profila</label>
+      </div>
+    </form>
   </div>
+
+
   <div *ngIf="trenutnaStranica==4" class="placanje">
-    <h3>placanje nije zavrseno</h3>
+    <div class="checkout-container">
+      <div class="order-details">
+        <div class="order-row">
+          <div class="label">Način plaćanja</div>
+          <div class="value">{{this.nacinPlacanja}}</div>
+        </div>
+
+        <div class="order-row">
+          <div class="label">Način dostave</div>
+          <div class="value">{{this.nacinDostave}}</div>
+        </div>
+        <div class="order-row">
+          <div class="label">Email</div>
+          <div class="value">{{this.email}}</div>
+        </div>
+        <div class="order-row">
+          <div class="label">Adresa dostave</div>
+          <div class="value">{{this.adresa}}</div>
+        </div>
+      </div>
+      <div class="korpa-summary">
+        <h4>Pregled korpe</h4>
+        <div class="korpa-details">
+          <p><strong>Ukupno:</strong>{{this.korpa.vrijednost}}</p>
+          <p><strong>Ušteda:</strong>0%</p>
+          <p><strong>Troškovi dostave:</strong>{{this.troskoviDostave}},00 BAM</p>
+          <hr>
+          <p><strong>Ukupno za plaćanje sa PDV-om:</strong></p>
+          <p class="ukupna-cijena-label">{{this.korpa.vrijednost + this.troskoviDostave}} BAM </p>
+        </div>
+        <div class="korpa-checkbox">
+          <input type="checkbox" id="uslovi" name="uslovi" [(ngModel)]="Uslovi">
+          <label for="uslovi">Klikom na dugme, slažeš se sa <a href="#">uslovima prodaje</a>, <a href="#">uslovima korišćenja</a> i <a href="#">politikom privatnosti</a>.</label>
+        </div>
+        <button type="button" class="btn-potvrdi" (click)="kreirajNarudzbu()">Potvrdi</button>
+      </div>
+    </div>
+
   </div>
   <div class="ukupno">
-    <div class="ukupno-cijena">
+    <div *ngIf="trenutnaStranica<4" class="ukupno-cijena">
       <label class="cijena-korpe">Ukupno: {{this.korpa.vrijednost}} BAM</label>
-      <label *ngIf="regularnaIsporukaChecked" class="dodatno-dostava">+7.00 BAM dostava</label>
+      <label *ngIf="regularnaIsporukaChecked" class="dodatno-dostava">+{{this.troskoviDostave}},00 BAM dostava</label>
     </div>
     <div class="navigacija-btns">
       <button class="btn-prethodni" *ngIf="trenutnaStranica>1" (click)="prethodnikorak()">Prethodni korak</button>
-      <button class="btn-sljedeci" (click)="sljedecikorak()">Sljedeći korak</button>
+      <button *ngIf="trenutnaStranica<4" class="btn-sljedeci" (click)="sljedecikorak()">Sljedeći korak</button>
     </div>
   </div>
 </div>

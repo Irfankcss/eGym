@@ -101,8 +101,16 @@ namespace eGym.Data.Controllers.KorpaC
                     Kolicina = kp.Kolicina,
                     SlikaProizvoda = kp.Proizvod.Slike.FirstOrDefault().Putanja
                 }),
-                Vrijednost = korpa.Proizvodi.Sum(kp => kp.Proizvod.Cijena * kp.Kolicina)
-            };
+                Vrijednost = korpa.Proizvodi.Sum(kp =>
+                {
+                    var originalnaCijena = kp.Proizvod.Cijena;
+                    var popust = kp.Proizvod.popust;
+                    var cijenaNakonPopusta = originalnaCijena - (originalnaCijena * (popust / 100));
+                    var ukupnaCijena = cijenaNakonPopusta * kp.Kolicina;
+                    return Math.Round((decimal)(ukupnaCijena ?? 0), 2);
+                })
+
+        };
 
             return Ok(korpaDto);
         }

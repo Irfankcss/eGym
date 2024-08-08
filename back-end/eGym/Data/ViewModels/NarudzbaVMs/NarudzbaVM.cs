@@ -17,6 +17,8 @@ namespace eGym.Data.ViewModels.NarudzbaVMs
         public string? PrezimePrimaoca { get; set; }
         public string? Adresa { get; set; }
         public Grad Grad { get; set; }
+        public string Telefon {  get; set; }
+        public string Email {  get; set; }
 
         public List<Proizvod> Proizvodi { get; set; }
     }
