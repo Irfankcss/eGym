@@ -20,6 +20,7 @@ export class KorpaComponent  implements OnInit{
   nacinPlacanja:string ="Gotovina";
   regularnaIsporukaChecked: boolean = false;
   clickNCollectChecked: boolean = false;
+  korisnik:any;
   karticnoPlacanjeChecked: boolean = false;
   placanjePreuzimanjeChecked: boolean = false;
   korpa: KorpaResponse ={
@@ -108,6 +109,7 @@ export class KorpaComponent  implements OnInit{
     }
     const korisnikObject = JSON.parse(korisnikString);
     this.korisnikId = korisnikObject.autentifikacijaToken.korisnickiNalogId;
+    this.getKorisnik();
   }
   ucitajProizvode() {
     let url = Mojconfig.adresa_servera + `/api/Korpa/GetKorpaByKorisnikID/${this.korisnikId}`;
@@ -115,7 +117,11 @@ export class KorpaComponent  implements OnInit{
       this.korpa = x as KorpaResponse;
     })
   }
-
+    getKorisnik() {
+      this.httpClient.get(Mojconfig.adresa_servera+`/Obradi/KorisnikGetByIDEndpoint?ID=${this.korisnikId}`)
+        .subscribe(next=>{
+        this.korisnik = next;})
+    }
   izbaciIzKorpe(proizvodID: number) {
     this.httpClient.delete(Mojconfig.adresa_servera+`/api/Korpa/RemoveProizvodFromKorpa/${this.korpa.korpaID}/${proizvodID}`)
       .subscribe({
@@ -176,9 +182,6 @@ export class KorpaComponent  implements OnInit{
       "telefon": this.telefon,
       "email": this.email
     }
-      if(this.nacinDostave=="Regular"){
-        this.korpa.vrijednost+=this.troskoviDostave;
-      }
     this.httpClient.post(Mojconfig.adresa_servera+`/Narudzba2/CreateNarudzbaFromKorpa/${this.korpa.korpaID}`,body).subscribe({
       next: (response: any) => {
         console.log(response);
@@ -196,7 +199,6 @@ export class KorpaComponent  implements OnInit{
     this.httpClient.get<any[]>(Mojconfig.adresa_servera + '/Obradi/GradPretragaEndpoint').subscribe(x => {
       // @ts-ignore
       this.gradovi = x.gradovi;
-      console.log(this.gradovi)
     },error => {
       console.log(error);
     })
@@ -206,11 +208,17 @@ export class KorpaComponent  implements OnInit{
     if(this.popuniPodacimaChecked){
       let korisnikString = window.localStorage.getItem("korisnik")??"";
       const korisnikObject = JSON.parse(korisnikString);
-      console.log(korisnikObject);
-
+      this.imePrimaoca=this.korisnik.ime;
+      this.prezimePrimaoca=this.korisnik.prezime;
+      this.telefon=this.korisnik.brojTelefona;
+      this.gradID=this.korisnik.opstinaID;
       this.email = korisnikObject.autentifikacijaToken.korisnickiNalog.email;
     }else{
       this.email = "";
+      this.imePrimaoca = "";
+      this.prezimePrimaoca = "";
+      this.telefon = "";
+      this.gradID = 1;
     }
 
   }

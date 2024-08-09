@@ -119,6 +119,8 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
                 Email= dto.Email,
                 Proizvodi = new List<NarudzbaProizvod>()
             };
+            if (narudzba.NacinDostave == "Regular")
+                narudzba.Vrijednost += 7;
 
             foreach (var korpaProizvod in korpa.Proizvodi)
             {
