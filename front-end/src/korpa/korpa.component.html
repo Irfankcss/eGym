@@ -113,8 +113,8 @@
       </div>
 
       <div class="form-group form-checkbox">
-        <input type="checkbox" id="popuniProfil" name="popuniProfil">
-        <label for="popuniProfil">Popuni podacima sa profila</label>
+        <label >Popuni podacima sa profila</label>
+        <input [(ngModel)]="popuniPodacimaChecked" type="checkbox" id="popuniProfil" (ngModelChange)="popuniPodacimaChancged()" name="popuniPodacima">
       </div>
     </form>
   </div>

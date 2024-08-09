@@ -37,6 +37,7 @@ export class KorpaComponent  implements OnInit{
   gradovi:any[]=[];
   Uslovi: boolean=false;
   troskoviDostave: number = 0;
+  popuniPodacimaChecked: boolean = false;
 
   constructor(private httpClient:HttpClient, private router:Router) {
   }
@@ -108,7 +109,6 @@ export class KorpaComponent  implements OnInit{
     const korisnikObject = JSON.parse(korisnikString);
     this.korisnikId = korisnikObject.autentifikacijaToken.korisnickiNalogId;
   }
-
   ucitajProizvode() {
     let url = Mojconfig.adresa_servera + `/api/Korpa/GetKorpaByKorisnikID/${this.korisnikId}`;
     this.httpClient.get(url).subscribe(x=>{
@@ -202,5 +202,17 @@ export class KorpaComponent  implements OnInit{
     })
   }
 
+  popuniPodacimaChancged() {
+    if(this.popuniPodacimaChecked){
+      let korisnikString = window.localStorage.getItem("korisnik")??"";
+      const korisnikObject = JSON.parse(korisnikString);
+      console.log(korisnikObject);
+
+      this.email = korisnikObject.autentifikacijaToken.korisnickiNalog.email;
+    }else{
+      this.email = "";
+    }
+
+  }
 }
 
