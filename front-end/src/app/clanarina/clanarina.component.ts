@@ -6,6 +6,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {Router, RouterLink} from "@angular/router";
 import {Mojconfig} from "../moj-config";
 import {ClanarinaKorisnikComponent} from "./clanarina-korisnik/clanarina-korisnik.component";
+import {ClanarinaRadnikComponent} from "./clanarina-radnik/clanarina-radnik.component";
 
 @Component({
   selector: 'app-clanarina',
@@ -14,7 +15,8 @@ import {ClanarinaKorisnikComponent} from "./clanarina-korisnik/clanarina-korisni
     NgIf,
     FormsModule,
     HttpClientModule,
-    ClanarinaKorisnikComponent
+    ClanarinaKorisnikComponent,
+    ClanarinaRadnikComponent
   ],
   templateUrl: './clanarina.component.html',
   styleUrl: './clanarina.component.css'
@@ -51,7 +53,6 @@ export class ClanarinaComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
   }
 
   dohvatiLogiranogKorisnika(){
@@ -65,6 +66,9 @@ export class ClanarinaComponent implements OnInit{
   }
   isClan(){
     return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isClan;
+  }
+  isRadnik(){
+    return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isRadnik;
   }
 
 }

@@ -1,0 +1,44 @@
+<div class="employee-main">
+  <div class="employee-info" *ngFor="let r of radnikPodaci">
+  <div class="employee-title" >
+    <h2>Uposlenik {{r.ime}} {{r.prezime}}</h2>
+  </div>
+    <div class="employee-header" >
+      <div class="employee-number">
+        <h4>Datum zaposlenja: {{r.datumZaposlenja}}</h4>
+      </div>
+      <div class="employee-type">
+        <h4>Spol: {{r.spol}}</h4>
+      </div>
+    </div>
+  </div>
+  <div class="employee-members">
+    <h3 style="color: white">Članovi</h3>
+    <table class="customTable">
+      <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Ime</th>
+        <th scope="col">Prezime</th>
+        <th scope="col">Tip mjesečne</th>
+        <th scope="col">Broj članarine</th>
+        <th scope="col">Datum uplate</th>
+        <th scope="col">Datum isteka</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let c of listaClanova">
+        <th>{{c.id}}</th>
+        <td>{{c.ime}}</td>
+        <td>{{c.prezime}}</td>
+        <td>{{c.vrstaMjesecne}}</td>
+        <td>{{c.brojClana}}</td>
+        <td>{{c.datumUplate}}</td>
+        <td>{{c.datumIsteka}}</td>
+        <td><button class="btn btn-warning">Produži</button></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

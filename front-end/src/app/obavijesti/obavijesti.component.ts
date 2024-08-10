@@ -6,6 +6,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {ObavijestiKontrolaComponent} from "../obavijesti-kontrola/obavijesti-kontrola.component";
 import {ContactFooterComponent} from "../contact-footer/contact-footer.component";
 import {IzdvojeniProizvodiComponent} from "../izdvojeni-proizvodi/izdvojeni-proizvodi.component";
+import {VideiComponent} from "../videi/videi.component";
 
 declare function sakrijDugme():any;
 declare function prikaziDugme():any;
@@ -13,7 +14,7 @@ declare function prikaziDugme():any;
 @Component({
   selector: 'app-obavijesti',
   standalone: true,
-  imports: [HttpClientModule, NgForOf, ObavijestiKontrolaComponent, ContactFooterComponent, IzdvojeniProizvodiComponent, NgIf],
+  imports: [HttpClientModule, NgForOf, ObavijestiKontrolaComponent, ContactFooterComponent, IzdvojeniProizvodiComponent, NgIf, VideiComponent],
   templateUrl: './obavijesti.component.html',
   styleUrl: './obavijesti.component.css'
 })

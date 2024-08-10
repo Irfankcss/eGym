@@ -26,3 +26,26 @@
   margin-left: auto;
   margin-right: auto;
 }
+.customTable{
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgb(255,255,255,0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0px 8px 32px 0 rgba(0,0,0,0.37);
+  text-align: center;
+  color: white;
+}
+thead, tr,th, td{
+  border: 1px solid white;
+  padding: 1%;
+  transition: transform 0.3s ease;
+  transform: scale(1);
+}
+
+tr:hover{
+  transform: scale(1.02);
+}

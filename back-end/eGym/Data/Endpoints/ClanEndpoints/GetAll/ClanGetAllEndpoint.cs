@@ -20,6 +20,7 @@ namespace eGym.Data.Endpoints.ClanEndpoints.GetAll
         {
             var clanovi = await _context.Clan.Select(x => new ClanGetAllResponseClan()
             {
+                ID = x.ClanID,
                 Ime = x.Korisnik.Ime,
                 Prezime = x.Korisnik.Prezime,
                 VrstaMjesecne = x.Vrsta,
