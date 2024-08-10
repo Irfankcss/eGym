@@ -1,0 +1,129 @@
+
+
+.container {
+  top: 20%;
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.korpa-container {
+  width: 100%;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+.korpa-header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.korpa-item {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.korpa-item:last-child {
+  border-bottom: none;
+}
+
+.korpa-item img {
+  width: 100px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.korpa-item-details {
+  flex-grow: 1;
+  display: flex;
+}
+
+.korpa-item-details p {
+  margin: 2px 0;
+  font-size: 16px;
+}
+
+.korpa-item table {
+  width: auto;
+  margin-top: 10px;
+  border-collapse: collapse;
+}
+
+.korpa-item th, .korpa-item td {
+  padding: 4px;
+  text-align: left;
+  font-size: 16px;
+}
+
+.korpa-item th {
+  background-color: #f7f7f7;
+  font-weight: bold;
+}
+
+.total-price {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: right;
+}
+
+.korpa-summary {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f0f0f0;
+}
+
+.korpa-summary table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.korpa-summary th, .korpa-summary td {
+  padding: 10px;
+  text-align: left;
+}
+
+.korpa-summary th {
+  background-color: #f7f7f7;
+  font-weight: bold;
+}
+
+.pdf-link {
+  text-align: right;
+}
+.korpa-delivery {
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  display:flex;
+  flex-direction:row;
+  justify-content: space-evenly;
+}
+
+.delivery-row {
+  margin-bottom: 10px;
+}
+
+.delivery-row p {
+  margin: 5px 10px;
+  font-size: 16px;
+}
+
+.customer-info p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+

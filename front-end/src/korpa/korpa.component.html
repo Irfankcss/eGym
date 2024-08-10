@@ -144,12 +144,12 @@
       <div class="korpa-summary">
         <h4>Pregled korpe</h4>
         <div class="korpa-details">
-          <p><strong>Ukupno:</strong>{{this.korpa.vrijednost}}</p>
-          <p><strong>Ušteda:</strong>0%</p>
-          <p><strong>Troškovi dostave:</strong>{{this.troskoviDostave}},00 BAM</p>
+          <p>Ukupno: <strong>{{this.korpa.vrijednost | number:'1.2-2'}}  BAM</strong></p>
+          <p>Ušteda: <strong>0%</strong></p>
+          <p>Troškovi dostave: <strong>{{this.troskoviDostave | number:'1.2-2'}} BAM</strong></p>
           <hr>
           <p><strong>Ukupno za plaćanje sa PDV-om:</strong></p>
-          <p class="ukupna-cijena-label">{{this.korpa.vrijednost + this.troskoviDostave}} BAM </p>
+          <p class="ukupna-cijena-label">{{this.korpa.vrijednost + this.troskoviDostave | number:'1.2-2'}} BAM </p>
         </div>
         <div class="korpa-checkbox">
           <input type="checkbox" id="uslovi" name="uslovi" [(ngModel)]="Uslovi">

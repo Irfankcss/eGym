@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="header">
+    <h4>Narudžba uspješno kreirana.</h4>
+    <p>Hvala na ukazanom povjerenju! Nakon pregleda narudžbe, bićete obaviješteni o statusu Vaše narudžbe putem mail-a.<br>
+      U slučaju dodatnih pitanja, možete nam se obratiti putem email adrese <a href="mailto:zalik@gym.ba">Nope</a> ili telefonom na 225 883 nazovi moj broj javi mi se ti.</p>
+  </div>
+
+  <div *ngIf="!loading; else loadingTemplate" class="korpa-container">
+    <div class="korpa-header">
+      Vaša korpa:
+    </div>
+
+    <div *ngFor="let p of narudzba.proizvodi" class="korpa-item" name="di">
+      <div class="korpa-item-details">
+        <img src="{{p.proizvod.slike[0].putanja}}" alt="Proizvod" class="proizvod-img">
+        <div class="details-text">
+          <p><strong>{{p.proizvod.naziv}}</strong></p>
+          <p>Šifra artikla: EGYM3394-{{p.proizvod.proizvodID}} | Veličina:<strong> {{p.proizvod.velicina}}</strong> | Količina:<strong> {{p.kolicina}}</strong></p>
+        </div>
+      </div>
+      <div class="price-details">
+        <div class="price-item">
+          <span>Cijena: </span>
+          <span><strong>{{p.proizvod.cijena | number:'1.2-2'}} BAM</strong></span>
+        </div>
+        <div class="price-item">
+          <span>Popust: </span>
+          <span><strong>{{p.proizvod.popust}} %</strong></span>
+        </div>
+        <div class="total-price">
+          Cijena proizvoda: {{ p.proizvod.cijena * (1 - p.proizvod.popust / 100) *p.kolicina | number:'1.2-2' }} BAM        </div>
+      </div>
+    </div>
+
+    <div class="korpa-delivery">
+      <div class="delivery-row">
+        <p>Kod Narudžbe: <strong>DH4200-{{narudzba.id}}</strong></p>
+        <p>Način Dostave: <strong>{{narudzba.nacinDostave}}</strong></p>
+        <p>Način Plaćanja: <strong>{{narudzba.nacinPlacanja}}</strong></p>
+      </div>
+      <div class="customer-info">
+        <p>Ime i Prezime: <strong>{{narudzba.imePrimaoca}} {{narudzba.prezimePrimaoca}}</strong></p>
+        <p>Adresa: <strong>{{narudzba.adresa}}</strong></p>
+        <p>Telefon: <strong>{{narudzba.telefon}}</strong></p>
+      </div>
+    </div>
+
+    <div class="korpa-summary">
+      <table>
+        <tr>
+          <th>Ukupno:</th>
+          <td *ngIf="narudzba.nacinDostave!='Regular'">{{narudzba.vrijednost | number:'1.2-2'}} BAM</td>
+          <td *ngIf="narudzba.nacinDostave=='Regular'">{{narudzba.vrijednost - 7 | number:'1.2-2'}} BAM</td>
+        </tr>
+        <tr>
+          <th>Troškovi dostave:</th>
+          <td *ngIf="narudzba.nacinDostave!='Regular'">Besplatni troškovi dostave</td>
+          <td *ngIf="narudzba.nacinDostave=='Regular'">7,00 BAM</td>
+        </tr>
+        <tr>
+          <th>Ukupno za plaćanje sa PDV-om:</th>
+          <td>{{narudzba.vrijednost | number:'1.2-2'}} BAM</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="pdf-link">
+      <p><a href="#">Kliknite ovdje ako želite preuzeti potvrdu u PDF formatu</a></p>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <div class="loading-container">
+    <p class="loading-text">Molimo pričekajte, vaša narudžba se učitava...</p>
+  </div>
+</ng-template>

@@ -185,8 +185,11 @@ export class KorpaComponent  implements OnInit{
     this.httpClient.post(Mojconfig.adresa_servera+`/Narudzba2/CreateNarudzbaFromKorpa/${this.korpa.korpaID}`,body).subscribe({
       next: (response: any) => {
         console.log(response);
+
+        let narudzbaId = response.id;
+        console.log('Created order ID:', narudzbaId);
         porukaSuccess("Uspjesno ste narucili proizvode");
-        this.router.navigate(['/prodavnica']);
+        this.router.navigate(['/narudzba/', narudzbaId]);
       },
       error: (error: HttpErrorResponse) => {
         console.error('Error creating order', error);

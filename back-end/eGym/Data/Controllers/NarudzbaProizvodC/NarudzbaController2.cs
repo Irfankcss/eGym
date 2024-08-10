@@ -17,26 +17,39 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
         [HttpGet("NarudzbaGetAll")]
         public async Task<ActionResult<IEnumerable<NarudzbaVM>>> GetNarudzba()
         {
-
             var narudzbe = await _context.Narudzba
-            .Include(n => n.Proizvodi)
-            .ThenInclude(np => np.Proizvod)
-            .ThenInclude(p => p.Brend)
-            .Include(p => p.Proizvodi).ThenInclude(np => np.Proizvod).ThenInclude(p => p.Kategorija)
-             .Select(x => new NarudzbaVM
-             {
-                 Id = x.Id,
-                 DatumKreiranja = x.DatumKreiranja,
-                 isOdobrena = x.isOdobrena,
-                 Vrijednost = x.Vrijednost,
-                 Popust = x.Popust,
-                 KorisnikID = x.KorisnikID,
-                 NacinPlacanja = x.NacinPlacanja,
-                 Proizvodi = x.Proizvodi.Select(np => np.Proizvod).ToList()
-             }).ToListAsync();
-              return narudzbe;
+                .Include(n => n.Proizvodi)
+                    .ThenInclude(np => np.Proizvod)
+                        .ThenInclude(p => p.Brend)
+                .Include(n => n.Proizvodi)
+                    .ThenInclude(np => np.Proizvod)
+                        .ThenInclude(p => p.Kategorija)
+                .Select(x => new NarudzbaVM
+                {
+                    Id = x.Id,
+                    DatumKreiranja = x.DatumKreiranja,
+                    isOdobrena = x.isOdobrena,
+                    Vrijednost = x.Vrijednost,
+                    Popust = x.Popust,
+                    KorisnikID = x.KorisnikID,
+                    NacinPlacanja = x.NacinPlacanja,
+                    NacinDostave = x.NacinDostave,
+                    ImePrimaoca = x.ImePrimaoca,
+                    PrezimePrimaoca = x.PrezimePrimaoca,
+                    Adresa = x.Adresa,
+                    Grad = x.Grad,
+                    Telefon = x.Telefon,
+                    Email = x.Email,
+                    Proizvodi = x.Proizvodi.Select(np => new NarudzbaProizvodVM
+                    {
+                        Proizvod = np.Proizvod,
+                        Kolicina = np.Kolicina
+                    }).ToList()
+                }).ToListAsync();
 
+            return Ok(narudzbe);
         }
+
         [HttpPost("DodajNarudzbu")]
         public async Task<ActionResult<Narudzba>> PostNarudzba(DodajNarudzbuVM dodajNarudzbuVM)
         {
@@ -151,9 +164,14 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
             var narudzba = await _context.Narudzba
                 .Include(n => n.Proizvodi)
                     .ThenInclude(np => np.Proizvod)
+                        .ThenInclude(p => p.Slike)
+                .Include(n => n.Proizvodi)
+                    .ThenInclude(np => np.Proizvod)
                         .ThenInclude(p => p.Brend)
-                    .Include(p => p.Proizvodi).ThenInclude(np=> np.Proizvod).ThenInclude(p=>p.Kategorija)
-                    .Include(n=>n.Grad)
+                .Include(n => n.Proizvodi)
+                    .ThenInclude(np => np.Proizvod)
+                        .ThenInclude(p => p.Kategorija)
+                .Include(n => n.Grad)
                 .FirstOrDefaultAsync(n => n.Id == id);
 
             if (narudzba == null)
@@ -172,12 +190,16 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
                 NacinPlacanja = narudzba.NacinPlacanja,
                 NacinDostave = narudzba.NacinDostave,
                 ImePrimaoca = narudzba.ImePrimaoca,
-                PrezimePrimaoca= narudzba.PrezimePrimaoca,
+                PrezimePrimaoca = narudzba.PrezimePrimaoca,
                 Adresa = narudzba.Adresa,
-                Grad= narudzba.Grad,
-                Telefon= narudzba.Telefon,
-                Email= narudzba.Email,
-                Proizvodi = narudzba.Proizvodi.Select(np => np.Proizvod).ToList()
+                Grad = narudzba.Grad,
+                Telefon = narudzba.Telefon,
+                Email = narudzba.Email,
+                Proizvodi = narudzba.Proizvodi.Select(np => new NarudzbaProizvodVM
+                {
+                    Proizvod = np.Proizvod,
+                    Kolicina = np.Kolicina
+                }).ToList()
             };
 
             return narudzbaVM;

@@ -9,6 +9,7 @@ import {ClanarinaComponent} from "./clanarina/clanarina.component";
 import {KontaktComponent} from "../kontakt/kontakt.component";
 import {CjenovnikComponent} from "./cjenovnik/cjenovnik.component";
 import {ListaKorisnikaComponent} from "./lista-korisnika/lista-korisnika.component";
+import {NarudzbaComponent} from "./narudzba/narudzba.component";
 
 export const routes: Routes = [
   {path:'', redirectTo:'/obavijesti', pathMatch:'full'},
@@ -21,5 +22,6 @@ export const routes: Routes = [
   {path:'clanarina',component: ClanarinaComponent},
   {path:'kontakt',component:KontaktComponent},
   {path:'cjenovnik',component: CjenovnikComponent},
-  {path:'korisnici',component:ListaKorisnikaComponent}
+  {path:'korisnici',component:ListaKorisnikaComponent},
+  {path:'narudzba/:narudzbaID',component:NarudzbaComponent}
 ];
