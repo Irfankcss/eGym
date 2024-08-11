@@ -58,6 +58,13 @@ TestResults/
 ######################
 *.log
 *.sqlite
+# Ignore Visual Studio temporary files, build results, and
+# Folder config files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
 # OS generated files #
 ######################
 .DS_Store?
