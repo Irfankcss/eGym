@@ -46,6 +46,7 @@ thead, tr,th, td{
   transform: scale(1);
 }
 
+
 tr:hover{
   transform: scale(1.02);
 }

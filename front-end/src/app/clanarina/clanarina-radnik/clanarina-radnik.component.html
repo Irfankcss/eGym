@@ -36,7 +36,9 @@
         <td>{{c.brojClana}}</td>
         <td>{{c.datumUplate}}</td>
         <td>{{c.datumIsteka}}</td>
-        <td><button class="btn btn-warning">Produži</button></td>
+        <td><button class="btn btn-warning" (click)="produziClanarinu(c)">Produži</button>
+          <button class="btn btn-warning" (click)="ponistiClanarinu(c)">Poništi</button>
+        </td>
       </tr>
       </tbody>
     </table>

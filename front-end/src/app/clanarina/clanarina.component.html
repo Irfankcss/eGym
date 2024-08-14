@@ -1,5 +1,5 @@
 <div class="container-fluid custom">
-  <div class="container-steps" *ngIf="(!isClan()) && (!isRadnik())">
+  <div class="container-steps" *ngIf="(!isClan()) && (!isRadnik() && (!isAdmin()))">
     <div class="conteiner-tittle text-white">
       <h2>ŽELIŠ POSTAT DIO EKIPE? UČLANI SE</h2>
     </div>
@@ -14,5 +14,5 @@
     <button class="custombtn btn btn-warning" (click)="uclaniSe()">Učlani se</button>
   </div>
   <app-clanarina-korisnik *ngIf="isClan()"></app-clanarina-korisnik>
-  <app-clanarina-radnik *ngIf="isRadnik()"></app-clanarina-radnik>
+  <app-clanarina-radnik *ngIf="isRadnik() || isAdmin()"></app-clanarina-radnik>
 </div>

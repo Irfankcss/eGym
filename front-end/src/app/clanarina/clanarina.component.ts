@@ -70,5 +70,7 @@ export class ClanarinaComponent implements OnInit{
   isRadnik(){
     return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isRadnik;
   }
-
+  isAdmin(){
+    return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isAdmin;
+  }
 }

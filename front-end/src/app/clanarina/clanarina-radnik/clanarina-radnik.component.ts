@@ -5,6 +5,8 @@ import {Clan} from "./Clan";
 import {KeyValuePipe, NgForOf} from "@angular/common";
 import {Radnik} from "./Radnik";
 
+declare function porukaSuccess(m:string):any;
+
 @Component({
   selector: 'app-clanarina-radnik',
   standalone: true,
@@ -44,4 +46,29 @@ export class ClanarinaRadnikComponent implements OnInit{
     return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isRadnik;
   }
 
+  produziClanarinu(c: any) {
+    let clanarinaID =  c.clanarinaID;
+    let requestBody = {
+      "clanarinaId": clanarinaID
+    };
+    let url = Mojconfig.adresa_servera + `/Obradi/ClanarinaUpdateEndpoint`;
+    this.httpClient.post(url,requestBody).subscribe(x=>{
+      porukaSuccess('Uspješno produžena mjesecna');
+      this.ngOnInit();
+    })
+  }
+
+  ponistiClanarinu(c: any) {
+    let clanID = c.id;
+    let urlDelete = Mojconfig.adresa_servera + `/Obradi/ClanObrisiEndpoint?ClanID=${clanID}`;
+    this.httpClient.delete(urlDelete).subscribe(x=>{
+      porukaSuccess("Uspješno poništena članarina");
+    })
+
+    let korisnikID = c.korisnikID;
+    let urlStatus = Mojconfig.adresa_servera + `/Obradi/ClanIzmjeniStatusEndpoint?ClanID=${korisnikID}`;
+    this.httpClient.post(urlStatus,{}).subscribe(x=>{
+      this.ngOnInit();
+    })
+  }
 }

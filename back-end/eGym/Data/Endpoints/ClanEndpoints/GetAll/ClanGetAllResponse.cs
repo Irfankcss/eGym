@@ -11,7 +11,9 @@ namespace eGym.Data.Endpoints.ClanEndpoints.GetAll
             public string Ime { get; set; }
             public string Prezime {  get; set; }
             public string VrstaMjesecne {  get; set; }
+            public int KorisnikID {  get; set; }
             public int BrojClana {  get; set; }
+            public int ClanarinaID {  get; set; }
             public DateOnly DatumUplate {  get; set; }
             public DateOnly DatumIsteka { get; set; }
         }

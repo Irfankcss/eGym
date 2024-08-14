@@ -51,3 +51,6 @@ tr:hover{
 .employee-number:hover, .employee-type:hover{
   transform: scale(1.05);
 }
+button{
+  margin: 0.5%;
+}

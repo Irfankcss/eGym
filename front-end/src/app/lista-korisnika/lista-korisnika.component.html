@@ -21,8 +21,8 @@
         <td>{{lk.isAdmin}}</td>
         <td>{{lk.isKorisnik}}</td>
         <td>{{lk.isRadnik}}</td>
-        <td> <button *ngIf="!lk.isAdmin" class="customDugme" (click)="odaberi(lk)">Obriši</button>
-          <button *ngIf="!lk.isAdmin" class="customDugme" (click)="pripremiKorisnika(lk); isUrediVidljivo= !isUrediVidljivo">Uredi</button>
+        <td> <button *ngIf="!lk.isAdmin" class="customDugme btn btn-warning" (click)="odaberi(lk)">Obriši</button>
+          <button *ngIf="!lk.isAdmin" class="customDugme btn btn-warning" (click)="pripremiKorisnika(lk); isUrediVidljivo= !isUrediVidljivo">Uredi</button>
         </td>
       </tr>
       </tbody>

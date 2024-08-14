@@ -8,6 +8,8 @@ export interface Clanovi {
   prezime: string
   vrstaMjesecne: string
   brojClana: number
+  clanarinaID:number
   datumUplate: string
   datumIsteka: string
+  korisnikID: number
 }

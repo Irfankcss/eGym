@@ -1,4 +1,5 @@
-﻿using eGym.Helpers;
+﻿using eGym.Data.Models;
+using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using static eGym.Data.Endpoints.ClanEndpoints.GetAll.ClanGetAllResponse;
@@ -24,7 +25,9 @@ namespace eGym.Data.Endpoints.ClanEndpoints.GetAll
                 Ime = x.Korisnik.Ime,
                 Prezime = x.Korisnik.Prezime,
                 VrstaMjesecne = x.Vrsta,
+                KorisnikID = x.KorisnikID,
                 BrojClana = x.BrojClana,
+                ClanarinaID = x.ClanarinaID,
                 DatumUplate = DateOnly.FromDateTime(x.Clanarina.DatumUplate),
                 DatumIsteka = DateOnly.FromDateTime(x.Clanarina.DatumIsteka)
             }).ToListAsync();

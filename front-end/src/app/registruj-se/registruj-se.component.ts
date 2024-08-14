@@ -93,7 +93,6 @@ export class RegistrujSeComponent implements OnInit{
         email: this.txtEmail,
         lozinka: this.txtLozinka
       };
-      console.log(noviKorisnik);
       this.httpClient.post(url,noviKorisnik).subscribe(x=>{
         porukaSuccess('Uspješno kreiran korisnički nalog');
         this.router.navigate(['/prijavi-se']);

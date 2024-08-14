@@ -24,7 +24,6 @@ export class ListaKorisnikaComponent implements OnInit{
     let url = Mojconfig.adresa_servera + `/Obradi/KorisnickiNalogPretragaEndpoint`;
     this.httpClient.get<Korisnci>(url).subscribe((x:Korisnci)=>{
       this.listaKorisnika = x.korisnickiNalozi;
-      //console.log(this.listaKorisnika);
     })
   }
 
