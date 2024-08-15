@@ -31,8 +31,6 @@ export class NarudzbaComponent implements OnInit {
     this.httpClient.get(Mojconfig.adresa_servera+`/Narudzba2/NarudzbaGetBy${this.narudzbaID}`).subscribe(x=>{
       this.narudzba=x;
       this.loading = false;
-      console.log(this.narudzba);
-      console.log(this.narudzba.proizvodi);
     });
 
   }

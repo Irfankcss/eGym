@@ -1,0 +1,66 @@
+<div class="main">
+  <button class="prihvaceneSwitch" (click)="prihvaceneSwitched()">Prikaži Odobrene Narudžbe</button>
+  <button class="zapregledSwitch" (click)="zaPregledSwitched()">Prikaži Narudžbe za pregled</button>
+  <h3>{{this.naslov}}</h3>
+  <table *ngIf="!loading; else loadingTemplate" class="narudzbe-table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Datum Kreiranja</th>
+      <th>Vrijednost</th>
+      <th>Popust</th>
+      <th>Nacin Placanja</th>
+      <th>Nacin Dostave</th>
+      <th>Primaoc</th>
+      <th>Adresa</th>
+      <th>Grad</th>
+      <th>Telefon</th>
+      <th>Email</th>
+      <th>Proizvodi</th>
+      <th>Upozorenje</th>
+      <th>Akcije</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let n of narudzbe">
+      <td>{{n.id}}</td>
+      <td>{{ n.datumKreiranja | date: 'dd.MM.yyyy HH:mm' }}</td>
+      <td>{{n.vrijednost}}</td>
+      <td>{{n.popust}}</td>
+      <td>{{n.nacinPlacanja}}</td>
+      <td>{{n.nacinDostave}}</td>
+      <td>{{n.imePrimaoca + ' ' + n.prezimePrimaoca}}</td>
+      <td>{{n.adresa}}</td>
+      <td>{{n.grad.naziv}} ({{n.grad.postanskiBroj}})</td>
+      <td>{{n.telefon}}</td>
+      <td>{{n.email}}</td>
+      <td>
+        <ul class="proizvodi-ul">
+          <li *ngFor="let p of n.proizvodi" class="proizvodi-li">
+            <strong>{{p.proizvod.naziv}}</strong><br />
+            Cijena: {{p.proizvod.cijena}}<br />
+            Popust: {{p.proizvod.popust}}<br />
+            Brend: {{p.proizvod.brend.nazivBrenda}}<br />
+            Kategorija: {{p.proizvod.kategorija.nazivKategorije}}<br />
+            Narucena kolicina: {{p.kolicina}}<br />
+            Kolicina na Skladištu: {{p.proizvod.kolicinaNaSkladistu}}
+          </li>
+        </ul>
+      </td>
+      <td>
+        <strong>Skladiste</strong>
+      </td>
+      <td>
+        <button class="cekiraj-button">Provjeri</button>
+        <button class="odobri-button">Odobri</button>
+        <button class="odbij-button">Odbij</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <ng-template #loadingTemplate>
+  <div class="loading-container">
+    <p class="loading-text">Molimo pričekajte, narudđbe se učitavaju...</p>
+  </div>
+</ng-template>
+</div>
