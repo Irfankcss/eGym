@@ -204,5 +204,42 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
 
             return narudzbaVM;
         }
+        [HttpDelete("DeleteNarudzba/{id}")]
+        public async Task<IActionResult> DeleteNarudzba(int id)
+        {
+            var narudzba = await _context.Narudzba
+                .Include(n => n.Proizvodi)
+                .FirstOrDefaultAsync(n => n.Id == id);
+
+            if (narudzba == null)
+            {
+                return NotFound();
+            }
+
+            _context.NarudzbaProizvod.RemoveRange(narudzba.Proizvodi);
+            _context.Narudzba.Remove(narudzba);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Uspješno odbijena i izbrisana narudžba" });
+        }
+        [HttpPut("OdobriNarudzbu/{id}")]
+        public async Task<IActionResult> OdobriNarudzbu(int id)
+        {
+            var narudzba = await _context.Narudzba
+                .Include(n => n.Proizvodi)
+                .FirstOrDefaultAsync(n => n.Id == id);
+
+            if (narudzba == null)
+            {
+                return NotFound();
+            }
+
+            narudzba.isOdobrena = true;
+            _context.Narudzba.Update(narudzba);
+            await _context.SaveChangesAsync();
+
+            return Ok(new { message = "Uspješno odobrena narudžba" });
+        }
     }
+
 }
