@@ -75,7 +75,7 @@
   background-color: rgba(253, 208, 0, 0.44);
 }
 
-.cekiraj-button, .odobri-button, .odbij-button {
+.cekiraj-button, .odobri-button, .odbij-button, .posalji-button {
   padding: 8px 16px;
   font-size: 14px;
   border-radius: 4px;
@@ -84,7 +84,9 @@
   margin-right: 8px;
   transition: background-color 0.3s ease;
 }
-
+.upozorenje-lbl{
+  color:red;
+}
 .cekiraj-button {
   margin-top:5px;
   background-color: #ffffff;
@@ -98,7 +100,7 @@
   color: #ad8c06;
 }
 
-.odobri-button {
+.odobri-button, .posalji-button {
   margin-top:5px;
   background-color: #ffffff;
   color: #5bb75b;
@@ -106,7 +108,7 @@
   border: 1px solid #317531;
 }
 
-.odobri-button:hover {
+.odobri-button:hover, .posalji-button:hover {
   background-color: #fdfdfd;
   color: #317531;
 }

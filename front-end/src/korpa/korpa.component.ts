@@ -162,6 +162,11 @@ export class KorpaComponent  implements OnInit{
       porukaError("Morate unijeti email");
       return;
     }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.email)) {
+      porukaError("Neispravan format email adrese.");
+      return;
+    }
     if(this.nacinPlacanja==""){
       porukaError("Morate odabrati nacin placanja");
       return;

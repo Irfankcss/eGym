@@ -48,12 +48,18 @@
         </ul>
       </td>
       <td>
-        <strong>Skladiste</strong>
+        <strong class="upozorenje-lbl">{{n.Upozorenje}}</strong>
       </td>
       <td>
-        <button class="cekiraj-button">Provjeri</button>
-        <button class="odobri-button">Odobri</button>
-        <button class="odbij-button">Odbij</button>
+        <div *ngIf="naslov === 'Narudžbe za pregled:'; else odobreneAkcije">
+          <button class="cekiraj-button" (click)="provjeriNarudzbu(n)">Provjeri</button>
+          <button class="odobri-button" (click)="odobriNarudzbu(n.id, n.email)">Odobri</button>
+          <button class="odbij-button" (click)="odbijNarudzbu(n.id, n.email)">Odbij</button>
+        </div>
+        <ng-template #odobreneAkcije>
+          <button class="odbij-button" (click)="odbijNarudzbu(n.id, n.email)">Odbij</button>
+          <button class="posalji-button" (click)="posaljiNarudzbu(n, n.email)">Pošalji</button>
+        </ng-template>
       </td>
     </tr>
     </tbody>
