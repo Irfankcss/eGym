@@ -127,3 +127,6 @@
   font-size: 16px;
 }
 
+.preuzmiPdf:hover{
+  cursor: pointer;
+}
