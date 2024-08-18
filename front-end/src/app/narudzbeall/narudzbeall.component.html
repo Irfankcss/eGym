@@ -1,6 +1,7 @@
 <div class="main">
-  <button class="prihvaceneSwitch" (click)="prihvaceneSwitched()">Prikaži Odobrene Narudžbe</button>
-  <button class="zapregledSwitch" (click)="zaPregledSwitched()">Prikaži Narudžbe za pregled</button>
+  <button class="zapregledSwitch" (click)="zaPregledSwitched()">Narudžbe za pregled</button>
+  <button class="prihvaceneSwitch" (click)="prihvaceneSwitched()">Odobrene Narudžbe</button>
+  <button class="poslaneSwitch" (click)="poslaneSwitched()">Poslane narudzbe</button>
   <h3>{{this.naslov}}</h3>
   <table *ngIf="!loading; else loadingTemplate" class="narudzbe-table">
     <thead>
@@ -23,7 +24,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let n of narudzbe">
-      <td>{{n.id}}</td>
+      <td (click)="prikaziNarudzbu(n)">{{n.id}}</td>
       <td>{{ n.datumKreiranja | date: 'dd.MM.yyyy HH:mm' }}</td>
       <td>{{n.vrijednost}}</td>
       <td>{{n.popust}}</td>
@@ -49,18 +50,23 @@
       </td>
       <td>
         <strong class="upozorenje-lbl">{{n.Upozorenje}}</strong>
-      </td>
-      <td>
-        <div *ngIf="naslov === 'Narudžbe za pregled:'; else odobreneAkcije">
-          <button class="cekiraj-button" (click)="provjeriNarudzbu(n)">Provjeri</button>
-          <button class="odobri-button" (click)="odobriNarudzbu(n.id, n.email)">Odobri</button>
-          <button class="odbij-button" (click)="odbijNarudzbu(n.id, n.email)">Odbij</button>
-        </div>
-        <ng-template #odobreneAkcije>
+      </td><td>
+
+      <div *ngIf="naslov === 'Narudžbe za pregled:'; else odobreneAkcije">
+        <button class="cekiraj-button" (click)="provjeriNarudzbu(n)">Provjeri</button>
+        <button class="odobri-button" (click)="odobriNarudzbu(n.id, n.email)">Odobri</button>
+        <button class="odbij-button" (click)="odbijNarudzbu(n.id, n.email)">Odbij</button>
+      </div>
+      <ng-template #odobreneAkcije>
+        <ng-container *ngIf="naslov === 'Poslane narudzbe:'">
+          <button class="prijavi-button">Prijavi</button>
+        </ng-container>
+        <ng-container *ngIf="naslov !== 'Poslane narudzbe:'">
           <button class="odbij-button" (click)="odbijNarudzbu(n.id, n.email)">Odbij</button>
           <button class="posalji-button" (click)="posaljiNarudzbu(n, n.email)">Pošalji</button>
-        </ng-template>
-      </td>
+        </ng-container>
+      </ng-template>
+    </td>
     </tr>
     </tbody>
   </table>

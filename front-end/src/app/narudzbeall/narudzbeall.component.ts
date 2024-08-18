@@ -18,29 +18,32 @@ export class NarudzbeallComponent implements OnInit{
   loading: boolean = true;
   naslov:string="Narudžbe za pregled:"
   Upozorenje: string = "";
+  radnik: any;
   constructor(private httpClient: HttpClient) {
   }
 
   ngOnInit() {
     this.getNarudzbe();
-
+    this.getRadnik();
   }
 
   private getNarudzbe() {
-    this.httpClient.get(Mojconfig.adresa_servera+"/Narudzba2/NarudzbaGetAll").subscribe(x=>{
-        this.narudzbe = x;
-      if(this.naslov=="Narudžbe za pregled:"){
-        this.narudzbe = this.narudzbe.filter((x: { isOdobrena: boolean; }) => !x.isOdobrena);
-      }else {
-        this.narudzbe = this.narudzbe.filter((x: { isOdobrena: boolean; }) => x.isOdobrena);
+    this.httpClient.get(Mojconfig.adresa_servera + "/Narudzba2/NarudzbaGetAll").subscribe(x => {
+      this.narudzbe = x;
+      if (this.naslov === "Poslane narudzbe:") {
+        this.narudzbe = this.narudzbe.filter((x: { isPoslana: boolean; }) => x.isPoslana);
+      } else if (this.naslov === "Narudžbe za pregled:") {
+        this.narudzbe = this.narudzbe.filter((x: { isOdobrena: boolean; isPoslana: boolean}) => !x.isOdobrena && !x.isPoslana);
+      } else if(this.naslov === "Odobrene Narudžbe:") {
+        this.narudzbe = this.narudzbe.filter((x: { isOdobrena: boolean; isPoslana: boolean }) => x.isOdobrena && !x.isPoslana);
       }
-      this.narudzbe.Upozorenje="";
-        this.loading = false;
-      },
-      error => {
-        console.log("Greska u preuzimanju narudzbi sa servera");
-        this.loading = false;
-      })
+
+      this.narudzbe.Upozorenje = "";
+      this.loading = false;
+    }, error => {
+      console.log("Greška u preuzimanju narudžbi sa servera");
+      this.loading = false;
+    });
   }
 
   protected readonly Date = Date;
@@ -89,6 +92,9 @@ export class NarudzbeallComponent implements OnInit{
         n.Upozorenje += `; Proizvod "${proizvod.proizvod.naziv}" je izbrisan.`;
       }
     }
+    if(n.proizvodi.length==0){
+      n.Upozorenje += "; Nema proizvoda u narudžbi.";
+    }
     if (n.nacinPlacanja !== 'Cash' && n.nacinPlacanja !== 'Credit Card') {
       n.Upozorenje += "; Nevažeći način plaćanja.";
     }
@@ -106,6 +112,34 @@ export class NarudzbeallComponent implements OnInit{
   }
 
   posaljiNarudzbu(narudzba:any, email: string) {
+    if (window.confirm("Jeste li sigurni da želite poslati odabranu narudžbu?")) {
+      var body = {
+        "datumSlanja": new Date().toISOString(),
+        "radnikID": this.radnik.korisnickiNalogId,
+        "narudzbaID": narudzba.id
+      }
+      this.httpClient.post(Mojconfig.adresa_servera + "/PoslanaNarudzba/Posalji narudzbu", body).subscribe(next => {
+        this.getNarudzbe();
+        porukaSuccess("Narudžba poslana");
+      }, error => {
+        porukaError("Greška pri slanju narudzbe");
+      })
+    }
+  }
+
+  private getRadnik() {
+    let korisnikString = window.localStorage.getItem("korisnik")??"";
+    const korisnikObject = JSON.parse(korisnikString);
+    this.radnik = korisnikObject.autentifikacijaToken;
+  }
+
+  poslaneSwitched() {
+    this.naslov="Poslane narudzbe:"
+    this.getNarudzbe();
+  }
+
+  prikaziNarudzbu(n: any) {
+    console.log(n);
 
   }
 }

@@ -74,6 +74,20 @@
 .prihvaceneSwitch:hover, .zapregledSwitch:hover {
   background-color: rgba(253, 208, 0, 0.44);
 }
+.poslaneSwitch{
+  background-color: #519b04;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+.poslaneSwitch:hover{
+  background-color: #7ae708;
+}
 
 .cekiraj-button, .odobri-button, .odbij-button, .posalji-button {
   padding: 8px 16px;

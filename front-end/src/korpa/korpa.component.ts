@@ -142,6 +142,10 @@ export class KorpaComponent  implements OnInit{
       porukaError("Morate se slagati sa uslovima korištenja, prodaje te politikom privatnosti");
       return;
     }
+    if(this.korpa.proizvodi.length==0){
+      porukaError("Nema proizvoda u korpi");
+      return;
+    }
     if(this.imePrimaoca ==""){
       porukaError("Morate unijeti ime");
       return;
@@ -179,7 +183,7 @@ export class KorpaComponent  implements OnInit{
     let body = {
       "nacinPlacanja": "Cash",
       "popust": 0,
-      "nacinDostave": "Regular",
+      "nacinDostave": this.nacinDostave,
       "imePrimaoca": this.imePrimaoca,
       "prezimePrimaoca": this.prezimePrimaoca,
       "gradID": 1,

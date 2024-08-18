@@ -29,6 +29,7 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
                     Id = x.Id,
                     DatumKreiranja = x.DatumKreiranja,
                     isOdobrena = x.isOdobrena,
+                    isPoslana = x.isPoslana,
                     Vrijednost = x.Vrijednost,
                     Popust = x.Popust,
                     KorisnikID = x.KorisnikID,
