@@ -9,6 +9,7 @@ namespace eGym.Data.Models
         [Key]
         public int ClanID { get; set; }
         public int BrojClana {  get; set; }
+        public string Vrsta {  get; set; }
         [ForeignKey(nameof(Clanarina))]
         public int ClanarinaID { get; set; }
         public Clanarina Clanarina { get; set; }

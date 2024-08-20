@@ -19,7 +19,12 @@ namespace eGym.Data.Endpoints.ClanEndpoints.Dodaj
         [HttpPost("Dodaj")]
         public override async Task<ClanDodajResponse> Obradi(ClanDodajRequest request, CancellationToken cancellationToken)
         {
-            var korisnik = await _context.Korisnik.FirstOrDefaultAsync(x => x.ID == request.KorisnikID);
+            var logiraniKorisnik = _context.AutentifikacijaToken.FirstOrDefault();
+            if(logiraniKorisnik == null){
+                throw new Exception("Korisnik nije logiran");
+            }
+            var identifikatorKorisnika = logiraniKorisnik.KorisnickiNalogId;
+            var korisnik = await _context.Korisnik.FirstOrDefaultAsync(x => x.ID == identifikatorKorisnika);
             var noviclan = new Clan();
 
             if (korisnik != null)
@@ -28,9 +33,9 @@ namespace eGym.Data.Endpoints.ClanEndpoints.Dodaj
                 {
                     Random rnd = new Random();
                     noviclan.BrojClana = rnd.Next(100, 1000);
-                    noviclan.ClanarinaID = request.ClanarinaID;
-                    noviclan.KorisnikID = request.KorisnikID;
-
+                    noviclan.ClanarinaID = 1;
+                    noviclan.KorisnikID = identifikatorKorisnika;
+                    noviclan.Vrsta = request.Vrsta;
                     korisnik.isClan = true;
 
                 }
@@ -42,8 +47,7 @@ namespace eGym.Data.Endpoints.ClanEndpoints.Dodaj
             await _context.SaveChangesAsync(cancellationToken);
             return new ClanDodajResponse
             {
-                BrojClana = noviclan.BrojClana,
-                Korisnik = noviclan.Korisnik
+
             };
         }
     }

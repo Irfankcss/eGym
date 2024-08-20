@@ -2,7 +2,6 @@
 {
     public class ClanDodajRequest
     {
-        public int KorisnikID { get; set; }
-        public int ClanarinaID { get; set; }
+        public string Vrsta { get; set; }
     }
 }

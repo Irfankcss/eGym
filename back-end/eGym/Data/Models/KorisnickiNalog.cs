@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eGym.Data.Models
 {
@@ -13,5 +14,6 @@ namespace eGym.Data.Models
         public bool isAdmin { get; set; }
         public bool isKorisnik { get; set;}
         public bool isRadnik { get; set; }
+        public bool isClan { get; set; }
     }
 }

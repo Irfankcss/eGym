@@ -19,12 +19,15 @@ namespace eGym.Data.Controllers.Clanarina.Update
             {
                 throw new Exception("Nema clanarine za id= " + request.ClanarinaId);
             }
-            clanarina.DatumUplate = request.DatumUplate;
-            clanarina.DatumIsteka = request.DatumIsteka;
+            DateTime izracunatiDatum = DateTime.Now;
+            clanarina.DatumUplate = DateTime.Now;
+            clanarina.DatumIsteka = izracunatiDatum.AddDays(30);
             await _applicationDbContext.SaveChangesAsync();
             return new ClanarinaUpdateResponse
             {
-                ClanarinaID = request.ClanarinaId
+                ClanarinaID = clanarina.ID,
+                DatumUplate = clanarina.DatumUplate,
+                DatumIsteka = clanarina.DatumIsteka
             };
         }
     }

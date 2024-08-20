@@ -1,0 +1,38 @@
+<div class="container-member">
+  <div class="member-info" *ngFor="let c of logiraniClan">
+    <div class="member-title">
+      <h2>Izvještaj o {{c.ime}} {{c.prezime}}</h2>
+    </div>
+    <div class="member-header" >
+      <div class="member-number">
+        <h4>Broj: {{c.brojClana}}</h4>
+      </div>
+      <div class="member-type">
+        <h4>Tip: {{c.vrsta}}</h4>
+      </div>
+      <div class="member-firstdate">
+        <h4>Datum uplate: {{c.datumUplate}}</h4>
+      </div>
+      <div class="member-lastdate">
+        <h4>Datum isteka: {{c.datumIsteka}}</h4>
+      </div>
+    </div>
+    <div class="member-attendance">
+      <h3 style="text-align: center">Evidencija dolazaka</h3>
+      <table class="customTable">
+        <thead>
+        <tr>
+          <th scope="col">Redni broj</th>
+          <th scope="col">Datum</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let e of evidencija;let i = index">
+          <td>{{i + 1}}</td>
+          <td>{{e.datum}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

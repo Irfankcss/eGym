@@ -5,9 +5,7 @@ import {FormsModule} from "@angular/forms";
 import {Mojconfig} from "./moj-config";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 
-
 declare function porukaSuccess(m:string):any;
-
 
 @Component({
   selector: 'app-root',
@@ -19,9 +17,7 @@ declare function porukaSuccess(m:string):any;
 export class AppComponent implements OnInit{
   title = 'front-end';
 
-
-
-  constructor(private httpClient:HttpClient) {
+  constructor(private httpClient:HttpClient,private router:Router) {
   }
   jelLogiran():boolean{
     let token = window.localStorage.getItem("my-auth-token");
@@ -41,14 +37,23 @@ export class AppComponent implements OnInit{
       }
     }).subscribe(x=>{
       porukaSuccess("Uspješan logout");
+      this.router.navigate(["/prijavi-se"]);
     })
 
   }
 
   ngOnInit(): void {
-
-
   }
-
-
+  dohvatiLogiranogKorisnika(){
+    let token = window.localStorage.getItem("korisnik")??"";
+    try {
+      return JSON.parse(token);
+    }
+    catch (e){
+      return null;
+    }
+  }
+  isAdmin(){
+    return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isAdmin;
+  }
 }

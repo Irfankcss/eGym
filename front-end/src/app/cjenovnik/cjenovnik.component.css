@@ -28,6 +28,8 @@
   margin: 0.5%;
   border-radius: 10px;
   transition: transform 0.3s ease;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .options:hover{
   transform: scale(1.05);

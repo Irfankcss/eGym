@@ -3,7 +3,7 @@
         <h3>Lista korisnika</h3>
       </div>
   <div class="main-users">
-    <table  class="table table-striped">
+    <table class="customTable">
       <thead>
       <tr>
         <th scope="col">ID</th>
@@ -11,31 +11,30 @@
         <th scope="col">Admin</th>
         <th scope="col">Korisnik</th>
         <th scope="col">Radnik</th>
-        <th scope="col">Dugme</th>
+        <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Larry</td>
-        <td>the Bird</td>
-        <td>twitter</td>
+      <tr *ngFor="let lk of listaKorisnika">
+        <th scope="row">{{lk.id}}</th>
+        <td>{{lk.korisnickoIme}}</td>
+        <td>{{lk.isAdmin}}</td>
+        <td>{{lk.isKorisnik}}</td>
+        <td>{{lk.isRadnik}}</td>
+        <td> <button *ngIf="!lk.isAdmin" class="customDugme btn btn-warning" (click)="odaberi(lk)">Obriši</button>
+          <button *ngIf="!lk.isAdmin" class="customDugme btn btn-warning" (click)="pripremiKorisnika(lk); isUrediVidljivo= !isUrediVidljivo">Uredi</button>
+        </td>
       </tr>
       </tbody>
     </table>
   </div>
 </div>
 
+<app-uredi-korisnik *ngIf="isUrediVidljivo" (otvori)="this.otvaranjeEdit($event)"
+                    [ID]="this.ID"
+                    [KorisnickoIme] = "this.KorisnickoIme"
+                    [IsAdmin] = "this.IsAdmin"
+                    [IsKorisnik]="this.IsKorisnik"
+                    [IsRadnik]="this.IsRadnik"
+                    [IsClan]="this.IsClan"></app-uredi-korisnik>
 

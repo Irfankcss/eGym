@@ -30,6 +30,7 @@
   </button>
 </div>
 
-<app-obavijesti-kontrola></app-obavijesti-kontrola>
+<app-obavijesti-kontrola *ngIf="isAdmin()"></app-obavijesti-kontrola>
 <app-izdvojeni-proizvodi></app-izdvojeni-proizvodi>
+<app-videi></app-videi>
 <app-contact-footer></app-contact-footer>
