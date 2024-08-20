@@ -8,6 +8,7 @@ namespace eGym.Data.ViewModels.NarudzbaVMs
         public int Id { get; set; }
         public DateTime DatumKreiranja { get; set; }
         public bool isOdobrena { get; set; }
+        public bool isPoslana { get; set; }
         public double Vrijednost { get; set; }
         public double? Popust { get; set; }
         public int KorisnikID { get; set; }

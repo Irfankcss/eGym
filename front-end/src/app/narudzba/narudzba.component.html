@@ -1,4 +1,5 @@
 <div class="container">
+  <div id="zaPreuzet">
   <div class="header">
     <h4>Narudžba uspješno kreirana.</h4>
     <p>Hvala na ukazanom povjerenju! Nakon pregleda narudžbe, bićete obaviješteni o statusu Vaše narudžbe putem mail-a.<br>
@@ -63,12 +64,13 @@
         </tr>
       </table>
     </div>
-
+  </div>
+  </div>
     <div class="pdf-link">
-      <p><a href="#">Kliknite ovdje ako želite preuzeti potvrdu u PDF formatu</a></p>
+      <p><a class="preuzmiPdf" (click)="preuzmiPdf()">Kliknite ovdje ako želite preuzeti potvrdu u PDF formatu</a></p>
     </div>
   </div>
-</div>
+
 
 <ng-template #loadingTemplate>
   <div class="loading-container">

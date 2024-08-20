@@ -421,3 +421,7 @@ background-color: rgba(0, 0, 0, 0.77);
   justify-content: center;
   flex-direction: row;
 }
+
+.upozorenje{
+  color: red;
+}

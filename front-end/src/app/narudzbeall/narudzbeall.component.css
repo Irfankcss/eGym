@@ -1,0 +1,141 @@
+.narudzbe-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.narudzbe-table th, .narudzbe-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd; /* Border for all table cells */
+  text-align: left;
+}
+
+.narudzbe-table th {
+  background-color: rgb(253, 208, 0);
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.narudzbe-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Flexbox layout for products */
+.narudzbe-table td ul {
+  display: flex;
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+  border: 1px solid #ddd; /* Border around the product list */
+  padding: 10px; /* Add padding to product list for spacing */
+  gap: 10px; /* Space between product items */
+}
+
+.narudzbe-table td ul li {
+  margin-bottom: 5px;
+  padding: 8px; /* Add padding to each product item */
+  border: 1px solid #ccc; /* Border around each product item */
+  border-radius: 3px; /* Optional: Add some rounding to product item borders */
+  background-color: #f0f0f0; /* Optional: Light background for product items */
+  flex: 1; /* Allow product items to take up equal space */
+}
+
+.narudzbe-table td {
+  vertical-align: top; /* Ensure that content aligns to the top of each cell */
+}
+.main{
+  position: relative;
+  top:18%;
+}
+.proizvodi-ul{
+  overflow:scroll;
+  max-width: 160px;
+}
+.proizvodi-li{
+  min-width: 140px;
+}
+.prihvaceneSwitch, .zapregledSwitch {
+  background-color: #fbce00;
+  color: #000000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.prihvaceneSwitch:hover, .zapregledSwitch:hover {
+  background-color: rgba(253, 208, 0, 0.44);
+}
+.poslaneSwitch{
+  background-color: #519b04;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+  transition: background-color 0.3s ease;
+}
+.poslaneSwitch:hover{
+  background-color: #7ae708;
+}
+
+.cekiraj-button, .odobri-button, .odbij-button, .posalji-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: background-color 0.3s ease;
+}
+.upozorenje-lbl{
+  color:red;
+}
+.cekiraj-button {
+  margin-top:5px;
+  background-color: #ffffff;
+  color: #fbce00;
+  font-weight: bold;
+  border: 1px solid #ad8c06;
+}
+
+.cekiraj-button:hover {
+  background-color: #ffffff;
+  color: #ad8c06;
+}
+
+.odobri-button, .posalji-button {
+  margin-top:5px;
+  background-color: #ffffff;
+  color: #5bb75b;
+  font-weight: bold;
+  border: 1px solid #317531;
+}
+
+.odobri-button:hover, .posalji-button:hover {
+  background-color: #fdfdfd;
+  color: #317531;
+}
+
+.odbij-button {
+  margin-top:5px;
+  background-color: #efefef;
+  color: #c95656;
+  font-weight: bold;
+  border: 1px solid #960d0d;
+}
+
+.odbij-button:hover {
+  background-color: #ffffff;
+  color: #960d0d;
+}

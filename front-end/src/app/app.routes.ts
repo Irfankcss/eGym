@@ -10,6 +10,7 @@ import {KontaktComponent} from "../kontakt/kontakt.component";
 import {CjenovnikComponent} from "./cjenovnik/cjenovnik.component";
 import {ListaKorisnikaComponent} from "./lista-korisnika/lista-korisnika.component";
 import {NarudzbaComponent} from "./narudzba/narudzba.component";
+import {NarudzbeallComponent} from "./narudzbeall/narudzbeall.component";
 
 export const routes: Routes = [
   {path:'', redirectTo:'/obavijesti', pathMatch:'full'},
@@ -23,5 +24,6 @@ export const routes: Routes = [
   {path:'kontakt',component:KontaktComponent},
   {path:'cjenovnik',component: CjenovnikComponent},
   {path:'korisnici',component:ListaKorisnikaComponent},
-  {path:'narudzba/:narudzbaID',component:NarudzbaComponent}
+  {path:'narudzba/:narudzbaID',component:NarudzbaComponent},
+  {path:'narudzbe',component:NarudzbeallComponent}
 ];
