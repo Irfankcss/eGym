@@ -28,6 +28,7 @@ export class UrediKorisnikComponent implements OnInit{
   }
   @Input() KorisnickoIme:any;
   @Input() IsAdmin:any;
+  @Input() IsClan:any;
   @Input() IsRadnik:any;
   @Input() IsKorisnik:any;
   @Input() ID:any;
@@ -52,6 +53,16 @@ export class UrediKorisnikComponent implements OnInit{
       this.zatvori();
       window.location.reload();
     })
+
+    if(this.IsClan && this.IsRadnik){
+      let obrisiClanUrl = Mojconfig.adresa_servera + `/Obradi/ClanObrisiIzmjenaStatusEndpoint?KorisnikID=${this.ID}`
+      this.httpClient.delete(obrisiClanUrl).subscribe(x=>{
+      })
+      let izmjeniStatusUrl = Mojconfig.adresa_servera + `/Obradi/ClanIzmjeniStatusEndpoint?ClanID=${this.ID}`
+      this.httpClient.post(izmjeniStatusUrl,{}).subscribe(x=>{
+      })
+    }
+
   }
 
 }

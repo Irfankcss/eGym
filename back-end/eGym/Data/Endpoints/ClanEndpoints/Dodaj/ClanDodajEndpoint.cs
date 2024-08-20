@@ -24,7 +24,7 @@ namespace eGym.Data.Endpoints.ClanEndpoints.Dodaj
                 throw new Exception("Korisnik nije logiran");
             }
             var identifikatorKorisnika = logiraniKorisnik.KorisnickiNalogId;
-            var korisnik = await _context.Korisnik.FirstOrDefaultAsync(x => x.ID ==+ identifikatorKorisnika);
+            var korisnik = await _context.Korisnik.FirstOrDefaultAsync(x => x.ID == identifikatorKorisnika);
             var noviclan = new Clan();
 
             if (korisnik != null)

@@ -13,7 +13,6 @@ namespace eGym.Data.Models
         public DateTime DatumZaposlenja {  get; set; }
         [ForeignKey(nameof(grad))]
         public int GradID {  get; set; }
-
         public Grad grad { get; set; }
         public string Spol {  get; set; }
 

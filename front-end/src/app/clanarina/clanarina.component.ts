@@ -46,10 +46,20 @@ export class ClanarinaComponent implements OnInit{
           "vrsta": tipMjesecne.value
         }
         this.httpClient.post(url,requestBody).subscribe(x=>{
-          alert('Uspješno učlanjen');
+          let korisnik = localStorage.getItem("korisnik")??"";
+          let korisnikParse = JSON.parse(korisnik);
+          korisnikParse.autentifikacijaToken.korisnickiNalog.isClan = true;
+          korisnik = JSON.stringify(korisnikParse);
+          localStorage.setItem("korisnik",korisnik);
+          window.location.reload();
         })
       }
     }
+
+
+
+
+
   }
 
   ngOnInit(): void {

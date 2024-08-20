@@ -11,4 +11,5 @@ export interface KorisnickiNalozi {
   isAdmin: boolean
   isKorisnik: boolean
   isRadnik: boolean
+  isClan:boolean
 }

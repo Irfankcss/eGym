@@ -45,6 +45,7 @@ export class ListaKorisnikaComponent implements OnInit{
   IsAdmin:any;
   IsRadnik:any;
   IsKorisnik:any;
+  IsClan:any;
   ID:any;
   pripremiKorisnika(lk: any) {
       this.ID  = lk.id
@@ -52,6 +53,7 @@ export class ListaKorisnikaComponent implements OnInit{
       this.IsAdmin = lk.isAdmin;
       this.IsRadnik = lk.isRadnik;
       this.IsKorisnik = lk.isKorisnik;
+      this.IsClan = lk.isClan;
   }
   otvaranjeEdit($event : boolean)
   {
