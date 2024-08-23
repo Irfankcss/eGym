@@ -4,6 +4,9 @@ import {NgForOf} from "@angular/common";
 import {Mojconfig} from "../../moj-config";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {LogiraniClan} from "./logiraniClan";
+import {jsPDF} from 'jspdf';
+import html2canvas from 'html2canvas';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-clanarina-korisnik',
@@ -53,12 +56,14 @@ export class ClanarinaKorisnikComponent implements OnInit{
       this.evidencija.push({redniBroj: i, datum: new Date(izracunatiDatum.getFullYear(),izracunatiDatum.getMonth(),izracunatiDatum.getDate(),this.getRandomInt(1,24),this.getRandomInt(1,59),this.getRandomInt(1,59)), vrijemeIzlaska: randomNumber, vrijemeUlaska: randomNumber})
 
       this.evidencija.sort((a, b) => a.datum.getTime() - b.datum.getTime());
+      window.localStorage.setItem('evidenciaClana',JSON.stringify(this.evidencija));
     }
     let url = Mojconfig.adresa_servera + `/Obradi/ClanGetByEndpoint/GetByID`;
     if(this.isClan())
     {
       this.httpClient.get<LogiraniClan>(url).subscribe(x=>{
         this.logiraniClan = x.clanovi;
+        window.localStorage.setItem('logiraniClan',JSON.stringify(this.logiraniClan));
       })
     }
 
@@ -80,5 +85,59 @@ export class ClanarinaKorisnikComponent implements OnInit{
   }
   isClan(){
     return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isClan;
+  }
+
+  dohvatiLogiranogClana(){
+    let logiraniClan = window.localStorage.getItem("logiraniClan")??"";
+    try {
+      return JSON.parse(logiraniClan);
+    }
+    catch (e){
+      return null;
+    }
+  }
+  dohvatiEvidencijuDolazaka(){
+    let evidencijaDolazaka = window.localStorage.getItem("evidenciaClana")??"";
+    try {
+      return JSON.parse(evidencijaDolazaka);
+    }
+    catch (e){
+      return null;
+    }
+  }
+
+  preuzmiPdf() {
+      const doc = new jsPDF();
+
+      let clan = this.dohvatiLogiranogClana();
+      const naslov = 'Izvjestaj za ' + clan[0].ime;
+      const sirinaStranice = doc.internal.pageSize.getWidth();
+      const sirinaTexta = doc.getTextDimensions(naslov).w;
+      const textX = (sirinaStranice - sirinaTexta) / 2;
+
+
+      doc.setFontSize(18);
+      doc.text(naslov,textX,22);
+
+
+      doc.setFontSize(12);
+      doc.text('Broj kartice: ' + clan[0].brojClana,14,32);
+      doc.text('Tip mjesecne: ' + clan[0].vrsta,14,40);
+      doc.text('Datum uplate: ' + clan[0].datumUplate,14,48);
+      doc.text('Datum isteka: ' + clan[0].datumIsteka,14,56);
+
+      const evidencijaDolazaka = this.dohvatiEvidencijuDolazaka();
+      console.log(evidencijaDolazaka[0].redniBroj);
+
+      autoTable(doc,{
+        startY: 70,
+        head:[['Redni broj','Datum']],
+        body:[
+          [evidencijaDolazaka[0].redniBroj,evidencijaDolazaka[0].datum],
+            [evidencijaDolazaka[1].redniBroj,evidencijaDolazaka[1].datum]
+        ]
+      });
+
+      window.open(doc.output('bloburl'), '_blank');
   }
 }

@@ -51,3 +51,16 @@ tr:hover{
 .member-attendance{
   margin-top: 2%;
 }
+.pdf-link{
+  color: white;
+  text-align: right;
+  display: block;
+  padding-right: 3%;
+  padding-top: 2%;
+  text-decoration: none;
+  font-size: large;
+  cursor: pointer;
+}
+.pdf-link:hover{
+  color: yellow;
+}

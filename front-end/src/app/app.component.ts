@@ -30,6 +30,8 @@ export class AppComponent implements OnInit{
     let korisnik = window.localStorage.getItem("korisnik")??"";
     window.localStorage.setItem("my-auth-token","");
     window.localStorage.setItem("korisnik","");
+    window.localStorage.setItem("logiraniClan","");
+    window.localStorage.setItem("evidenciaClana","");
 
     let url = Mojconfig.adresa_servera + `/Obradi/AuthLogoutEndpoint/logout`;
     this.httpClient.post(url,{},{
