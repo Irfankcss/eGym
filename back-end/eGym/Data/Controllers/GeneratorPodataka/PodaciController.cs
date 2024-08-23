@@ -206,43 +206,6 @@ public class PodaciController : ControllerBase
             });
         }
         _dbContext.SaveChanges();
-        var radnici = _dbContext.Radnik.ToList();
-        if(radnici.Count < 1)
-        {
-            _dbContext.Radnik.Add(new Radnik
-            {
-                isRadnik = true,
-                Ime = "Kerim",
-                Prezime = "Muderizović",
-                Email = "jolinecaroline@gmail.com",
-                BrojTelefona = "061334231",
-                DatumRodjenja = DateTime.Now,
-                DatumZaposlenja = DateTime.Now,
-                GradID = 4,
-                KorisnickoIme = "kerim.abs",
-                Lozinka = "Random",
-                Slika = "https://cdn.shopify.com/s/files/1/0279/7482/8116/files/BOLDE-Bottle-Black-Open.jpg?v=1658444672&width=2048",
-                Spol = "M",
-                isClan = false
-            });
-            _dbContext.Radnik.Add(new Radnik
-            {
-                isRadnik = true,
-                Ime = "Lamija",
-                Prezime = "Torlović",
-                Email = "ltorlovic@edu.fit.ba",
-                BrojTelefona = "061394231",
-                DatumRodjenja = DateTime.Now,
-                DatumZaposlenja = DateTime.Now,
-                GradID = 4,
-                KorisnickoIme = "lamija.sda",
-                Lozinka = "Random",
-                Slika = "https://cdn.shopify.com/s/files/1/0279/7482/8116/files/BOLDE-Bottle-Black-Open.jpg?v=1658444672&width=2048",
-                Spol = "Ž",
-                isClan = false
-            });
-            _dbContext.SaveChanges();
-        }
         return Ok();
     }
 

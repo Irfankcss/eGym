@@ -1,11 +1,13 @@
 .customDiv {
-  background-color: #ffd200;
+  transition: transform 0.3s ease;
+  background-color: rgba(34,34,41);
   border-radius: 10px;
   margin: 10vh;
   width: 33vh;
   }
 .customDiv:hover{
-  background-color: #c5a51d;
+  border:1px solid white;
+  transform: scale(1.05);
 }
 .customPhone{
   background-image: url('/assets/prodavnica-images/kontakt-ikone/telephone.png');
@@ -18,6 +20,7 @@
   font-size: 22px;
   color: white;
   margin-left: 10px;
+  font-family: 'Open sans';
 }
 .customEmail{
   background-image: url('/assets/prodavnica-images/kontakt-ikone/email.png');

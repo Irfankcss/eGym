@@ -1,11 +1,12 @@
-export interface Radnik {
-  radnici: Radnici[]
+export interface Radnici {
+  radnik: Radnik[]
 }
 
-export interface Radnici {
+export interface Radnik {
   ime: string
   prezime: string
   datumZaposlenja: string
   spol: string
 }
+
 

@@ -1,6 +1,10 @@
 <div class="navbar">
   <ul class="nav justify-content-end bg-dark customClass w-100 p-2">
     <li class="nav-item">
+      <a *ngIf="jelLogiran()" class="nav-link text-white customPointer">{{korisnickoIme}}</a>
+    </li>
+    <div *ngIf="jelLogiran()" class="vr text-white"></div>
+    <li class="nav-item">
       <a class="nav-link text-white customPointer">Korpa</a>
     </li>
     <div class="vr text-white"></div>

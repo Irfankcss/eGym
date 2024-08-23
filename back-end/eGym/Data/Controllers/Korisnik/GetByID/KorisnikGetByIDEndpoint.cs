@@ -37,7 +37,7 @@ namespace eGym.Data.Controllers.Korisnik.GetByID
                 Prezime = korisnik.Prezime,
                 BrojTelefona = korisnik.BrojTelefona,
                 DatumRodjenja = korisnik.DatumRodjenja,
-                OpstinaID = korisnik.OpstinaRodjenjaID ?? 0,
+                OpstinaID = korisnik.OpstinaRodjenjaID,
                 Spol = korisnik.Spol,
             };
             return response;

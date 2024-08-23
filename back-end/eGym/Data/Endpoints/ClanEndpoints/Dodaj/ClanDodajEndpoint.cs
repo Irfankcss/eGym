@@ -31,13 +31,18 @@ namespace eGym.Data.Endpoints.ClanEndpoints.Dodaj
             {
                 if (!korisnik.isClan)
                 {
+                    var novaClanarina = new Clanarina
+                    {
+                        DatumUplate = DateTime.Now,
+                        DatumIsteka = (DateTime.Now).AddDays(30)
+                    };
+
                     Random rnd = new Random();
                     noviclan.BrojClana = rnd.Next(100, 1000);
-                    noviclan.ClanarinaID = 1;
+                    noviclan.Clanarina = novaClanarina;
                     noviclan.KorisnikID = identifikatorKorisnika;
                     noviclan.Vrsta = request.Vrsta;
                     korisnik.isClan = true;
-
                 }
                 else throw new Exception("Korisnik je vec clan");
 

@@ -16,6 +16,7 @@ declare function porukaSuccess(m:string):any;
 })
 export class AppComponent implements OnInit{
   title = 'front-end';
+  korisnickoIme:any;
 
   constructor(private httpClient:HttpClient,private router:Router) {
   }

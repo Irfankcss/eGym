@@ -1,46 +1,46 @@
-﻿using eGym.Data.Models;
+﻿using eGym.Data.Helpers.Services;
+using eGym.Data.Models;
 using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.Data.Endpoints.RadnikEndpoints.Dodaj
 {
-    [Route("Radnik")]
     [Tags("Radnik")]
-    public class RadnikDodajEndpoint : MyBaseEndpoint<RadnikDodajRequest,int>
+    public class RadnikDodajEndpoint : MyBaseEndpoint<RadnikDodajRequest, RadnikDodajResponse>
     {
         private readonly ApplicationDbContext _context;
-
-        public RadnikDodajEndpoint(ApplicationDbContext context)
+        private readonly MyAuthService _authService;
+        public RadnikDodajEndpoint(ApplicationDbContext context, MyAuthService authService)
         {
             _context = context;
+            _authService = authService;
         }
-
-        [HttpPost("Dodaj Radnika")]
-        public override async Task<int> Obradi([FromQuery]RadnikDodajRequest request, CancellationToken cancellationToken)
+        [HttpPost]
+        public override async Task<RadnikDodajResponse> Obradi([FromBody]RadnikDodajRequest request, CancellationToken cancellationToken)
         {
-            var radnik = new Radnik();
-
-
-                radnik.Ime = request.Ime;
-                radnik.Prezime = request.Prezime;
-                radnik.Spol = request.Spol;
-                radnik.DatumRodjenja = request.DatumRodjenja;
-                radnik.DatumZaposlenja = request.DatumZaposlenja;
-                radnik.BrojTelefona = request.BrojTelefona;
-                radnik.GradID = request.GradID;
-                radnik.KorisnickoIme = request.KorisnickiNalog.KorisnickoIme;
-                radnik.Email = request.KorisnickiNalog.Email;
-                radnik.Lozinka = request.KorisnickiNalog.Lozinka;
-                radnik.Slika = request.KorisnickiNalog.Slika;
-                radnik.isAdmin = request.KorisnickiNalog.isAdmin;
-                radnik.isRadnik = request.KorisnickiNalog.isRadnik;
-                radnik.isKorisnik = request.KorisnickiNalog.isKorisnik;
-            
-
-            
-            _context.Radnik.Add(radnik);
+            if (!(_authService.isLogiran() && _authService.isAdmin()))
+                throw new Exception("Korisnik nema permisiju admina ili nije logiran");
+            var noviRadnik = new Radnik
+            {
+                Ime = request.Ime,
+                Prezime = request.Prezime,
+                DatumRodjenja = request.DatumRodjenja,
+                BrojTelefona = request.BrojTelefona,
+                DatumZaposlenja = request.DatumZaposlenja,
+                GradID = request.GradID,
+                Spol = request.Spol,
+                KorisnikID = request.KorisnikID
+            };
+            var provjeraDuplikata = _context.Radnik.Where(r => r.KorisnikID == noviRadnik.KorisnikID).FirstOrDefault();
+            if(provjeraDuplikata != null){
+                throw new Exception("Radnik vec postoji u bazi");
+            }
+            _context.Radnik.Add(noviRadnik);
             await _context.SaveChangesAsync();
-            return radnik.ID;
+            return new RadnikDodajResponse
+            {
+
+            };
         }
     }
 }

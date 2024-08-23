@@ -20,7 +20,7 @@ namespace eGym.Data.Endpoints.PoslanaNarudzbaEndpoints.Dodaj
         [HttpPost("Posalji narudzbu")]
         public override async Task<int> Obradi(PoslanaNarudzbaDodajRequest request, CancellationToken cancellationToken)
         {
-            var _radnik = await _context.Radnik.FirstOrDefaultAsync(r => r.ID == request.RadnikID);
+            var _radnik = await _context.Radnik.FirstOrDefaultAsync(r => r.KorisnikID == request.RadnikID);
             var narudzba = await _context.Narudzba.AsNoTracking().Include(k=>k.korisnik).FirstAsync(n => n.Id == request.NarudzbaID);
 
 

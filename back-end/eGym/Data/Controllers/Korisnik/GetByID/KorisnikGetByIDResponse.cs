@@ -7,7 +7,7 @@
         public string Prezime { get; set; }
         public string BrojTelefona { get; set; }
         public string Spol { get; set; }
-        public int OpstinaID { get; set; }
+        public int? OpstinaID { get; set; }
         public DateTime DatumRodjenja { get; set; }
     }
 }

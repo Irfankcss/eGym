@@ -42,6 +42,9 @@ export class RegistrujSeComponent implements OnInit{
   }
   gradovi:Gradovi[]=[];
   ngOnInit(): void {
+    if(this.isLogiran()){
+      this.router.navigate(["/obavijesti"]);
+    }
     let url=Mojconfig.adresa_servera + `/Obradi/GradPretragaEndpoint`;
     this.httpClient.get<GradoviGetall>(url).subscribe((x:GradoviGetall)=>{
       this.gradovi = x.gradovi;
@@ -91,12 +94,26 @@ export class RegistrujSeComponent implements OnInit{
         spol: this.txtSpol,
         korisnickoIme: this.txtKorisnickoIme,
         email: this.txtEmail,
-        lozinka: this.txtLozinka
+        lozinka: this.txtLozinka,
       };
       this.httpClient.post(url,noviKorisnik).subscribe(x=>{
         porukaSuccess('Uspješno kreiran korisnički nalog');
         this.router.navigate(['/prijavi-se']);
       })
     }
+  }
+  dohvatiLogiranogKorisnika(){
+    let token = window.localStorage.getItem("korisnik")??"";
+    try {
+      return JSON.parse(token);
+    }
+    catch (e){
+      return null;
+    }
+  }
+  isLogiran(){
+    let token = window.localStorage.getItem("my-auth-token");
+
+    return token != "";
   }
 }

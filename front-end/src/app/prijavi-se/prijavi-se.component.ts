@@ -30,6 +30,9 @@ export class PrijaviSeComponent implements OnInit{
   constructor(public httpClient:HttpClient, private router:Router) {
   }
   ngOnInit(): void {
+    if(this.isLogiran()){
+      this.router.navigate(["/obavijesti"])
+    }
   }
 
 
@@ -45,9 +48,24 @@ export class PrijaviSeComponent implements OnInit{
         let token = x.autentifikacijaToken.vrijednost;
         window.localStorage.setItem("my-auth-token",token);
         window.localStorage.setItem("korisnik",JSON.stringify(x));
+
         porukaSuccess("Uspješna prijava");
         this.router.navigate(["/obavijesti"]);
       }
     })
+  }
+  dohvatiLogiranogKorisnika(){
+    let token = window.localStorage.getItem("korisnik")??"";
+    try {
+      return JSON.parse(token);
+    }
+    catch (e){
+      return null;
+    }
+  }
+  isLogiran(){
+    let token = window.localStorage.getItem("my-auth-token");
+
+    return token != "";
   }
 }

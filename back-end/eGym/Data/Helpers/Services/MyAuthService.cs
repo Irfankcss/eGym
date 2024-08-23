@@ -2,6 +2,7 @@
 using eGym.Data.Models;
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace eGym.Data.Helpers.Services
 {
@@ -15,9 +16,22 @@ namespace eGym.Data.Helpers.Services
             _applicationDbContext = applicationDbContext;
             _httpContextAccessor = httpContextAccessor;
         }
-        public bool JelLogiran()
+        public bool isAdmin()
         {
-            return GetAuthInfo().isLogiran;
+            return GetKorisnik().korisnickiNalog?.isAdmin ?? false;
+        }
+        public bool isRadnik()
+        {
+            return GetKorisnik().korisnickiNalog?.isRadnik ?? false;
+        }
+        public bool isLogiran()
+        {
+            return GetKorisnik()?.isLogiran ?? false;
+        }
+        public MyAuthInfo GetKorisnik()
+        {
+            var autentifikacijaKorisnik = _applicationDbContext.AutentifikacijaToken.Include(x => x.korisnickiNalog).FirstOrDefault();
+            return new MyAuthInfo(autentifikacijaKorisnik);
         }
 
         public MyAuthInfo GetAuthInfo()

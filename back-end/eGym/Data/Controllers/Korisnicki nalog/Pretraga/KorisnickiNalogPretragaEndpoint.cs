@@ -26,7 +26,7 @@ namespace eGym.Data.Controllers.Korisnicki_nalog.Pretraga
                     isAdmin = x.isAdmin,
                     isKorisnik = x.isKorisnik,
                     isRadnik = x.isRadnik,
-                    isClan = x.isClan
+                    isClan = x.isClan,
                 }).ToListAsync();
             return new KorisnickiNalogPretragaResponse
             {

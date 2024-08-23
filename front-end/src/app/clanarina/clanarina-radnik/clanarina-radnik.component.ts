@@ -3,7 +3,7 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {Mojconfig} from "../../moj-config";
 import {Clan} from "./Clan";
 import {KeyValuePipe, NgForOf} from "@angular/common";
-import {Radnik} from "./Radnik";
+import {Radnici, Radnik} from "./Radnik";
 
 declare function porukaSuccess(m:string):any;
 
@@ -19,15 +19,16 @@ export class ClanarinaRadnikComponent implements OnInit{
   listaClanova:any;
   radnikPodaci:any;
   constructor(public httpClient:HttpClient) {
-    if(this.isRadnik()){
-      let radnikID = this.dohvatiLogiranogKorisnika().autentifikacijaToken.korisnickiNalog.id;
-      let url = Mojconfig.adresa_servera + `/Obradi/RadnikGetByEndpoint/GetByID?ID=${radnikID}`;
-      this.httpClient.get<Radnik>(url).subscribe(x=>{
-        this.radnikPodaci = x.radnici;
-      })
-    }
+
   }
   ngOnInit(): void {
+    if(this.isRadnik()){
+      let radnikID = this.dohvatiLogiranogKorisnika().autentifikacijaToken.korisnickiNalog.id;6667
+      let radnikUrl = Mojconfig.adresa_servera + `/Obradi/RadnikPretragaByEndpoint?KorisnickiNalogID=${radnikID}`;
+      this.httpClient.get<Radnici>(radnikUrl).subscribe(x=>{
+        this.radnikPodaci = x.radnik;
+      })
+    }
     let url = Mojconfig.adresa_servera + `/Clan/GetAll`;
     this.httpClient.get<Clan>(url).subscribe(x=>{
       this.listaClanova = x.clanovi;

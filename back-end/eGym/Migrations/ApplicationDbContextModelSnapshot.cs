@@ -84,6 +84,10 @@ namespace eGym.Migrations
                     b.Property<int>("KorisnikID")
                         .HasColumnType("int");
 
+                    b.Property<string>("Vrsta")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ClanID");
 
                     b.HasIndex("ClanarinaID");
@@ -204,6 +208,9 @@ namespace eGym.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isAdmin")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("isClan")
                         .HasColumnType("bit");
 
                     b.Property<bool>("isKorisnik")
@@ -514,6 +521,51 @@ namespace eGym.Migrations
                     b.ToTable("Proizvod");
                 });
 
+            modelBuilder.Entity("eGym.Data.Models.Radnik", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("BrojTelefona")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DatumRodjenja")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DatumZaposlenja")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("GradID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("KorisnikID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Prezime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Spol")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("GradID");
+
+                    b.HasIndex("KorisnikID");
+
+                    b.ToTable("Radnik");
+                });
+
             modelBuilder.Entity("eGym.Data.Models.Slika", b =>
                 {
                     b.Property<int>("Id")
@@ -572,46 +624,9 @@ namespace eGym.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("isClan")
-                        .HasColumnType("bit");
-
                     b.HasIndex("OpstinaRodjenjaID");
 
                     b.ToTable("Korisnik");
-                });
-
-            modelBuilder.Entity("eGym.Data.Models.Radnik", b =>
-                {
-                    b.HasBaseType("eGym.Data.Models.KorisnickiNalog");
-
-                    b.Property<string>("BrojTelefona")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DatumRodjenja")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DatumZaposlenja")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("GradID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Ime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Prezime")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Spol")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("GradID");
-
-                    b.ToTable("Radnik");
                 });
 
             modelBuilder.Entity("eGym.Data.Models.AutentifikacijaToken", b =>
@@ -774,6 +789,24 @@ namespace eGym.Migrations
                     b.Navigation("Kategorija");
                 });
 
+            modelBuilder.Entity("eGym.Data.Models.Radnik", b =>
+                {
+                    b.HasOne("eGym.Data.Models.Grad", "grad")
+                        .WithMany()
+                        .HasForeignKey("GradID")
+                        .OnDelete(DeleteBehavior.NoAction);
+
+                    b.HasOne("eGym.Data.Models.KorisnickiNalog", "Korisnik")
+                        .WithMany()
+                        .HasForeignKey("KorisnikID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Korisnik");
+
+                    b.Navigation("grad");
+                });
+
             modelBuilder.Entity("eGym.Data.Models.Slika", b =>
                 {
                     b.HasOne("eGym.Data.Models.Proizvod", null)
@@ -805,23 +838,6 @@ namespace eGym.Migrations
                         .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("OpstinaRodjenja");
-                });
-
-            modelBuilder.Entity("eGym.Data.Models.Radnik", b =>
-                {
-                    b.HasOne("eGym.Data.Models.Grad", "grad")
-                        .WithMany()
-                        .HasForeignKey("GradID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("eGym.Data.Models.KorisnickiNalog", null)
-                        .WithOne()
-                        .HasForeignKey("eGym.Data.Models.Radnik", "ID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("grad");
                 });
 
             modelBuilder.Entity("eGym.Data.Models.Korpa", b =>

@@ -21,10 +21,16 @@ import {Korisnci} from "../korisnci";
 })
 export class UrediKorisnikComponent implements OnInit{
 
+  dodatniPodaciKorisnik:any;
+  trenutniDatum: Date = new Date();
 
   constructor(public httpClient:HttpClient) {
   }
   ngOnInit(): void {
+    let korisnikDodatniPodaciUrl = Mojconfig.adresa_servera + `/Obradi/KorisnikGetByIDEndpoint?ID=${this.ID}`;
+    this.httpClient.get(korisnikDodatniPodaciUrl).subscribe(x=>{
+      this.dodatniPodaciKorisnik = x;
+    })
   }
   @Input() KorisnickoIme:any;
   @Input() IsAdmin:any;
@@ -62,7 +68,24 @@ export class UrediKorisnikComponent implements OnInit{
       this.httpClient.post(izmjeniStatusUrl,{}).subscribe(x=>{
       })
     }
-
+    if(this.IsRadnik){
+      this.dodajRadnikaUbazu();
+    }
   }
+    dodajRadnikaUbazu(){
+      let radnikUrl = Mojconfig.adresa_servera + `/Obradi/RadnikDodajEndpoint`;
+      let requestBody = {
+        "ime": this.dodatniPodaciKorisnik.ime,
+        "prezime": this.dodatniPodaciKorisnik.prezime,
+        "datumRodjenja": this.dodatniPodaciKorisnik.datumRodjenja,
+        "brojTelefona": this.dodatniPodaciKorisnik.brojTelefona,
+        "datumZaposlenja": this.trenutniDatum,
+        "gradID": 1,
+        "spol": this.dodatniPodaciKorisnik.spol,
+        "korisnikID": this.ID
+      }
+      this.httpClient.post(radnikUrl,requestBody).subscribe(x=>{
 
+      })
+    }
 }

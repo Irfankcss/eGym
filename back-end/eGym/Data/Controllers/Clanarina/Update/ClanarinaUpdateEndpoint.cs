@@ -1,4 +1,5 @@
-﻿using eGym.Helpers;
+﻿using eGym.Data.Helpers.Services;
+using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.Data.Controllers.Clanarina.Update
@@ -7,13 +8,18 @@ namespace eGym.Data.Controllers.Clanarina.Update
     public class ClanarinaUpdateEndpoint : MyBaseEndpoint<ClanarinaUpdateRequest,ClanarinaUpdateResponse>
     {
         public readonly ApplicationDbContext _applicationDbContext;
-        public ClanarinaUpdateEndpoint (ApplicationDbContext applicationDbContext)
+        public readonly MyAuthService _authService;
+        public ClanarinaUpdateEndpoint (ApplicationDbContext applicationDbContext, MyAuthService authService)
         {
             _applicationDbContext = applicationDbContext;
+            _authService = authService;
         }
         [HttpPost]
         public override async Task<ClanarinaUpdateResponse> Obradi([FromBody]ClanarinaUpdateRequest request, CancellationToken cancellationToken)
         {
+            if (!(_authService.isLogiran() && (_authService.isAdmin() ||_authService.isRadnik())))
+                throw new Exception("Korisnik nema permisiju admina/radnika ili nije logiran");
+
             var clanarina = _applicationDbContext.Clanarina.FirstOrDefault(x=>x.ID == request.ClanarinaId);
             if (clanarina == null)
             {

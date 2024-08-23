@@ -27,7 +27,6 @@ export class ClanarinaKorisnikComponent implements OnInit{
   constructor(public httpClient:HttpClient) {
   }
   ngOnInit(): void {
-
     for (let i=1;i<3;i++){
       let randomNumber = this.getRandomInt(1,10);
       let izracunatiDatum = new Date(this.trenutniDatum);
@@ -51,13 +50,11 @@ export class ClanarinaKorisnikComponent implements OnInit{
         default:
           break;
       }
-      this.evidencija.push({redniBroj: i, datum: new Date(izracunatiDatum.getFullYear(),izracunatiDatum.getMonth(),izracunatiDatum.getDay(),izracunatiDatum.getHours(),izracunatiDatum.getMinutes(),izracunatiDatum.getSeconds()), vrijemeIzlaska: randomNumber, vrijemeUlaska: randomNumber})
+      this.evidencija.push({redniBroj: i, datum: new Date(izracunatiDatum.getFullYear(),izracunatiDatum.getMonth(),izracunatiDatum.getDate(),this.getRandomInt(1,24),this.getRandomInt(1,59),this.getRandomInt(1,59)), vrijemeIzlaska: randomNumber, vrijemeUlaska: randomNumber})
 
       this.evidencija.sort((a, b) => a.datum.getTime() - b.datum.getTime());
     }
-
     let url = Mojconfig.adresa_servera + `/Obradi/ClanGetByEndpoint/GetByID`;
-
     if(this.isClan())
     {
       this.httpClient.get<LogiraniClan>(url).subscribe(x=>{

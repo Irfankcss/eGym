@@ -1,4 +1,5 @@
-﻿using eGym.Helpers;
+﻿using eGym.Data.Helpers.Services;
+using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.Data.Controllers.Obavijesti.Dodaj
@@ -7,12 +8,17 @@ namespace eGym.Data.Controllers.Obavijesti.Dodaj
     public class ObavijestiDodajEndpoint : MyBaseEndpoint<ObavijestiDodajRequest, ObavijestiDodajResponse>
     {
         public readonly ApplicationDbContext _applicationDbContext;
-        public ObavijestiDodajEndpoint (ApplicationDbContext applicationDbContext) { 
+        private readonly MyAuthService _authService;
+        public ObavijestiDodajEndpoint (ApplicationDbContext applicationDbContext,MyAuthService authService) { 
             _applicationDbContext = applicationDbContext;
+            _authService = authService;
         }
         [HttpPost]
         public override async Task<ObavijestiDodajResponse> Obradi([FromBody] ObavijestiDodajRequest request, CancellationToken cancellationToken)
         {
+            if (!_authService.isAdmin())
+                throw new Exception("Korisnik nema permisiju admina");
+
             var noviObj = new Data.Models.Obavjesti
             {
                 DatumObjave = request.DatumObjave,

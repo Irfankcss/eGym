@@ -1,4 +1,5 @@
-﻿using eGym.Helpers;
+﻿using eGym.Data.Helpers.Services;
+using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eGym.Data.Controllers.Korisnicki_nalog.Update
@@ -7,13 +8,17 @@ namespace eGym.Data.Controllers.Korisnicki_nalog.Update
     public class KorisnickiNalogUpdateEndpoint : MyBaseEndpoint<KorisnickiNalogUpdateRequest, KorisnickiNalogUpdateResponse>
     {
         public readonly ApplicationDbContext _applicationDbContext;
-        public KorisnickiNalogUpdateEndpoint(ApplicationDbContext applicationDbContext)
+        public readonly MyAuthService _authService;
+        public KorisnickiNalogUpdateEndpoint(ApplicationDbContext applicationDbContext,MyAuthService authService)
         {
             _applicationDbContext = applicationDbContext;
+            _authService = authService;
         }
         [HttpPost]
         public override async Task<KorisnickiNalogUpdateResponse> Obradi([FromBody]KorisnickiNalogUpdateRequest request, CancellationToken cancellationToken)
         {
+            if (!(_authService.isAdmin() && _authService.isLogiran()))
+                throw new Exception("Korisnik nema permisiju admina ili nije logiran");
             var korisnickiNalog = _applicationDbContext.KorisnickiNalog.FirstOrDefault(x=>x.ID == request.KorisnickiNalogID);
             if(korisnickiNalog == null)
             {

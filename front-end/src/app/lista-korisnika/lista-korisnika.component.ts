@@ -5,6 +5,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {ObavijestiGetall} from "../obavijesti/obavijesti-getall";
 import {Korisnci} from "./korisnci";
 import {UrediKorisnikComponent} from "./uredi-korisnik/uredi-korisnik.component";
+import {Router} from "@angular/router";
 
 declare function porukaSuccess(m:string):any;
 
@@ -18,9 +19,12 @@ declare function porukaSuccess(m:string):any;
 export class ListaKorisnikaComponent implements OnInit{
 
   public listaKorisnika:any;
-  constructor(public httpClient:HttpClient) {
+  constructor(public httpClient:HttpClient,private router:Router) {
   }
   ngOnInit(): void {
+    if(!this.isAdmin()){
+      this.router.navigate(["/obavijesti"])
+    }
     let url = Mojconfig.adresa_servera + `/Obradi/KorisnickiNalogPretragaEndpoint`;
     this.httpClient.get<Korisnci>(url).subscribe((x:Korisnci)=>{
       this.listaKorisnika = x.korisnickiNalozi;
@@ -58,5 +62,17 @@ export class ListaKorisnikaComponent implements OnInit{
   otvaranjeEdit($event : boolean)
   {
     this.isUrediVidljivo = $event;
+  }
+  dohvatiLogiranogKorisnika(){
+    let token = window.localStorage.getItem("korisnik")??"";
+    try {
+      return JSON.parse(token);
+    }
+    catch (e){
+      return null;
+    }
+  }
+  isAdmin(){
+    return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isAdmin;
   }
 }
