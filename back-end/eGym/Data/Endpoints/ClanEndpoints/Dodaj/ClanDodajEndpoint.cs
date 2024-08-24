@@ -1,8 +1,12 @@
-﻿using eGym.Data.Models;
+﻿using eGym.Data.Helpers.Services;
+using eGym.Data.Models;
 using eGym.Helpers;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
+using System.Net.Mail;
+using System.Security.Cryptography.Xml;
 
 namespace eGym.Data.Endpoints.ClanEndpoints.Dodaj
 {
@@ -11,9 +15,12 @@ namespace eGym.Data.Endpoints.ClanEndpoints.Dodaj
     public class ClanDodajEndpoint : MyBaseEndpoint<ClanDodajRequest,ClanDodajResponse>
     {
         private readonly ApplicationDbContext _context;
-        public ClanDodajEndpoint(ApplicationDbContext context)
+        private readonly EmailSender _emailSender;
+        public ClanDodajEndpoint(ApplicationDbContext context,EmailSender emailSender)
         {
             this._context = context;
+            _emailSender = emailSender;
+
         }
 
         [HttpPost("Dodaj")]
@@ -23,6 +30,7 @@ namespace eGym.Data.Endpoints.ClanEndpoints.Dodaj
             if(logiraniKorisnik == null){
                 throw new Exception("Korisnik nije logiran");
             }
+            
             var identifikatorKorisnika = logiraniKorisnik.KorisnickiNalogId;
             var korisnik = await _context.Korisnik.FirstOrDefaultAsync(x => x.ID == identifikatorKorisnika);
             var noviclan = new Clan();
@@ -31,18 +39,20 @@ namespace eGym.Data.Endpoints.ClanEndpoints.Dodaj
             {
                 if (!korisnik.isClan)
                 {
-                    var novaClanarina = new Clanarina
+                   var novaClanarina = new Clanarina
                     {
                         DatumUplate = DateTime.Now,
                         DatumIsteka = (DateTime.Now).AddDays(30)
                     };
-
+                    var logiraniKorisnikEmail = logiraniKorisnik.korisnickiNalog.Email;
                     Random rnd = new Random();
                     noviclan.BrojClana = rnd.Next(100, 1000);
                     noviclan.Clanarina = novaClanarina;
                     noviclan.KorisnikID = identifikatorKorisnika;
                     noviclan.Vrsta = request.Vrsta;
                     korisnik.isClan = true;
+
+                    _emailSender.Posalji(logiraniKorisnikEmail);
                 }
                 else throw new Exception("Korisnik je vec clan");
 
@@ -50,6 +60,9 @@ namespace eGym.Data.Endpoints.ClanEndpoints.Dodaj
             else throw new Exception("Nepostojeci korisnik");
             await _context.Clan.AddAsync(noviclan, cancellationToken);
             await _context.SaveChangesAsync(cancellationToken);
+
+            
+
             return new ClanDodajResponse
             {
 

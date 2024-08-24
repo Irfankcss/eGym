@@ -70,6 +70,7 @@ export class ClanarinaRadnikComponent implements OnInit{
     let urlStatus = Mojconfig.adresa_servera + `/Obradi/ClanIzmjeniStatusEndpoint?ClanID=${korisnikID}`;
     this.httpClient.post(urlStatus,{}).subscribe(x=>{
       this.ngOnInit();
+      window.location.reload();
     })
   }
 }
