@@ -123,6 +123,22 @@ public class PodaciController : ControllerBase
                 Spol = "Ž",
                 Slika = "https://png.pngtree.com/png-vector/20230318/ourmid/pngtree-duck-wild-animal-transparent-on-white-background-png-image_6655631.png"
             });
+            _dbContext.Korisnik.Add(new Korisnik
+            {
+                Ime = "Kerim",
+                Prezime = "Muderizovic",
+                BrojTelefona = "061243853",
+                DatumRodjenja = DateTime.Now,
+                Email = "kerim.muderizovic@edu.fit.ba",
+                isKorisnik = false,
+                isClan = false,
+                KorisnickoIme = "kerim.abs",
+                Lozinka = "Radnik",
+                OpstinaRodjenjaID = 2,
+                Spol = "M",
+                Slika = "https://png.pngtree.com/png-vector/20230318/ourmid/pngtree-duck-wild-animal-transparent-on-white-background-png-image_6655631.png",
+                isRadnik = true
+            });
         }
         _dbContext.SaveChanges();
         var clanarina = _dbContext.Clanarina.ToList();
@@ -205,6 +221,12 @@ public class PodaciController : ControllerBase
                 new Slika { Putanja="https://cdn.shopify.com/s/files/1/0279/7482/8116/files/BOLDE-Bottle-Black-Open.jpg?v=1658444672&width=2048"} }
             });
         }
+        var radnici = _dbContext.Radnik.ToList();
+        if (radnici.Count < 1)
+        {
+            _dbContext.Radnik.Add(new Radnik { Ime = "Kerim",Prezime="Muderizovic",DatumRodjenja = DateTime.Now,BrojTelefona = "061243853",DatumZaposlenja = DateTime.Now,GradID = 2,Spol = "M",KorisnikID = 6 });
+        }
+        _dbContext.SaveChanges();
         _dbContext.SaveChanges();
         return Ok();
     }
