@@ -7,6 +7,7 @@ import {ObavijestiKontrolaComponent} from "../obavijesti-kontrola/obavijesti-kon
 import {ContactFooterComponent} from "../contact-footer/contact-footer.component";
 import {IzdvojeniProizvodiComponent} from "../izdvojeni-proizvodi/izdvojeni-proizvodi.component";
 import {VideiComponent} from "../videi/videi.component";
+import {KalkulatorIdealneTezineComponent} from "../kalkulator-idealne-tezine/kalkulator-idealne-tezine.component";
 
 declare function sakrijDugme():any;
 declare function prikaziDugme():any;
@@ -14,7 +15,7 @@ declare function prikaziDugme():any;
 @Component({
   selector: 'app-obavijesti',
   standalone: true,
-  imports: [HttpClientModule, NgForOf, ObavijestiKontrolaComponent, ContactFooterComponent, IzdvojeniProizvodiComponent, NgIf, VideiComponent],
+  imports: [HttpClientModule, NgForOf, ObavijestiKontrolaComponent, ContactFooterComponent, IzdvojeniProizvodiComponent, NgIf, VideiComponent, KalkulatorIdealneTezineComponent],
   templateUrl: './obavijesti.component.html',
   styleUrl: './obavijesti.component.css'
 })

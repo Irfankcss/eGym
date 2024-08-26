@@ -223,4 +223,16 @@ export class PmainComponent implements OnInit {
     console.log("BREND", this.product.brend);
     console.log("KATEGORIJA", this.product.kategorija);
   }
+  dohvatiLogiranogKorisnika(){
+    let token = window.localStorage.getItem("korisnik")??"";
+    try {
+      return JSON.parse(token);
+    }
+    catch (e){
+      return null;
+    }
+  }
+  isAdmin(){
+    return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isAdmin;
+  }
 }

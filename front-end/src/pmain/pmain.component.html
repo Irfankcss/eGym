@@ -25,7 +25,7 @@
         </div>
       </a>
       <div class="buttoniZaUloge">
-      <button class="izdvoji" (click)="isPotvrdaVidljiva= !isPotvrdaVidljiva;pripremiProizvod(proizvod)">Izdvoji</button>
+      <button class="izdvoji" (click)="isPotvrdaVidljiva= !isPotvrdaVidljiva;pripremiProizvod(proizvod)" *ngIf="isAdmin()">Izdvoji</button>
         <button class="ukloni" (click)="pripremiBrisanje(proizvod.proizvodID)">Ukloni</button>
       </div>
     </div>
