@@ -6,7 +6,8 @@
         <div class="slike-wrapper">
           <div class="slikedesno" (click)="iducaSlika()"><label class="des">⧽</label></div>
           <div class="slikelijevo" (click)="prethodnaSlika()"><label class="lij">⧼</label></div>
-          <img src="{{slikeproizvoda[prikazanaSlika].putanja}}" class="slike-proizvoda">
+          <img *ngIf="slikeproizvoda.length > 0 && slikeproizvoda[prikazanaSlika]" src="{{slikeproizvoda[prikazanaSlika].putanja}}" class="slike-proizvoda">
+          <p *ngIf="slikeproizvoda.length === 0">Učitavanje...</p>
         </div>
     </div>
     <div class="DetaljiProizvoda">

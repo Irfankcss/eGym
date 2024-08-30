@@ -14,7 +14,10 @@
           <h5>{{ (ip.cijena - (ip.cijena * ip.popust / 100)).toFixed(2) }} BAM</h5>
           <p>-{{ip.popust}}%</p>
         </div>
-        <a class="btn btn-primary customButton">DODAJ U KORPU</a>
+        <button class="dodajukorpubtn" (click)="IdinaProizvod(ip.id)">      <div class="ikona-wrapper">
+          <img class="ikona" src="../../assets/images/plusicon.png" alt="Dodaj u korpu">
+        </div></button>
+
       </div>
     </div>
   </div>

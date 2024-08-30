@@ -1,13 +1,37 @@
 <div class="main">
   <div class="progress-indicator">
     <div class="indikatori-box">
-    <button (click)="trenutnaStranica=1" class="stage1">Sadržaj</button>
+      <button
+        (click)="trenutnaStranica=1"
+        class="stage1"
+        [ngClass]="{'active': trenutnaStranica === 1}"
+      >
+        Sadržaj
+      </button>
       <h3>→</h3>
-    <button (click)="trenutnaStranica=2" class="stage2">Dostava</button>
+      <button
+        (click)="trenutnaStranica=2"
+        class="stage2"
+        [ngClass]="{'active': trenutnaStranica === 2}"
+      >
+        Dostava
+      </button>
       <h3>→</h3>
-    <button class="stage3" (click)="trenutnaStranica=3">Adresa</button>
+      <button
+        class="stage3"
+        (click)="trenutnaStranica=3"
+        [ngClass]="{'active': trenutnaStranica === 3}"
+      >
+        Adresa
+      </button>
       <h3>→</h3>
-    <button class="stage4" (click)="prebaciNaStranicu4()">Plačanje</button>
+      <button
+        class="stage4"
+        (click)="prebaciNaStranicu4()"
+        [ngClass]="{'active': trenutnaStranica === 4}"
+      >
+        Plačanje
+      </button>
     </div>
   </div>
   <div *ngIf= "trenutnaStranica==1" class="tabela-proizvoda">
@@ -162,8 +186,8 @@
   </div>
   <div class="ukupno">
     <div *ngIf="trenutnaStranica<4" class="ukupno-cijena">
-      <label class="cijena-korpe">Ukupno: {{this.korpa.vrijednost}} BAM</label>
-      <label *ngIf="regularnaIsporukaChecked" class="dodatno-dostava">+{{this.troskoviDostave}},00 BAM dostava</label>
+      <label class="cijena-korpe"><span class="spancijene" >Ukupno: {{this.korpa.vrijednost}} BAM </span></label>
+      <label *ngIf="regularnaIsporukaChecked" class="dodatno-dostava"><span class="spancijene">+{{this.troskoviDostave}},00 BAM dostava</span></label>
     </div>
     <div class="navigacija-btns">
       <button class="btn-prethodni" *ngIf="trenutnaStranica>1" (click)="prethodnikorak()">Prethodni korak</button>

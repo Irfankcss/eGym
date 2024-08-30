@@ -3,6 +3,7 @@ import {Mojconfig} from "../moj-config";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {NgForOf, NgIf} from "@angular/common";
 import {UkloniPotvrdaComponent} from "./ukloni-potvrda/ukloni-potvrda.component";
+import {Router} from "@angular/router";
 
 
 
@@ -24,7 +25,7 @@ export class IzdvojeniProizvodiComponent implements OnInit{
   ukloniIsVidljivo: boolean = false;
   proizvodID:any;
 
-  constructor(public httpClient:HttpClient) {
+  constructor(public httpClient:HttpClient, private router:Router) {
   }
   ngOnInit(): void {
       let url = Mojconfig.adresa_servera + `/api/products/GetIzdvojeniProizvodi`;
@@ -51,5 +52,9 @@ export class IzdvojeniProizvodiComponent implements OnInit{
   }
   isAdmin(){
     return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isAdmin;
+  }
+
+  IdinaProizvod(id:number) {
+    this.router.navigate(['/viewproizvod', id]);
   }
 }
