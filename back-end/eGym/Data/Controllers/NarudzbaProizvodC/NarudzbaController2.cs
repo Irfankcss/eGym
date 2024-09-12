@@ -1,4 +1,5 @@
-﻿using eGym.Data.Models;
+﻿using eGym.Data.Helpers.Services;
+using eGym.Data.Models;
 using eGym.Data.ViewModels.NarudzbaVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,13 +11,18 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
     public class NarudzbaController2 : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public NarudzbaController2(ApplicationDbContext context)
+        public readonly MyAuthService _authService;
+        private readonly EmailSender _emailSender;
+        public NarudzbaController2(ApplicationDbContext context, MyAuthService authService, EmailSender emailSender)
         {
             _context = context;
+            _authService = authService;
+            _emailSender = emailSender;
         }
         [HttpGet("NarudzbaGetAll")]
         public async Task<ActionResult<IEnumerable<NarudzbaVM>>> GetNarudzba()
         {
+
             var narudzbe = await _context.Narudzba
                 .Include(n => n.Proizvodi)
                     .ThenInclude(np => np.Proizvod)
@@ -238,8 +244,17 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
             narudzba.isOdobrena = true;
             _context.Narudzba.Update(narudzba);
             await _context.SaveChangesAsync();
-
-            return Ok(new { message = "Uspješno odobrena narudžba" });
+            _emailSender.Posalji2(
+                narudzba.Email,
+                "Status narudžbe #" + narudzba.Id,
+                "Poštovani/Poštovana,\n" +
+                "Obavještavamo vas da je vaša narudžba s brojem #" + narudzba.Id + " uspješno odobrena od strane našeg tima.\n" +
+                "Vaša pošiljka će biti pripremljena i poslana u najkraćem mogućem roku. O daljnjem statusu i isporuci bit ćete pravovremeno obaviješteni putem ovog emaila.\n" +
+                "<hr>" +
+                "Zahvaljujemo vam na ukazanom povjerenju i radujemo se ponovnoj suradnji.\n" +
+                "Srdačan pozdrav,\n" +
+                "eGym"
+            ); return Ok(new { message = "Uspješno odobrena narudžba" });
         }
     }
 

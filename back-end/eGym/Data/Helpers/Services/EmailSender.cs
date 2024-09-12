@@ -30,5 +30,27 @@ namespace eGym.Data.Helpers.Services
 
             smtpClient.Send(message);
         }
+
+        public void Posalji2(string to,string Subject,string Body)
+        {
+            string fromMail = "egymzalik@gmail.com";
+            string fromPassword = "hcxrsjwktiidlxxb";
+
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress(fromMail);
+            message.Subject = Subject;
+            message.To.Add(new MailAddress(to));
+            message.Body = Body;
+            message.IsBodyHtml = true;
+
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(fromMail, fromPassword),
+                EnableSsl = true
+            };
+
+            smtpClient.Send(message);
+        }
     }
 }

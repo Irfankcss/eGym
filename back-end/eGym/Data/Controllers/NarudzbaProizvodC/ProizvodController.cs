@@ -1,4 +1,5 @@
-﻿using eGym.Data.Models;
+﻿using eGym.Data.Helpers.Services;
+using eGym.Data.Models;
 using eGym.Data.ViewModels.ProizvodVMs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,9 +13,11 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
     public class ProizvodController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public ProizvodController(ApplicationDbContext context)
+        public readonly MyAuthService _authService;
+        public ProizvodController(ApplicationDbContext context, MyAuthService authService)
         {
             _context = context;
+            _authService = authService;
         }
 
         [HttpGet("GetProizvodi")]
@@ -145,6 +148,8 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
         [HttpPost]
         public async Task<IActionResult> PostProizvod(ProizvodVM proizvodvm)
         {
+            if (!(_authService.isRadnik() && _authService.isLogiran()))
+                throw new Exception("Korisnik nema permisiju Radnika ili nije logiran");
             var proizvod = new Proizvod
             {
                 Naziv = proizvodvm.Naziv,
@@ -195,20 +200,19 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
         [HttpDelete("DeleteProizvod/{proizvodID}")]
         public async Task<IActionResult> DeleteProizvod(int proizvodID)
         {
-            // Find the product
+
+            if (!(_authService.isRadnik() && _authService.isLogiran()))
+                throw new Exception("Korisnik nema permisiju Radnika ili nije logiran");
+
             var proizvod = await _context.Proizvod
-                .Include(p => p.Slike) // Ensure Slike is loaded
+                .Include(p => p.Slike) 
                 .FirstOrDefaultAsync(p => p.ProizvodID == proizvodID);
 
             if (proizvod == null)
             {
                 return NotFound("Proizvod nije pronađen");
             }
-
-            // Remove related images
             _context.Slika.RemoveRange(proizvod.Slike);
-
-            // Remove the product
             _context.Proizvod.Remove(proizvod);
             await _context.SaveChangesAsync();
 
