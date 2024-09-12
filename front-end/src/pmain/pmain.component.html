@@ -1,7 +1,7 @@
 <div class="pmain-box">
 
   <div class="pmain-box">
-    <div class="proizvod-box"> <!--Ako je korisnik admin-->
+    <div class="proizvod-box" *ngIf="isRadnik()">
       <a (click)="OtvoriDodavanjeProizvoda()">
         <div class="slika-proizvoda-box">
           <img alt="slika proizvoda" class="slika-proizvod" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8oWGlLYDH5kWpR2cXEksBqIjdn-HYQkHpDw&s" height="500" width="500">
@@ -26,7 +26,7 @@
       </a>
       <div class="buttoniZaUloge">
       <button class="izdvoji" (click)="isPotvrdaVidljiva= !isPotvrdaVidljiva;pripremiProizvod(proizvod)" *ngIf="isAdmin()">Izdvoji</button>
-        <button class="ukloni" (click)="pripremiBrisanje(proizvod.proizvodID)">Ukloni</button>
+        <button class="ukloni" (click)="pripremiBrisanje(proizvod.proizvodID)" *ngIf="isAdmin()">Ukloni</button>
       </div>
     </div>
 

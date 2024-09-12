@@ -13,7 +13,7 @@
       <div class="ikona-wrapper" >
         <img class="ikona" src="assets/prodavnica-images/kontakt-ikone/email.png">
       </div>
-      <h4 *ngIf="postaHovered">zalik&#64;gym.com</h4>
+      <h4 *ngIf="postaHovered">egymzalik&#64;gmail.com</h4>
     </div>
     <div class="nacin-box" (mouseenter)="telefonEnter()" (mouseleave)="telefonLeave()">
       <div class="ikona-wrapper">
@@ -25,7 +25,7 @@
       <div class="ikona-wrapper">
         <img class="ikona" src="assets/prodavnica-images/kontakt-ikone/place.png">
       </div>
-      <h4 *ngIf="lokacijaHovered">Gornji Zalik bb</h4>
+      <h4 *ngIf="lokacijaHovered">Mostar, Zalik bb</h4>
     </div>
   </div>
 </div>
@@ -36,13 +36,13 @@
     <div class="inputi">
     <h6>Prima:</h6>
     <input class="primaoc" value="zalik@gym.com" disabled>
-    <h6>Šalje:</h6>
-    <input class="posiljalac" type="email">
+    <h6>Naslov:</h6>
+    <input class="posiljalac" [(ngModel)]="Subject" type="email">
     <h6>Tekst maila:</h6>
-    <input class="mail-tekst" type="text">
+    <input class="mail-tekst" [(ngModel)]="mailText" type="text">
     </div>
     <div class="mail-bottom">
-    <button class="posalji-btn" (click)="alert('nije zavrseno'); mailBoxOtvoriZatvori()">POŠALJI</button>
+    <button class="posalji-btn" (click)="slanjeMaila()">POŠALJI</button>
     </div>
   </div>
 </div>

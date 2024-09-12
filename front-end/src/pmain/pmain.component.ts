@@ -235,4 +235,7 @@ export class PmainComponent implements OnInit {
   isAdmin(){
     return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isAdmin;
   }
+  isRadnik(){
+    return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isRadnik;
+  }
 }

@@ -11,6 +11,7 @@ import {CjenovnikComponent} from "./cjenovnik/cjenovnik.component";
 import {ListaKorisnikaComponent} from "./lista-korisnika/lista-korisnika.component";
 import {NarudzbaComponent} from "./narudzba/narudzba.component";
 import {NarudzbeallComponent} from "./narudzbeall/narudzbeall.component";
+import {PrijavaComponent} from "./prijava/prijava.component";
 
 export const routes: Routes = [
   {path:'', redirectTo:'/obavijesti', pathMatch:'full'},
@@ -25,5 +26,6 @@ export const routes: Routes = [
   {path:'cjenovnik',component: CjenovnikComponent},
   {path:'korisnici',component:ListaKorisnikaComponent},
   {path:'narudzba/:narudzbaID',component:NarudzbaComponent},
-  {path:'narudzbe',component:NarudzbeallComponent}
+  {path:'narudzbe',component:NarudzbeallComponent},
+  {path:'prijavagreske',component:PrijavaComponent}
 ];

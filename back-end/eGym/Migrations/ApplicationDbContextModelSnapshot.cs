@@ -587,6 +587,32 @@ namespace eGym.Migrations
                     b.ToTable("Slika");
                 });
 
+            modelBuilder.Entity("eGym.Data.Models.Zalba", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<int>("KorisnikID")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("Slika")
+                        .IsRequired()
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Tekst")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("KorisnikID");
+
+                    b.ToTable("Zalba");
+                });
+
             modelBuilder.Entity("eGym.Data.Models.Admin", b =>
                 {
                     b.HasBaseType("eGym.Data.Models.KorisnickiNalog");
@@ -813,6 +839,17 @@ namespace eGym.Migrations
                         .WithMany("Slike")
                         .HasForeignKey("ProizvodID")
                         .OnDelete(DeleteBehavior.NoAction);
+                });
+
+            modelBuilder.Entity("eGym.Data.Models.Zalba", b =>
+                {
+                    b.HasOne("eGym.Data.Models.Korisnik", "korisnik")
+                        .WithMany()
+                        .HasForeignKey("KorisnikID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("korisnik");
                 });
 
             modelBuilder.Entity("eGym.Data.Models.Admin", b =>

@@ -1,0 +1,40 @@
+<div class="zalba-form-container" *ngIf="!isAdmin()">
+  <h2>Prijava greške/buga/problema na stranici</h2>
+
+  <form (ngSubmit)="submitZalba()" #zalbaForm="ngForm" enctype="multipart/form-data">
+
+    <div class="form-group">
+      <label for="tekst">Opišite problem ili grešku:</label>
+      <textarea id="tekst" name="tekst" [(ngModel)]="zalbaDto.tekst" required placeholder="Enter your complaint"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="slika">Screenshot greške:</label>
+      <input type="file" id="slika" name="slika" (change)="onFileSelected($event)" accept="image/*" required />
+    </div>
+
+    <button type="submit" [disabled]="zalbaForm.invalid">Submit Zalba</button>
+
+  </form>
+</div>
+<table *ngIf="isAdmin()">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Tekst</th>
+    <th>Korisnik</th>
+    <th>Slika</th>
+    <th>Ukloni</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let prijava of prijave">
+    <td>{{ prijava.id }}</td>
+    <td>{{ prijava.tekst }}</td>
+    <td>{{ prijava.korisnik.email }}</td>
+    <td><img [src]="'data:image/jpeg;base64,' + prijava.slika" alt="Screenshot Image" /></td>
+    <td><button (click)="deletePrijava(prijava.id)">Delete</button></td>
+
+  </tr>
+  </tbody>
+</table>

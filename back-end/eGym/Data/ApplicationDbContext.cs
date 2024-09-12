@@ -29,6 +29,7 @@ namespace eGym.Data
         public DbSet <KorpaProizvod> KorpaProizvod { get; set; }
 
         public DbSet <Slika> Slika { get; set; }
+        public DbSet<Zalba> Zalba { get; set; }
         public DbSet<AutentifikacijaToken> AutentifikacijaToken {  get; set; }
         
         public ApplicationDbContext(

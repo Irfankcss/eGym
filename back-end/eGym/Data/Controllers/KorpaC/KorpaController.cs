@@ -1,13 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using eGym.Data.Models;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
-using eGym.Data.Endpoints.KategorijaEndpoints.GetById;
-using eGym.Data.ViewModels.NarudzbaVMs;
+﻿using eGym.Data.Models;
 using eGym.Data.ViewModels.KorpaVMs;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace eGym.Data.Controllers.KorpaC
 {
@@ -78,7 +72,7 @@ namespace eGym.Data.Controllers.KorpaC
                 .FirstOrDefaultAsync(k => k.KorisnikID == korisnikID);
 
             if (korpa == null)
-            {   
+            {
                 //vracam praznu korpu da izbjegnem error u konzoli
                 return Ok(new Korpa
                 {
@@ -110,7 +104,7 @@ namespace eGym.Data.Controllers.KorpaC
                     return Math.Round((decimal)(ukupnaCijena ?? 0), 2);
                 })
 
-        };
+            };
 
             return Ok(korpaDto);
         }
