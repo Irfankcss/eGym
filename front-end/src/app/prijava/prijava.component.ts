@@ -110,4 +110,9 @@ export class PrijavaComponent implements OnInit{
   isAdmin(){
     return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isAdmin;
   }
+
+  otvoriMail(email: string) {
+      const mailtoUrl = `mailto:${email}?subject=Odgovor na prijavu&body=`;
+      window.open(mailtoUrl);
+  }
 }

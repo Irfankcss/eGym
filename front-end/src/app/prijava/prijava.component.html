@@ -45,7 +45,7 @@
   <tr *ngFor="let prijava of prijave">
     <td>{{ prijava.id }}</td>
     <td>{{ prijava.tekst }}</td>
-    <td>{{ prijava.korisnik.email }}</td>
+    <td style="cursor:pointer" (click)="otvoriMail(prijava.korisnik.email)">{{ prijava.korisnik.email }}</td>
     <td>
       <ng-container *ngIf="prijava.slika">
         <img [src]="'data:image/jpeg;base64,' + prijava.slika" alt="Screenshot Image" style="max-width: 100px; max-height: 100px;" />
