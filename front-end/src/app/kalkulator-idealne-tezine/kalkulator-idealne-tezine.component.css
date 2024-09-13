@@ -1,11 +1,13 @@
 body {
+
   margin: 0;
   font-family: Arial, sans-serif;
 }
 .body{
+  border-top: 1px solid #383838;
   height: 40vh;
   background-size: cover;
-  background: linear-gradient(to right, #2B3A53 50%, #F1F2F6 50%);
+  background: linear-gradient(to right, #212529 50%, #F1F2F6 50%);
 }
 .container {
   display: flex;
@@ -13,7 +15,8 @@ body {
 }
 
 .left {
-  background-color: #2B3A53;
+  background-color: #212529;
+  border-bottom: 1px solid #383838;
   color: white;
   width: 50%;
   display: flex;

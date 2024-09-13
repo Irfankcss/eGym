@@ -598,8 +598,10 @@ namespace eGym.Migrations
                     b.Property<int>("KorisnikID")
                         .HasColumnType("int");
 
+                    b.Property<byte[]>("PdfNarudzba")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<byte[]>("Slika")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Tekst")

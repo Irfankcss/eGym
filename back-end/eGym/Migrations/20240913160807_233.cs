@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace eGym.Migrations
 {
     /// <inheritdoc />
-    public partial class x : Migration
+    public partial class _233 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -383,6 +383,27 @@ namespace eGym.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Zalba",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Tekst = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Slika = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    PdfNarudzba = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    KorisnikID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Zalba", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Zalba_Korisnik_KorisnikID",
+                        column: x => x.KorisnikID,
+                        principalTable: "Korisnik",
+                        principalColumn: "ID");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PoslanaNarudzba",
                 columns: table => new
                 {
@@ -555,6 +576,11 @@ namespace eGym.Migrations
                 name: "IX_Slika_ProizvodID",
                 table: "Slika",
                 column: "ProizvodID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Zalba_KorisnikID",
+                table: "Zalba",
+                column: "KorisnikID");
         }
 
         /// <inheritdoc />
@@ -583,6 +609,9 @@ namespace eGym.Migrations
 
             migrationBuilder.DropTable(
                 name: "Slika");
+
+            migrationBuilder.DropTable(
+                name: "Zalba");
 
             migrationBuilder.DropTable(
                 name: "Clanarina");

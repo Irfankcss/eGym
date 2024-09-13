@@ -19,39 +19,60 @@ declare function porukaSuccess(m:string):any;
 })
 export class PrijavaComponent implements OnInit{
   prijave: any[] = [];
+  selectedFileSlika: File | null = null;
+  selectedFilePdf: File | null = null;
+  selectedFileType: 'image' | 'pdf' | null = null;
 
   zalbaDto = {
     korisnikID: this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.id ?? 3,
     tekst: ''
   };
-
-  selectedFile: File | null = null;
-
   constructor(private http: HttpClient, private router: Router)  {}
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.selectedFile = file;
+  onFileTypeChange(fileType: 'image' | 'pdf') {
+    this.selectedFileType = fileType;
+    // Reset selected files based on file type
+    if (fileType === 'image') {
+      this.selectedFilePdf = null;
+    } else if (fileType === 'pdf') {
+      this.selectedFileSlika = null;
     }
   }
-
+  onFileSelected(event: any, fileType: 'slika' | 'pdf') {
+    const file = event.target.files[0];
+    if (fileType === 'slika') {
+      this.selectedFileSlika = file;
+    } else if (fileType === 'pdf') {
+      this.selectedFilePdf = file;
+    }
+  }
   ngOnInit(): void {
     this.getAllPrijave();
         console.log(this.dohvatiLogiranogKorisnika()?.autentifikacijaToken);
   }
   submitZalba() {
-    if (!this.selectedFile || !this.zalbaDto.tekst) {
+    if (!this.zalbaDto.tekst) {
       console.error('Please fill out all fields.');
       return;
     }
 
     const formData = new FormData();
-    formData.append('KorisnikID',this.zalbaDto.korisnikID.toString());
+    formData.append('KorisnikID', this.zalbaDto.korisnikID.toString());
     formData.append('Tekst', this.zalbaDto.tekst);
-    formData.append('Slika', this.selectedFile);
 
-    this.http.post(Mojconfig.adresa_servera + '/api/Zalba', formData)
+    let apiUrl = '';
+    if (this.selectedFileType === 'image' && this.selectedFileSlika) {
+      formData.append('Slika', this.selectedFileSlika);
+      apiUrl = Mojconfig.adresa_servera + '/api/Zalba';
+    } else if (this.selectedFileType === 'pdf' && this.selectedFilePdf) {
+      formData.append('PdfNarudzba', this.selectedFilePdf);
+      apiUrl = Mojconfig.adresa_servera + '/api/Zalba/SaPdf';
+    } else {
+      console.error('No file selected or incorrect file type.');
+      return;
+    }
+
+    this.http.post(apiUrl, formData)
       .subscribe(response => {
         this.router.navigate(['/obavijesti']);
         porukaSuccess("Prijava poslana");
@@ -59,6 +80,7 @@ export class PrijavaComponent implements OnInit{
         porukaError("Prijava nije poslana");
       });
   }
+
 
   getAllPrijave(): void {
     this.http.get<any[]>(Mojconfig.adresa_servera + '/api/Zalba')

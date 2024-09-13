@@ -9,7 +9,8 @@ namespace eGym.Data.Models
     {
         public int ID {  get; set; }
         public string Tekst { get; set; }
-        public byte[] Slika { get; set; }
+        public byte[]? Slika { get; set; }
+        public byte[]? PdfNarudzba { get; set; }
 
         [ForeignKey(nameof(korisnik))]
         public int KorisnikID { get; set; }

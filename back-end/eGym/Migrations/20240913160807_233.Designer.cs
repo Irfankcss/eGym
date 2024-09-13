@@ -12,8 +12,8 @@ using eGym.Data;
 namespace eGym.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240912084511_zalba")]
-    partial class zalba
+    [Migration("20240913160807_233")]
+    partial class _233
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -601,8 +601,10 @@ namespace eGym.Migrations
                     b.Property<int>("KorisnikID")
                         .HasColumnType("int");
 
+                    b.Property<byte[]>("PdfNarudzba")
+                        .HasColumnType("varbinary(max)");
+
                     b.Property<byte[]>("Slika")
-                        .IsRequired()
                         .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Tekst")

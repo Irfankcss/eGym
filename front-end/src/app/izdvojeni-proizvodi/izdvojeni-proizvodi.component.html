@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="container-title">
-      <h4>PONUDA KOJA SE NE PROPUŠTA</h4>
+      <h4 *ngIf="izdvojeniProizovdi[0]">PONUDA KOJA SE NE PROPUŠTA</h4>
   </div>
   <div class="productList">
   <div *ngFor="let ip of izdvojeniProizovdi" class="container-products" >

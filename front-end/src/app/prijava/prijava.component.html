@@ -1,29 +1,43 @@
 <div class="zalba-form-container" *ngIf="!isAdmin()">
-  <h2>Prijava greške/buga/problema na stranici</h2>
+  <h2>Prijava greške/buga na stranici ili problema sa narudđbom</h2>
 
   <form (ngSubmit)="submitZalba()" #zalbaForm="ngForm" enctype="multipart/form-data">
-
     <div class="form-group">
       <label for="tekst">Opišite problem ili grešku:</label>
       <textarea id="tekst" name="tekst" [(ngModel)]="zalbaDto.tekst" required placeholder="Enter your complaint"></textarea>
     </div>
 
     <div class="form-group">
+      <label>Izaberite tip prijave:</label>
+      <div>
+        <input type="radio" id="image" name="fileType" value="image" (change)="onFileTypeChange('image')" />
+        <label for="image">Greška/Bug na stranici</label>
+        <input type="radio" id="pdfcb" name="fileType" value="pdf" (change)="onFileTypeChange('pdf')" />
+        <label for="pdf">Problem sa narudđbom</label>
+      </div>
+    </div>
+
+    <div class="forma" *ngIf="selectedFileType === 'image'">
       <label for="slika">Screenshot greške:</label>
-      <input type="file" id="slika" name="slika" (change)="onFileSelected($event)" accept="image/*" required />
+      <input type="file" id="slika" name="slika" (change)="onFileSelected($event, 'slika')" accept="image/*" />
+    </div>
+
+    <div class="forma" *ngIf="selectedFileType === 'pdf'">
+      <label for="pdf">Dodajte PDF narudžbe/računa:</label>
+      <input type="file" id="pdf" name="pdf" (change)="onFileSelected($event, 'pdf')" accept="application/pdf" />
     </div>
 
     <button type="submit" [disabled]="zalbaForm.invalid">Submit Zalba</button>
-
   </form>
 </div>
+
 <table *ngIf="isAdmin()">
   <thead>
   <tr>
     <th>ID</th>
     <th>Tekst</th>
     <th>Korisnik</th>
-    <th>Slika</th>
+    <th>Screenshot/PDF</th>
     <th>Ukloni</th>
   </tr>
   </thead>
@@ -32,9 +46,18 @@
     <td>{{ prijava.id }}</td>
     <td>{{ prijava.tekst }}</td>
     <td>{{ prijava.korisnik.email }}</td>
-    <td><img [src]="'data:image/jpeg;base64,' + prijava.slika" alt="Screenshot Image" /></td>
+    <td>
+      <ng-container *ngIf="prijava.slika">
+        <img [src]="'data:image/jpeg;base64,' + prijava.slika" alt="Screenshot Image" style="max-width: 100px; max-height: 100px;" />
+      </ng-container>
+      <ng-container *ngIf="prijava.pdfNarudzba">
+        <a [href]="'data:application/pdf;base64,' + prijava.pdfNarudzba" download="Narudzba.pdf">Download PDF</a>
+      </ng-container>
+      <ng-container *ngIf="!prijava.slika && !prijava.pdfNarudzba">
+        No File
+      </ng-container>
+    </td>
     <td><button (click)="deletePrijava(prijava.id)">Delete</button></td>
-
   </tr>
   </tbody>
 </table>

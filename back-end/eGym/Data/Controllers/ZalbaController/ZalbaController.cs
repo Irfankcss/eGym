@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using eGym.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace eGym.Data.Controllers.ZalbaController
 {
@@ -52,6 +53,7 @@ namespace eGym.Data.Controllers.ZalbaController
                 Tekst = Tekst
             };
 
+            // Handle Slika (image)
             if (Slika != null && Slika.Length > 0)
             {
                 using (var memoryStream = new MemoryStream())
@@ -66,6 +68,40 @@ namespace eGym.Data.Controllers.ZalbaController
 
             return CreatedAtAction(nameof(GetZalbaById), new { id = zalba.ID }, zalba);
         }
+
+        [HttpPost("SaPdf")]
+        public async Task<ActionResult<Zalba>> CreateZalba2([FromForm] int KorisnikID, [FromForm] string Tekst, [FromForm] IFormFile PdfNarudzba)
+        {
+            var korisnik = await _context.Korisnik
+              .FirstOrDefaultAsync(k => k.ID == KorisnikID);
+
+            if (korisnik == null)
+            {
+                return NotFound($"Korisnik with ID {KorisnikID} not found.");
+            }
+
+            var zalba = new Zalba
+            {
+                KorisnikID = KorisnikID,
+                korisnik = korisnik,
+                Tekst = Tekst
+            };
+            // Handle PdfNarudzba (PDF)
+            if (PdfNarudzba != null && PdfNarudzba.Length > 0)
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    await PdfNarudzba.CopyToAsync(memoryStream);
+                    zalba.PdfNarudzba = memoryStream.ToArray(); // Make sure PdfNarudzba is a byte[] in Zalba model
+                }
+
+                _context.Zalba.Add(zalba);
+                await _context.SaveChangesAsync();
+            }
+                return CreatedAtAction(nameof(GetZalbaById), new { id = zalba.ID }, zalba);
+            
+        }
+
 
 
         [HttpDelete("{id}")]

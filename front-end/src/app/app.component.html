@@ -5,7 +5,7 @@
     </li>
     <div *ngIf="jelLogiran()" class="vr text-white"></div>
     <li class="nav-item">
-      <a class="nav-link text-white customPointer" routerLink="/prijavagreske">Prijavi problem</a>
+      <a *ngIf="!isAdmin()" class="nav-link text-white customPointer" routerLink="/prijavagreske">Prijavi grešku</a>
     </li>
     <div class="vr text-white"></div>
     <li class="nav-item" >
@@ -35,8 +35,11 @@
     <li class="nav-item">
       <a class="nav-link text-white" routerLink="/kontakt">Kontakt</a>
     </li>
-  <li class="nav-item">
-    <a class="nav-link text-blue" routerLink="/narudzbe" *ngIf="isRadnik()">Narudžbe</a>
+  <li class="nav-item" *ngIf="isRadnik() || isAdmin()">
+    <a class="nav-link text-blue" routerLink="/narudzbe">Narudžbe</a>
+  </li>
+  <li class="nav-item" *ngIf="isAdmin()">
+    <a class="nav-link text-blue" routerLink="/prijavagreske">Prijave</a>
   </li>
   </ul>
 </div>

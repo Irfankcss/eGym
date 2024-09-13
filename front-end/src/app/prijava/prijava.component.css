@@ -16,6 +16,8 @@
 
 .form-group {
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
