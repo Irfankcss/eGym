@@ -60,7 +60,6 @@ export class PmainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("test");
     this.GetProizvodi();
     this.getKategorije();
     this.getBrendovi();
@@ -73,7 +72,6 @@ export class PmainComponent implements OnInit {
     this.httpClient.get<KategorijeR>(url).subscribe(
       response => {
         this.Kategorije = response.kategorije;
-        console.log("kategorije", this.Kategorije);
       },
       error => {
         console.log("Greska pri dohvacanju kategorija");
@@ -86,7 +84,6 @@ export class PmainComponent implements OnInit {
     this.httpClient.get<BrendR>(url).subscribe(
       response => {
         this.Brendovi = response.brendovi;
-        console.log("brendovi", this.Brendovi);
       },
       error => {
         console.log("Greska pri dohvacanju brendova");
@@ -207,7 +204,6 @@ export class PmainComponent implements OnInit {
       "isIzdvojen": false
     };
 
-    console.log("Nakon formiranja bodija: ",body);
     this.httpClient.post(Mojconfig.adresa_servera + "/api/products", body).subscribe(x => {
         this.DodajProizvodOtvoren = false;
         porukaSuccess(`Uspjesno dodan proizvod ${this.product.naziv}`);
@@ -219,10 +215,6 @@ export class PmainComponent implements OnInit {
     );
   }
 
-  funkcija() {
-    console.log("BREND", this.product.brend);
-    console.log("KATEGORIJA", this.product.kategorija);
-  }
   dohvatiLogiranogKorisnika(){
     let token = window.localStorage.getItem("korisnik")??"";
     try {
@@ -237,5 +229,11 @@ export class PmainComponent implements OnInit {
   }
   isRadnik(){
     return this.dohvatiLogiranogKorisnika()?.autentifikacijaToken.korisnickiNalog.isRadnik;
+  }
+
+  ponistiPretragu() {
+    this.inputValue = "";
+    this.sharedDataService.updateInputValue(this.inputValue);
+    this.GetProizvodi();
   }
 }

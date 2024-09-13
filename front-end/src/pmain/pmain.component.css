@@ -35,7 +35,10 @@
   overflow: hidden;
   transition: transform 0.3s ease;;
 }
-
+.poništi-pretragu{
+  cursor:pointer;
+  color:red;
+}
 .naziv-proizvoda {
   position: relative;
   left: 10%;

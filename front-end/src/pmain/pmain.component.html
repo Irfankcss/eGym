@@ -1,5 +1,8 @@
 <div class="pmain-box">
-
+  <div class="rezultatPretragelbl" *ngIf="inputValue!=''">
+  <label>Rezultati pretrage za: "{{inputValue}}"  </label>
+    <a class="poništi-pretragu" (click)="ponistiPretragu()">Poništi</a>
+  </div>
   <div class="pmain-box">
     <div class="proizvod-box" *ngIf="isRadnik()">
       <a (click)="OtvoriDodavanjeProizvoda()">
@@ -9,7 +12,6 @@
         <label class="naziv-proizvoda">Novi Proizvod</label>
       </a>
     </div>
-
     <div *ngFor="let proizvod of proizvodi" class="proizvod-box">
       <a (click)="IdiNaRutu(proizvod.proizvodID)">
         <div class="slika-proizvoda-box">
@@ -45,7 +47,7 @@
       <input id="cijena" [(ngModel)]="product.cijena" type="number" />
 
       <label for="kategorija">Kategorija:</label>
-      <select (ngModelChange)="funkcija()" id="kategorija" [(ngModel)]="product.kategorija.id" [ngModelOptions]="{standalone: true}">
+      <select id="kategorija" [(ngModel)]="product.kategorija.id" [ngModelOptions]="{standalone: true}">
         <option *ngFor="let k of Kategorije" [value]="k.kategorijaId">{{ k.naziv }}</option>
       </select>
 
