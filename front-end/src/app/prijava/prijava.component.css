@@ -101,3 +101,11 @@ button {
 button:hover {
   background-color: #d43f3f;
 }
+.checkBox-and-text{
+  display:flex;
+  flex-direction: row;
+}
+
+.checkBox-and-text label{
+  margin-left: 5px;
+}

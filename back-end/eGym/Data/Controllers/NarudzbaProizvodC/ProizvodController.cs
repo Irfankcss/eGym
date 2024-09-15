@@ -201,7 +201,7 @@ namespace eGym.Data.Controllers.NarudzbaProizvodC
         public async Task<IActionResult> DeleteProizvod(int proizvodID)
         {
 
-            if (!(_authService.isRadnik() && _authService.isLogiran()))
+            if (!(_authService.isAdmin() && _authService.isLogiran()))
                 throw new Exception("Korisnik nema permisiju Radnika ili nije logiran");
 
             var proizvod = await _context.Proizvod

@@ -1,19 +1,21 @@
 <div class="zalba-form-container" *ngIf="!isAdmin()">
-  <h2>Prijava greške/buga na stranici ili problema sa narudđbom</h2>
+  <h2>Prijava greške/buga na stranici ili problema sa narudžbom</h2>
 
   <form (ngSubmit)="submitZalba()" #zalbaForm="ngForm" enctype="multipart/form-data">
     <div class="form-group">
       <label for="tekst">Opišite problem ili grešku:</label>
-      <textarea id="tekst" name="tekst" [(ngModel)]="zalbaDto.tekst" required placeholder="Enter your complaint"></textarea>
+      <textarea id="tekst" name="tekst" [(ngModel)]="zalbaDto.tekst" required placeholder="Unesite opis vašeg problema/greške na stranici"></textarea>
     </div>
 
     <div class="form-group">
       <label>Izaberite tip prijave:</label>
-      <div>
+      <div class="checkBox-and-text">
         <input type="radio" id="image" name="fileType" value="image" (change)="onFileTypeChange('image')" />
         <label for="image">Greška/Bug na stranici</label>
+      </div>
+      <div class="checkBox-and-text">
         <input type="radio" id="pdfcb" name="fileType" value="pdf" (change)="onFileTypeChange('pdf')" />
-        <label for="pdf">Problem sa narudđbom</label>
+        <label for="pdf">Problem sa narudžbom</label>
       </div>
     </div>
 
