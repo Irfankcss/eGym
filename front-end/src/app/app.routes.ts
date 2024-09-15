@@ -1,12 +1,12 @@
 import { Routes } from '@angular/router';
-import {ProdavnicaComponent} from "../prodavnica/prodavnica.component";
-import {ViewProizvodComponent} from "../view-proizvod/view-proizvod.component";
-import {KorpaComponent} from "../korpa/korpa.component";
+import {ProdavnicaComponent} from "./prodavnica/prodavnica.component";
+import {ViewProizvodComponent} from "./view-proizvod/view-proizvod.component";
+import {KorpaComponent} from "./korpa/korpa.component";
 import {ObavijestiComponent} from "./obavijesti/obavijesti.component";
 import {PrijaviSeComponent} from "./prijavi-se/prijavi-se.component";
 import {RegistrujSeComponent} from "./registruj-se/registruj-se.component";
 import {ClanarinaComponent} from "./clanarina/clanarina.component";
-import {KontaktComponent} from "../kontakt/kontakt.component";
+import {KontaktComponent} from "./kontakt/kontakt.component";
 import {CjenovnikComponent} from "./cjenovnik/cjenovnik.component";
 import {ListaKorisnikaComponent} from "./lista-korisnika/lista-korisnika.component";
 import {NarudzbaComponent} from "./narudzba/narudzba.component";

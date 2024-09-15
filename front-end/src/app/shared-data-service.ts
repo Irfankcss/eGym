@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {BrendGetAllResponse} from "../pleft/BrendGetAllResponse";
-import {KategorijaGetAllResponse} from "../pleft/KategorijaGetAllResponse";
+import {BrendGetAllResponse} from "./pleft/BrendGetAllResponse";
+import {KategorijaGetAllResponse} from "./pleft/KategorijaGetAllResponse";
 
 
 @Injectable({

@@ -39,7 +39,7 @@ namespace eGym.Data.Endpoints.ClanEndpoints.Dodaj
             {
                 if (!korisnik.isClan)
                 {
-                   var novaClanarina = new Clanarina
+                   var novaClanarina = new Models.Clanarina
                     {
                         DatumUplate = DateTime.Now,
                         DatumIsteka = (DateTime.Now).AddDays(30)

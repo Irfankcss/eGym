@@ -1,4 +1,4 @@
-﻿using eGym.Data.Controllers.Obavijesti.Update;
+﻿using eGym.Data.Endpoints.Obavijesti.Update;
 using eGym.Data.Helpers.Services;
 using eGym.Helpers;
 using Microsoft.AspNetCore.Mvc;

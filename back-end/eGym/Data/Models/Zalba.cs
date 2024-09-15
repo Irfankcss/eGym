@@ -1,4 +1,4 @@
-﻿using eGym.Data.Controllers.Korisnik.GetByID;
+﻿using eGym.Data.Endpoints.Korisnik.GetByID;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;

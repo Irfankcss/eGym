@@ -1,0 +1,48 @@
+<div class="main">
+<div class="top-box">
+  <h5 class="imatepitanje-txt">Imate pitanje? Potrebna vam je pomoč?</h5>
+  <h1 class="kontaktirajtenas-txt">Kontakirajte nas</h1>
+</div>
+<div class="bottom-box">
+  <img class="kontakt-bottom-background" src="../../assets/prodavnica-images/kontakt-nacini-bg.jpg">
+  <div class="nacini-txt">
+    <h1>Načini na koje nas možete kontaktirati</h1>
+  </div>
+  <div class="nacini-box">
+    <div class="nacin-box" (mouseenter)="postaEnter()" (mouseleave)="postaLeave()" (click)="mailBoxOtvoriZatvori()">
+      <div class="ikona-wrapper" >
+        <img class="ikona" src="../../assets/prodavnica-images/kontakt-ikone/email.png">
+      </div>
+      <h4 *ngIf="postaHovered">egymzalik&#64;gmail.com</h4>
+    </div>
+    <div class="nacin-box" (mouseenter)="telefonEnter()" (mouseleave)="telefonLeave()">
+      <div class="ikona-wrapper">
+        <img class="ikona" src="../../assets/prodavnica-images/kontakt-ikone/telephone.png">
+      </div>
+      <h4 *ngIf="telefonHovered">+062 227 993</h4>
+    </div>
+    <div class="nacin-box" (mouseenter)="lokacijaEnter()" (mouseleave)="lokacijaLeave()" (click)="idiNaLokaciju()">
+      <div class="ikona-wrapper">
+        <img class="ikona" src="../../assets/prodavnica-images/kontakt-ikone/place.png">
+      </div>
+      <h4 *ngIf="lokacijaHovered">Mostar, Zalik bb</h4>
+    </div>
+  </div>
+</div>
+  <div class="mail-box" *ngIf="mailBoxOtvoren">
+    <div class="mail-top">
+      <button class="btn-ugasi-mail" (click)="mailBoxOtvoriZatvori()">✖</button>
+    </div>
+    <div class="inputi">
+    <h6>Prima:</h6>
+    <input class="primaoc" value="zalik@gym.com" disabled>
+    <h6>Naslov:</h6>
+    <input class="posiljalac" [(ngModel)]="Subject" type="email">
+    <h6>Tekst maila:</h6>
+    <input class="mail-tekst" [(ngModel)]="mailText" type="text">
+    </div>
+    <div class="mail-bottom">
+    <button class="posalji-btn" (click)="slanjeMaila()">POŠALJI</button>
+    </div>
+  </div>
+</div>
