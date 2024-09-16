@@ -164,30 +164,30 @@ public class PodaciController : ControllerBase
         {
             _dbContext.Proizvod.Add(new Proizvod
             {
-                Naziv = "Pure Gold Whey",
+                Naziv = "Pure Gold Creatine 300g",
                 Boja = "Neutral",
                 BrendID = 1,
                 KategorijaID = 1,
                 Cijena = 70.00,
                 DatumObjave = DateTime.Now,
                 KolicinaNaSkladistu = 29,
-                Opis = "Super Whey protein isolate 1kg",
+                Opis = "100% Creatine okus Mango",
                 popust = 10,
-                Velicina = "none",
-                Slike = { new Slika { Putanja = "https://elitnutrition.ba/wp-content/uploads/2023/10/pgp-whey-1000g.png" }, new Slika { Putanja = "https://d4n0y8dshd77z.cloudfront.net/listings/49683227/lg/yZJuQ6AMVqi2cOTUBSS5.jpg" } }
+                Velicina = "300g",
+                Slike = { new Slika { Putanja = "https://content1.rozetka.com.ua/goods/images/original/390679596.png" } }
             });
             _dbContext.Proizvod.Add(new Proizvod {
-                Naziv = "Gym Beam Creatine",
+                Naziv = "Gym Beam Whey 1kg",
                 Boja = "Neutral",
                 BrendID = 2,
                 KategorijaID = 1,
                 Cijena = 35.00,
                 DatumObjave = DateTime.Now,
                 KolicinaNaSkladistu = 29,
-                Opis = "Creatine 100% Monohydrate 250g Mango-Maracuja",
+                Opis = "Isolate Whey okus čokolada",
                 popust = 0,
-                Velicina = "none",
-                Slike = { new Slika { Putanja = "https://gymbeam.ba/media/catalog/product/cache/70f742f66feec18cb83790f14444a3d1/c/r/creatine_monohydrate_mango-maracuja_250_g_gymbeam.png" } }
+                Velicina = "1kg",
+                Slike = { new Slika { Putanja = "https://gymbeam.ba/media/catalog/product/cache/70f742f66feec18cb83790f14444a3d1/p/r/protei_n_true_whey_-_gymbeam_2500_g_-_strawberry.png" } }
             });
             _dbContext.Proizvod.Add(new Proizvod
             {

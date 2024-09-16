@@ -14,7 +14,7 @@ import { SharedDataService } from "../shared-data-service";
   imports: [CommonModule, HttpClientModule],
 })
 export class PleftComponent implements OnInit {
-  filteriPrikazani: boolean;
+  filteriPrikazani: boolean = true;
   prikazaneKategorije: boolean;
   prikazaniBrendovi: boolean;
   isKategorijeHovered: boolean = false;
@@ -23,7 +23,7 @@ export class PleftComponent implements OnInit {
   selectedKategorija: { kategorijaId: number, naziv: string, opis: string } = { kategorijaId: 0, naziv: '', opis: '' };
 
   constructor(public httpClient: HttpClient, private sharedDataService: SharedDataService) {
-    this.filteriPrikazani = false;
+    this.filteriPrikazani = true;
     this.prikazaneKategorije = false;
     this.prikazaniBrendovi = false;
   }

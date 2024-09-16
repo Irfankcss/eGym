@@ -59,7 +59,7 @@
       </div>
       <ng-template #odobreneAkcije>
         <ng-container *ngIf="naslov === 'Poslane narudzbe:'">
-          <button class="prijavi-button">Prijavi</button>
+
         </ng-container>
         <ng-container *ngIf="naslov !== 'Poslane narudzbe:'">
           <button class="odbij-button" (click)="odbijNarudzbu(n.id, n.email)">Odbij</button>
