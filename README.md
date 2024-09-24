@@ -41,5 +41,38 @@ Pregled i brisanje prijavljenih grešaka, pregled uploadanih slika i fajlova. (U
 ![image](https://github.com/user-attachments/assets/c7ba8b0d-05ce-4527-8780-1fe08fe87356)
 Dodavanje novih proizvoda preko guia. (Uloga Radnik)
 
+![image](https://github.com/user-attachments/assets/8f26fc0e-13fb-466b-b742-22ef3373b38e)
+Registracija novog korisnika
 
+![image](https://github.com/user-attachments/assets/145d311c-214d-4545-b956-a46f95eba1d9)
+Prijava korisnika
 
+![image](https://github.com/user-attachments/assets/7fbe8182-2c25-45dd-95bb-8286997de8b3)
+Prikaz aktivnih obavijesti, mogućnost dodavanja, uređivanja i uklanjanja obavijesti
+
+![image](https://github.com/user-attachments/assets/38befb80-92c6-44ba-907d-5041c8b73ceb)
+Izdvojeni proizvodi s ciljem privlačenja pažnje korisniku, mogućnost brisanja izdvojenih proizvoda
+
+![image](https://github.com/user-attachments/assets/12b6e59f-e802-4828-89ee-28c730615bb8)
+Osnovne informacije o teretani i kalkulator idealne težine
+
+![image](https://github.com/user-attachments/assets/03a3e95d-b477-4cc5-ac40-7e587b18bdc0)
+Video odjel, smjernice za vježbanje
+
+![image](https://github.com/user-attachments/assets/7a643c9e-395c-4632-a025-613b8ed3f3b7)
+Prikaz svih članova sa funkcijom poništavanja članstva i produživanja članarine na mjesec dana (admin dio)
+
+![image](https://github.com/user-attachments/assets/9ce09ab6-f604-4b02-896d-e18822d17f72)
+Prikaz svih korisničkih naloga (admin, radnik, korisnik) sa opcijom brisanja osim admin uloge i promjene uloga (Korisnik -> Radnik ili Radnik -> Korisnik)
+
+![image](https://github.com/user-attachments/assets/5662d93d-0d92-4010-8c20-a30090d4c09e)
+Prikaz tipova mjesečnih članarina, sa cijenama i uslugama koje tipovi nude.
+
+![image](https://github.com/user-attachments/assets/387f29aa-3bbe-4454-a806-01bf07caaec3)
+Izvještaj o članu koji je logiran sa prikazom osnovnih informacija o njemu i simulacija RFID skenera o evidenciji dolazaka na treninge (Član uloga)
+
+![image](https://github.com/user-attachments/assets/81e9575a-ce12-42e6-a4bf-151c27f760cc)
+Prikaz osnovnih podataka o radniku kao i prikaz svih članova u teretani sa mogućnosti produživanja članarine na mjesec dana i poništavanje iste
+
+![image](https://github.com/user-attachments/assets/a2577ac7-da6e-428e-95c0-eac26fe938e2)
+Odel za korisnike koji žele postati član teretane.
